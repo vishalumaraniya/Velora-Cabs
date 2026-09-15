@@ -10,27 +10,27 @@ interface VeloraLogoProps {
 }
 
 export default function VeloraLogo({ className = '', size = 42, animated = true }: VeloraLogoProps) {
-  // Pure Clean SVG Path Data for Minimalist Luxury "V" Winged Emblem
-  const shieldPath = "M 50 12 L 85 28 L 78 72 L 50 90 L 22 72 L 15 28 Z";
-  const leftWingArc = "M 22 36 C 30 38 38 46 45 52 L 42 66 C 34 58 26 48 20 44 Z";
-  const rightWingArc = "M 78 36 C 70 38 62 46 55 52 L 58 66 C 66 58 74 48 80 44 Z";
-  const sharpCenterV = "M 32 30 L 50 76 L 68 30 L 58 30 L 50 60 L 42 30 Z";
+  // Pure Clean SVG Path Data matching the Preloader Emblem
+  const shieldPath = "M 50 10 L 85 28 L 78 72 L 50 92 L 22 72 L 15 28 Z";
+  const leftWing = "M 28 32 C 18 36 14 46 16 58 C 24 54 32 50 42 50 L 50 78 Z";
+  const rightWing = "M 72 32 C 82 36 86 46 84 58 C 76 54 68 50 58 50 L 50 78 Z";
+  const centerV = "M 30 30 L 50 74 L 70 30 L 58 30 L 50 58 L 42 30 Z";
 
-  const drawVariants: Variants = {
+  const strokeVariants: Variants = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: {
       pathLength: 1,
       opacity: 1,
-      transition: { duration: 1.2, ease: [0.42, 0, 0.58, 1] },
+      transition: { duration: 1.2, ease: 'easeInOut' },
     },
   };
 
-  const scaleVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.9 },
+  const fillVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.4, delay: 0.8 },
+      transition: { delay: 0.8, duration: 0.4 },
     },
   };
 
@@ -42,70 +42,67 @@ export default function VeloraLogo({ className = '', size = 42, animated = true 
         viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="overflow-visible filter drop-shadow-[0_0_12px_rgba(245,185,33,0.5)]"
+        className="overflow-visible filter drop-shadow-[0_0_14px_rgba(245,185,33,0.5)]"
       >
         <defs>
-          {/* Main Gold Gradient */}
-          <linearGradient id="logoSvgGold" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFFFFF" />
-            <stop offset="30%" stopColor="#FFE599" />
-            <stop offset="65%" stopColor="#F5B921" />
-            <stop offset="100%" stopColor="#B88000" />
+          <linearGradient id="veloraGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFF4D0" />
+            <stop offset="50%" stopColor="#F5B921" />
+            <stop offset="100%" stopColor="#D49B0E" />
           </linearGradient>
 
-          {/* Inner Accent Gold */}
-          <linearGradient id="logoSvgGoldAccent" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#FCD34D" />
-            <stop offset="100%" stopColor="#D97706" />
+          <linearGradient id="veloraHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#FFFFFF" />
+            <stop offset="100%" stopColor="#F5B921" />
           </linearGradient>
         </defs>
 
-        {/* Outer Geometric Shield Border */}
+        {/* Geometric Crown Shield Outline */}
         <motion.path
           d={shieldPath}
-          stroke="url(#logoSvgGold)"
-          strokeWidth="3.5"
+          stroke="url(#veloraGoldGrad)"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
           fill="#0c0c10"
           fillOpacity="0.95"
-          variants={animated ? drawVariants : undefined}
+          variants={animated ? strokeVariants : undefined}
           initial={animated ? 'hidden' : undefined}
           animate={animated ? 'visible' : undefined}
         />
 
-        {/* Left Wing Facet */}
+        {/* Left Wing */}
         <motion.path
-          d={leftWingArc}
-          fill="url(#logoSvgGoldAccent)"
-          fillOpacity="0.75"
-          stroke="#FCD34D"
-          strokeWidth="1"
-          variants={animated ? scaleVariants : undefined}
-          initial={animated ? 'hidden' : undefined}
-          animate={animated ? 'visible' : undefined}
-        />
-
-        {/* Right Wing Facet */}
-        <motion.path
-          d={rightWingArc}
-          fill="url(#logoSvgGoldAccent)"
-          fillOpacity="0.75"
-          stroke="#FCD34D"
-          strokeWidth="1"
-          variants={animated ? scaleVariants : undefined}
-          initial={animated ? 'hidden' : undefined}
-          animate={animated ? 'visible' : undefined}
-        />
-
-        {/* Sharp Center "V" Emblem */}
-        <motion.path
-          d={sharpCenterV}
-          fill="url(#logoSvgGold)"
-          stroke="#FFFFFF"
+          d={leftWing}
+          fill="url(#veloraGoldGrad)"
+          fillOpacity="0.85"
+          stroke="url(#veloraHighlight)"
           strokeWidth="1.5"
+          variants={animated ? fillVariants : undefined}
+          initial={animated ? 'hidden' : undefined}
+          animate={animated ? 'visible' : undefined}
+        />
+
+        {/* Right Wing */}
+        <motion.path
+          d={rightWing}
+          fill="url(#veloraGoldGrad)"
+          fillOpacity="0.85"
+          stroke="url(#veloraHighlight)"
+          strokeWidth="1.5"
+          variants={animated ? fillVariants : undefined}
+          initial={animated ? 'hidden' : undefined}
+          animate={animated ? 'visible' : undefined}
+        />
+
+        {/* Center V */}
+        <motion.path
+          d={centerV}
+          fill="url(#veloraHighlight)"
+          stroke="#FFFFFF"
+          strokeWidth="2"
           strokeLinejoin="round"
-          variants={animated ? drawVariants : undefined}
+          variants={animated ? strokeVariants : undefined}
           initial={animated ? 'hidden' : undefined}
           animate={animated ? 'visible' : undefined}
         />

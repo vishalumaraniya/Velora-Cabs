@@ -11,7 +11,7 @@ export default function Fleet() {
 
   return (
     <section id="fleet" className="py-24 bg-[#0b0b0e] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -116,7 +116,7 @@ export default function Fleet() {
                   href="#inquiry"
                   className="w-full py-3.5 px-6 rounded-xl text-sm font-extrabold neomorph-button-gold flex items-center justify-center gap-2"
                 >
-                  <span>Book Maruti Suzuki Dzire</span>
+                  <span>Book Premium AC Sedan</span>
                   <ArrowRight className="w-4 h-4 text-amber-950" />
                 </a>
               </div>

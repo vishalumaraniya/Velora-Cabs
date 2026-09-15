@@ -23,7 +23,7 @@ export default function PopularRoutes() {
 
   return (
     <section id="routes" className="py-24 bg-[#0b0b0e] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -73,6 +73,15 @@ export default function PopularRoutes() {
               vectorColor = 'text-emerald-400/20';
             }
 
+            const cardTheme =
+              idx === 0
+                ? 'neomorph-card-amber border-amber-500/30'
+                : idx === 1
+                ? 'neomorph-card-cyan border-cyan-500/30'
+                : idx === 2
+                ? 'neomorph-card-violet border-violet-500/30'
+                : 'neomorph-card-emerald border-emerald-500/30';
+
             return (
               <motion.div
                 key={route.id}
@@ -80,13 +89,11 @@ export default function PopularRoutes() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`neomorph-card ${
-                  isFeatured ? 'neomorph-card-amber border-amber-500/40' : ''
-                } p-6 flex flex-col justify-between group relative overflow-hidden`}
+                className={`neomorph-card ${cardTheme} p-6 flex flex-col justify-between group relative overflow-hidden`}
               >
                 {/* Related Lucide React Icon Floating Behind Frosted Glass (Softly Blurred when Glowing) */}
-                <div className={`absolute right-0.5 bottom-0.5 pointer-events-none transition-all duration-500 group-hover:scale-105 group-hover:opacity-40 opacity-20 ${vectorColor}`}>
-                  <BackgroundIcon className="w-32 h-32 stroke-[1.2] blur-sm group-hover:blur-[2.5px] transition-all duration-500" />
+                <div className={`absolute right-3 bottom-3 pointer-events-none transition-all duration-500 group-hover:scale-105 group-hover:opacity-40 opacity-20 ${vectorColor}`}>
+                  <BackgroundIcon className="w-14 h-14 sm:w-16 sm:h-16 stroke-[1.2] blur-[0.8px] group-hover:blur-[1.2px] transition-all duration-500" />
                 </div>
 
                 <div className="relative z-10">

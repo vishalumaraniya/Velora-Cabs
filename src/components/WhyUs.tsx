@@ -4,12 +4,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, UserCheck, Clock, Timer, BadgeIndianRupee, Sparkles, Award, CheckCircle2, ChevronRight } from 'lucide-react';
 import { WHY_US_FEATURES } from '@/lib/constants';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const featureDetailsMap = [
   {
@@ -73,23 +67,51 @@ export default function WhyUs() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  // GSAP ScrollTrigger Pinned Sync & Active Card Detection
+  // Real-time Center-of-Screen Active Card Detection
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      cardsRef.current.forEach((cardEl, index) => {
-        if (!cardEl) return;
+    let rafId: number;
 
-        ScrollTrigger.create({
-          trigger: cardEl,
-          start: 'top 55%',
-          end: 'bottom 55%',
-          onEnter: () => setActiveIndex(index),
-          onEnterBack: () => setActiveIndex(index),
+    const handleScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!sectionRef.current) return;
+
+        const sectionRect = sectionRef.current.getBoundingClientRect();
+        const viewportCenter = window.innerHeight * 0.5;
+
+        // Skip if section is completely out of view
+        if (sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) {
+          return;
+        }
+
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        cardsRef.current.forEach((cardEl, index) => {
+          if (!cardEl) return;
+          const rect = cardEl.getBoundingClientRect();
+          const cardCenter = rect.top + rect.height * 0.5;
+          const distance = Math.abs(cardCenter - viewportCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = index;
+          }
         });
-      });
-    }, sectionRef);
 
-    return () => ctx.revert();
+        setActiveIndex((prev) => (prev !== closestIndex ? closestIndex : prev));
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const activeConfig = featureDetailsMap[activeIndex] || featureDetailsMap[0];
@@ -107,24 +129,19 @@ export default function WhyUs() {
   };
 
   return (
-    <section id="why-us" ref={sectionRef} className="py-24 bg-[#09090c] relative border-t border-white/5">
-      
+    <section id="why-us" ref={sectionRef} className="py-10 sm:py-16 lg:py-24 bg-[#09090c] relative border-t border-white/5">
+
       {/* Dynamic Ambient Radial Lighting Glow (Subtle & Soft) */}
       <div
         className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[350px] h-[350px] rounded-full blur-[90px] pointer-events-none transition-all duration-700 opacity-5"
         style={{ backgroundColor: activeConfig.themeColor }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+      <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#16161e] border border-[#F5B921]/30">
-            <Award className="w-3.5 h-3.5 text-[#F5B921]" />
-            <span className="text-xs font-bold text-[#F5B921] uppercase tracking-wider">
-              The Velora Standard
-            </span>
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16 space-y-4">
+
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
             Why Choose <span className="gold-gradient-text">Velora Cabs</span>?
           </h2>
@@ -135,9 +152,9 @@ export default function WhyUs() {
 
         {/* 2-Column Pinned Scroll Showcase Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Left Scrolling Column: 6 Reason Cards */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-6">
             {WHY_US_FEATURES.map((feature, idx) => {
               const config = featureDetailsMap[idx % featureDetailsMap.length];
               const isActive = idx === activeIndex;
@@ -149,11 +166,10 @@ export default function WhyUs() {
                     cardsRef.current[idx] = el;
                   }}
                   onClick={() => handleSelectCard(idx)}
-                  className={`neomorph-card p-8 rounded-3xl cursor-pointer transition-all duration-500 relative overflow-hidden group ${
-                    isActive
+                  className={`neomorph-card p-5 sm:p-8 rounded-3xl cursor-pointer transition-all duration-500 relative overflow-hidden group ${isActive
                       ? 'bg-[#161622] scale-[1.01] border-l-4'
                       : 'border border-white/10 opacity-75 hover:opacity-100 hover:border-white/20'
-                  }`}
+                    }`}
                   style={{
                     borderLeftColor: isActive ? config.themeColor : undefined,
                     borderColor: isActive ? `${config.themeColor}44` : undefined,
@@ -161,12 +177,11 @@ export default function WhyUs() {
                   }}
                 >
                   <div className="flex items-start gap-5 relative z-10">
-                    
+
                     {/* Index Badge */}
                     <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-black shrink-0 transition-all ${
-                        isActive ? 'text-amber-950 scale-105' : 'neomorph-inset text-gray-400'
-                      }`}
+                      className={`w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-black shrink-0 transition-all ${isActive ? 'text-amber-950 scale-105' : 'neomorph-inset text-gray-400'
+                        }`}
                       style={{
                         backgroundColor: isActive ? config.themeColor : undefined,
                       }}
@@ -181,9 +196,8 @@ export default function WhyUs() {
                           {config.badge}
                         </span>
                         <ChevronRight
-                          className={`w-5 h-5 transition-transform ${
-                            isActive ? 'translate-x-1' : 'text-gray-600'
-                          }`}
+                          className={`w-5 h-5 transition-transform ${isActive ? 'translate-x-1' : 'text-gray-600'
+                            }`}
                           style={{ color: isActive ? config.themeColor : undefined }}
                         />
                       </div>
@@ -216,8 +230,8 @@ export default function WhyUs() {
           </div>
 
           {/* Right Sticky Column: Interactive Liquid Glass Showcase Pod */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 h-fit space-y-6 z-20">
-            
+          <div className="hidden lg:block lg:col-span-5 lg:sticky lg:top-28 h-fit space-y-6 z-20">
+
             <div
               className="relative p-8 rounded-3xl overflow-hidden bg-[#12121a]/60 backdrop-blur-2xl border border-white/20 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),_inset_0_-1px_2px_rgba(0,0,0,0.5),_0_20px_40px_rgba(0,0,0,0.6)] flex flex-col justify-between items-center text-center min-h-[460px] transition-all duration-700"
             >
@@ -249,7 +263,7 @@ export default function WhyUs() {
 
               {/* Center Liquid Glass Orb & Morphing React Icon */}
               <div className="relative my-6 flex items-center justify-center w-full h-56 z-20">
-                
+
                 {/* Concentric Liquid Rings */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div
@@ -272,7 +286,7 @@ export default function WhyUs() {
                   >
                     {/* Interior Glare Reflection */}
                     <div className="absolute top-1 left-3 right-3 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none" />
-                    
+
                     <ActiveIcon
                       className="w-24 h-24 transition-colors duration-300 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
                       style={{ color: activeConfig.themeColor }}

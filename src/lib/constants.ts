@@ -97,8 +97,8 @@ export const POPULAR_ROUTES: RouteItem[] = [
 
 export const FLEET_CARS: FleetItem[] = [
   {
-    id: 'dzire-sedan',
-    name: 'Maruti Suzuki Dzire Sedan',
+    id: 'premium-ac-sedan',
+    name: 'Premium AC Sedan',
     category: 'AC Compact Sedan',
     passengers: 4,
     luggage: 2,
@@ -114,8 +114,8 @@ export const FLEET_CARS: FleetItem[] = [
     description: 'India\'s most loved sedan for smooth, comfortable, and fuel-efficient journeys both in-city and across highways.',
   },
   {
-    id: 'premium-sedans',
-    name: 'Sedan Fleet (Etios / Dzire)',
+    id: 'executive-sedans',
+    name: 'Comfort AC Sedan Fleet',
     category: 'Executive Sedan',
     passengers: 4,
     luggage: 3,
@@ -170,7 +170,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     location: 'Bhavnagar',
     rating: 5,
     route: 'Bhavnagar to Surat One-Way',
-    comment: 'Booked Velora Cabs for an urgent business trip to Surat. Dharmeshbhai arranged the cab quickly. The Dzire sedan was clean, smooth, and driver reached 15 minutes before time. Highly recommended!',
+    comment: 'Booked Velora Cabs for an urgent business trip to Surat. Dharmeshbhai arranged the cab quickly. The cab was clean, smooth, and driver reached 15 minutes before time. Highly recommended!',
     date: 'August 2026',
   },
   {

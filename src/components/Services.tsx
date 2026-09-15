@@ -14,8 +14,8 @@ export default function Services() {
         detail: serviceId.includes('airport')
           ? 'airport'
           : serviceId.includes('outstation')
-          ? 'outstation'
-          : 'local',
+            ? 'outstation'
+            : 'local',
       });
       window.dispatchEvent(event);
     }
@@ -87,17 +87,12 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-24 bg-[#0b0b0e] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <section id="services" className="py-10 sm:py-16 lg:py-20 bg-[#0b0b0e] relative border-t border-white/5">
+      <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#16161e] border border-[#F5B921]/30">
-            <Sparkles className="w-3.5 h-3.5 text-[#F5B921]" />
-            <span className="text-xs font-bold text-[#F5B921] uppercase tracking-wider">
-              Tailored Mobility Solutions
-            </span>
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16 space-y-4">
+
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
             Our Premium <span className="gold-gradient-text">Cab Services</span>
           </h2>
@@ -107,7 +102,7 @@ export default function Services() {
         </div>
 
         {/* 4 Cards Grid with Related Lucide React Icons Backgrounds */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
           {SERVICES.map((service, idx) => {
             const config = cardThemeMap[service.id] || cardThemeMap['local-rides'];
             const BackgroundIcon = config.BackgroundIcon;
@@ -120,13 +115,13 @@ export default function Services() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 onClick={() => handleSelectService(service.id)}
-                className={`neomorph-card ${config.cardClass} p-7 flex flex-col justify-between group relative cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden`}
+                className={`neomorph-card ${config.cardClass} p-5 sm:p-7 flex flex-col justify-between group relative cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden`}
               >
                 {/* Background Frosted Glass Icon Watermark (Subtle watermark by default, softly glows on hover) */}
                 <div
-                  className={`absolute right-0.5 bottom-0.5 pointer-events-none transition-all duration-500 ease-out opacity-30 group-hover:opacity-65 group-hover:scale-105 z-0 ${config.vectorColor} ${config.vectorGlow}`}
+                  className={`absolute right-3 bottom-3 pointer-events-none transition-all duration-500 ease-out opacity-25 group-hover:opacity-60 group-hover:scale-105 z-0 ${config.vectorColor} ${config.vectorGlow}`}
                 >
-                  <BackgroundIcon className="w-28 h-28 sm:w-32 sm:h-32 stroke-[1.2] transition-all duration-500 blur-[1.5px] group-hover:blur-[2px]" />
+                  <BackgroundIcon className="w-14 h-14 sm:w-16 sm:h-16 stroke-[1.2] transition-all duration-500 blur-[0.8px] group-hover:blur-[1.2px]" />
                 </div>
 
                 {/* Top Corner Badge for ALL cards */}

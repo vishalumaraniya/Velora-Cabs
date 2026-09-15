@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Velora Cabs | Safe Rides. On Time. Every Time.',
   description:
-    'Premier cab & outstation taxi service in Gujarat & Pan-India. Local city rides, airport transfers (Ahmedabad, Surat, Vadodara, Mumbai), and outstation trips in clean Maruti Suzuki Dzire sedans. Call +91 87803 11279.',
+    'Premier cab & outstation taxi service in Gujarat & Pan-India. Local city rides, airport transfers (Ahmedabad, Surat, Vadodara, Mumbai), and outstation trips in clean, comfortable AC sedans. Call +91 87803 11279.',
   keywords: [
     'Velora Cabs',
     'Bhavnagar taxi service',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     'Bhavnagar to Mumbai taxi',
     'Gujarat outstation cab',
     'Airport taxi Ahmedabad',
-    'Maruti Dzire sedan booking',
+    'AC sedan taxi booking',
     'Dharmeshbhai Kava cabs',
     '24x7 outstation taxi',
   ],
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Velora Cabs | Safe Rides. On Time. Every Time.',
     description:
-      'Reliable local, airport, and outstation cab booking in Gujarat & Pan-India. Clean Maruti Suzuki Dzire sedans, experienced drivers & 24x7 service.',
+      'Reliable local, airport, and outstation cab booking in Gujarat & Pan-India. Clean AC sedans, experienced drivers & 24x7 service.',
     url: 'https://veloracabs.com',
     siteName: 'Velora Cabs',
     images: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         url: '/images/velora_dzire_sedan.jpg',
         width: 1200,
         height: 675,
-        alt: 'Velora Cabs Maruti Suzuki Dzire Sedan',
+        alt: 'Velora Cabs Premium AC Sedan',
       },
     ],
     locale: 'en_IN',
