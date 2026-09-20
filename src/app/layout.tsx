@@ -62,9 +62,12 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: '/images/velora_logo.jpg',
-    shortcut: '/images/velora_logo.jpg',
-    apple: '/images/velora_logo.jpg',
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: '/icon.svg',
+    apple: '/apple-touch-icon.png',
   },
 };
 
