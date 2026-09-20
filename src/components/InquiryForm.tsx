@@ -230,23 +230,23 @@ export default function InquiryForm() {
               {/* ── LEFT PANEL: deep blue gradient ── */}
               <div className="lg:col-span-5 bg-gradient-to-b from-[#0a2a3d] to-[#0d3b57] p-3 sm:p-5 flex flex-col gap-2.5 sm:gap-3">
 
-                {/* Trip Type 2x2 Grid — smaller font size */}
+                {/* Trip Type — 2x2 grid on mobile/tablet, 4 columns 1 row on desktop */}
                 <div>
                   <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1.5">Choose Trip Type</p>
-                  <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2 lg:gap-1 lg:p-1 lg:bg-white/5 lg:rounded-xl">
                     {TRIP_TYPES.map(({ id, label, icon: Icon }) => {
                       const active = currentTripType === id;
                       return (
                         <button
                           key={id} type="button"
                           onClick={() => setValue('tripType', id as BookingFormValues['tripType'])}
-                          className={`py-1.5 sm:py-2 px-2 sm:px-2.5 rounded-xl text-[10px] sm:text-[11px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 border ${
+                          className={`py-1.5 sm:py-2 lg:py-1.5 px-2 sm:px-2.5 lg:px-1 rounded-xl lg:rounded-lg text-[10px] sm:text-[11px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 border lg:border-0 ${
                             active
-                              ? 'bg-[#30AFFF] text-white border-[#30AFFF] shadow-md shadow-[#30AFFF]/25'
-                              : 'bg-white/6 hover:bg-white/10 text-slate-300 hover:text-white border-white/10'
+                              ? 'bg-[#30AFFF] text-white shadow-md shadow-[#30AFFF]/25'
+                              : 'bg-white/6 hover:bg-white/10 text-slate-300 hover:text-white border-white/10 lg:bg-transparent lg:text-slate-400 lg:hover:text-white'
                           }`}
                         >
-                          <Icon className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${active ? 'text-white' : 'text-[#30AFFF]'}`} />
+                          <Icon className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${active ? 'text-white' : 'text-[#30AFFF] lg:text-slate-400'}`} />
                           <span className="truncate">{label}</span>
                         </button>
                       );
@@ -351,8 +351,8 @@ export default function InquiryForm() {
                   </div>
                 </div>
 
-                {/* Name & Phone — Full Width Inputs */}
-                <div className="space-y-2 sm:space-y-2.5">
+                {/* Name & Phone — Full Width on Mobile/Tablet, 2 Columns on Desktop */}
+                <div className="space-y-2 sm:space-y-2.5 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-2.5">
                   <input
                     type="text" placeholder="Your Name"
                     {...register('name')}
@@ -370,14 +370,14 @@ export default function InquiryForm() {
                   <p className="text-[10px] text-red-400">{errors.name?.message || errors.phone?.message}</p>
                 )}
 
-                {/* Notes / Special Requests — generous height so text flows naturally */}
+                {/* Notes / Special Requests — generous height on mobile, flex on desktop */}
                 <div className="flex-1 flex flex-col min-h-[72px] sm:min-h-[84px] lg:min-h-0">
                   <textarea
                     placeholder="Special requests or instructions (optional)..."
                     {...register('message', {
                       onChange: handleNotesChange,
                     })}
-                    className={`w-full h-20 sm:h-24 lg:h-full lg:flex-1 min-h-[72px] sm:min-h-[84px] px-3 py-2.5 border border-white/10 focus:border-[#30AFFF]/60 rounded-xl text-[11px] sm:text-xs text-white placeholder:text-slate-400 outline-none transition-all resize-none leading-relaxed ${
+                    className={`w-full h-20 sm:h-24 lg:h-full lg:flex-1 min-h-[72px] sm:min-h-[84px] lg:min-h-0 px-3 py-2.5 border border-white/10 focus:border-[#30AFFF]/60 rounded-xl text-[11px] sm:text-xs text-white placeholder:text-slate-400 outline-none transition-all resize-none leading-relaxed ${
                       hasNotesScroll
                         ? 'overflow-y-auto [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.3)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/25 [&::-webkit-scrollbar-thumb]:rounded-full'
                         : 'overflow-hidden'
