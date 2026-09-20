@@ -1,20 +1,19 @@
 import type { Metadata, Viewport } from 'next';
-import { Outfit } from 'next/font/google';
-import { ColorSchemeScript } from '@mantine/core';
+import { Inter } from 'next/font/google';
 import MantineProviderWrapper from '@/components/MantineProviderWrapper';
 import FloatingActionBar from '@/components/FloatingActionBar';
 import Preloader from '@/components/Preloader';
 import { BUSINESS_INFO } from '@/lib/constants';
 import './globals.css';
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
 });
 
 export const viewport: Viewport = {
-  themeColor: '#0d0d0f',
+  themeColor: '#30AFFF',
   width: 'device-width',
   initialScale: 1,
 };
@@ -22,25 +21,22 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Velora Cabs | Safe Rides. On Time. Every Time.',
   description:
-    'Premier cab & outstation taxi service in Gujarat & Pan-India. Local city rides, airport transfers (Ahmedabad, Surat, Vadodara, Mumbai), and outstation trips in clean, comfortable AC sedans. Call +91 87803 11279.',
+    'Premier cab & outstation taxi service. Local city rides, on-time airport transfers, and outstation trips in clean, comfortable AC sedans. Call +91 87803 11279.',
   keywords: [
     'Velora Cabs',
-    'Bhavnagar taxi service',
-    'Bhavnagar to Surat cab',
-    'Baroda to Ahmedabad cab',
-    'Bhavnagar to Mumbai taxi',
-    'Gujarat outstation cab',
-    'Airport taxi Ahmedabad',
+    'Outstation cab service',
+    'Airport taxi service',
     'AC sedan taxi booking',
-    'Dharmeshbhai Kava cabs',
-    '24x7 outstation taxi',
+    '24x7 cab service',
+    'Doorstep cab pickup',
+    'Intercity taxi service',
   ],
   authors: [{ name: 'Velora Cabs' }, { name: 'Dharmeshbhai B. Kava' }],
   metadataBase: new URL('https://veloracabs.com'),
   openGraph: {
     title: 'Velora Cabs | Safe Rides. On Time. Every Time.',
     description:
-      'Reliable local, airport, and outstation cab booking in Gujarat & Pan-India. Clean AC sedans, experienced drivers & 24x7 service.',
+      'Reliable local, airport, and outstation cab booking. Clean AC sedans, experienced drivers & 24x7 service.',
     url: 'https://veloracabs.com',
     siteName: 'Velora Cabs',
     images: [
@@ -58,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Velora Cabs | Safe Rides. On Time. Every Time.',
     description:
-      'Book outstation & local cabs across Gujarat (Bhavnagar, Surat, Ahmedabad, Baroda, Mumbai). Clean sedans, punctual drivers & 24x7 availability.',
+      'Book outstation & local cabs. Clean sedans, punctual drivers & 24x7 availability.',
     images: ['/images/velora_dzire_sedan.jpg'],
   },
   robots: {
@@ -78,14 +74,12 @@ const jsonLd = {
   name: BUSINESS_INFO.name,
   image: 'https://veloracabs.com/images/velora_dzire_sedan.jpg',
   logo: 'https://veloracabs.com/images/velora_logo.jpg',
-  description: 'Safe Rides. On Time. Every Time. Premier local & outstation taxi service across Gujarat and pan-India.',
+  description: 'Safe Rides. On Time. Every Time. Premier local & outstation taxi service with clean AC cabs.',
   telephone: BUSINESS_INFO.phones[0].display,
   email: BUSINESS_INFO.email,
   priceRange: '₹₹',
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Bhavnagar',
-    addressRegion: 'Gujarat',
     addressCountry: 'IN',
   },
   geo: {
@@ -113,15 +107,14 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${outfit.variable} dark`} style={{ colorScheme: 'dark' }}>
+    <html lang="en" className={`${inter.variable}`} style={{ colorScheme: 'light' }}>
       <head>
-        <ColorSchemeScript defaultColorScheme="dark" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-[#0d0d0f] text-gray-100 antialiased font-sans">
+      <body className="min-h-screen bg-[#EBF9FF] text-[#0a2a3d] antialiased font-sans">
         <MantineProviderWrapper>
           <Preloader />
           {children}

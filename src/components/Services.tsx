@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Car, Plane, MapPin, Clock, CheckCircle2, Sparkles, Navigation, Luggage, Compass, Zap } from 'lucide-react';
+import { Car, Plane, MapPin, Clock, CheckCircle2, ChevronRight } from 'lucide-react';
 import { SERVICES } from '@/lib/constants';
 
 export default function Services() {
@@ -21,143 +21,179 @@ export default function Services() {
     }
   };
 
-  const cardThemeMap: Record<
+  const cardConfigMap: Record<
     string,
     {
-      cardClass: string;
       badgeText: string;
-      badgeStyle: string;
+      badgeClass: string;
       icon: React.ReactNode;
-      iconBg: string;
+      WatermarkIcon: React.ElementType;
+      iconBoxClass: string;
+      cardClass: string;
+      cardShadow: string;
+      cardHoverShadow: string;
+      titleHoverClass: string;
       checkColor: string;
-      hoverTitle: string;
-      BackgroundIcon: React.ComponentType<{ className?: string }>;
-      vectorColor: string;
-      vectorGlow: string;
+      dividerClass: string;
+      actionTextClass: string;
+      watermarkClass: string;
     }
   > = {
     'local-rides': {
-      cardClass: 'neomorph-card-amber border-amber-500/40',
-      badgeText: 'In-City Commute',
-      badgeStyle: 'bg-[#F5B921]/15 border-[#F5B921]/40 text-[#F5B921]',
-      icon: <Car className="w-7 h-7 text-[#F5B921]" />,
-      iconBg: 'bg-amber-500/10 border-amber-500/30',
-      checkColor: 'text-[#F5B921]',
-      hoverTitle: 'group-hover:text-[#F5B921]',
-      BackgroundIcon: Navigation,
-      vectorColor: 'text-[#F5B921]/30 group-hover:text-[#F5B921]/70',
-      vectorGlow: 'group-hover:drop-shadow-[0_0_14px_rgba(245,185,33,0.4)]',
+      badgeText: 'City Commute',
+      badgeClass: 'bg-[#E0F2FE] border-[#7DD3FC] text-[#0369A1]',
+      icon: <Car className="w-5 h-5 text-[#0284c7]" />,
+      WatermarkIcon: Car,
+      iconBoxClass:
+        'bg-gradient-to-br from-[#E0F2FE] to-[#BAE6FD] border border-[#7DD3FC]/80 shadow-[3px_3px_7px_rgba(2,132,199,0.16),-2px_-2px_6px_rgba(255,255,255,0.95)]',
+      cardClass:
+        'border border-[#BAE6FD] hover:border-[#38BDF8] bg-gradient-to-b from-white via-white to-[#F0F9FF]/60',
+      cardShadow:
+        'shadow-[4px_4px_14px_rgba(2,132,199,0.08),-4px_-4px_12px_rgba(255,255,255,0.95)]',
+      cardHoverShadow:
+        'hover:shadow-[6px_6px_22px_rgba(2,132,199,0.18),-4px_-4px_14px_rgba(255,255,255,1)]',
+      titleHoverClass: 'group-hover:text-[#0284c7]',
+      checkColor: 'text-[#0284c7]',
+      dividerClass: 'border-[#BAE6FD]/60',
+      actionTextClass: 'text-[#0284c7] group-hover:text-[#0369A1]',
+      watermarkClass: 'text-sky-400/10 group-hover:text-sky-500/20',
     },
     'airport-transfers': {
-      cardClass: 'neomorph-card-cyan border-cyan-500/40',
-      badgeText: 'Flight Guaranteed',
-      badgeStyle: 'bg-[#06B6D4]/15 border-[#06B6D4]/40 text-[#06B6D4]',
-      icon: <Plane className="w-7 h-7 text-[#06B6D4]" />,
-      iconBg: 'bg-cyan-500/10 border-cyan-500/30',
-      checkColor: 'text-[#06B6D4]',
-      hoverTitle: 'group-hover:text-[#06B6D4]',
-      BackgroundIcon: Luggage,
-      vectorColor: 'text-[#06B6D4]/30 group-hover:text-[#06B6D4]/70',
-      vectorGlow: 'group-hover:drop-shadow-[0_0_14px_rgba(6,182,212,0.4)]',
+      badgeText: 'On-Time Flight',
+      badgeClass: 'bg-[#EEF2FF] border-[#C7D2FE] text-[#4338CA]',
+      icon: <Plane className="w-5 h-5 text-[#4F46E5]" />,
+      WatermarkIcon: Plane,
+      iconBoxClass:
+        'bg-gradient-to-br from-[#EEF2FF] to-[#E0E7FF] border border-[#C7D2FE]/80 shadow-[3px_3px_7px_rgba(79,70,229,0.16),-2px_-2px_6px_rgba(255,255,255,0.95)]',
+      cardClass:
+        'border border-[#C7D2FE] hover:border-[#818CF8] bg-gradient-to-b from-white via-white to-[#FAF5FF]/60',
+      cardShadow:
+        'shadow-[4px_4px_14px_rgba(79,70,229,0.08),-4px_-4px_12px_rgba(255,255,255,0.95)]',
+      cardHoverShadow:
+        'hover:shadow-[6px_6px_22px_rgba(79,70,229,0.18),-4px_-4px_14px_rgba(255,255,255,1)]',
+      titleHoverClass: 'group-hover:text-[#4F46E5]',
+      checkColor: 'text-[#4F46E5]',
+      dividerClass: 'border-[#C7D2FE]/60',
+      actionTextClass: 'text-[#4F46E5] group-hover:text-[#3730A3]',
+      watermarkClass: 'text-indigo-400/10 group-hover:text-indigo-500/20',
     },
     'outstation-trips': {
-      cardClass: 'neomorph-card-violet border-violet-500/40',
-      badgeText: 'Intercity Express',
-      badgeStyle: 'bg-[#8B5CF6]/15 border-[#8B5CF6]/40 text-[#8B5CF6]',
-      icon: <MapPin className="w-7 h-7 text-[#8B5CF6]" />,
-      iconBg: 'bg-violet-500/10 border-violet-500/30',
-      checkColor: 'text-[#8B5CF6]',
-      hoverTitle: 'group-hover:text-[#8B5CF6]',
-      BackgroundIcon: Compass,
-      vectorColor: 'text-[#8B5CF6]/30 group-hover:text-[#8B5CF6]/70',
-      vectorGlow: 'group-hover:drop-shadow-[0_0_14px_rgba(139,92,246,0.4)]',
+      badgeText: 'Intercity Trips',
+      badgeClass: 'bg-[#ECFDF5] border-[#A7F3D0] text-[#047857]',
+      icon: <MapPin className="w-5 h-5 text-[#059669]" />,
+      WatermarkIcon: MapPin,
+      iconBoxClass:
+        'bg-gradient-to-br from-[#ECFDF5] to-[#D1FAE5] border border-[#A7F3D0]/80 shadow-[3px_3px_7px_rgba(5,150,105,0.16),-2px_-2px_6px_rgba(255,255,255,0.95)]',
+      cardClass:
+        'border border-[#A7F3D0] hover:border-[#34D399] bg-gradient-to-b from-white via-white to-[#F0FDF4]/60',
+      cardShadow:
+        'shadow-[4px_4px_14px_rgba(5,150,105,0.08),-4px_-4px_12px_rgba(255,255,255,0.95)]',
+      cardHoverShadow:
+        'hover:shadow-[6px_6px_22px_rgba(16,185,129,0.18),-4px_-4px_14px_rgba(255,255,255,1)]',
+      titleHoverClass: 'group-hover:text-[#059669]',
+      checkColor: 'text-[#059669]',
+      dividerClass: 'border-[#A7F3D0]/60',
+      actionTextClass: 'text-[#059669] group-hover:text-[#065F46]',
+      watermarkClass: 'text-emerald-400/10 group-hover:text-emerald-500/20',
     },
     'express-service': {
-      cardClass: 'neomorph-card-rose border-rose-500/40',
-      badgeText: '24x7 Emergency',
-      badgeStyle: 'bg-[#F43F5E]/15 border-[#F43F5E]/40 text-[#F43F5E]',
-      icon: <Clock className="w-7 h-7 text-[#F43F5E]" />,
-      iconBg: 'bg-rose-500/10 border-rose-500/30',
-      checkColor: 'text-[#F43F5E]',
-      hoverTitle: 'group-hover:text-[#F43F5E]',
-      BackgroundIcon: Zap,
-      vectorColor: 'text-[#F43F5E]/30 group-hover:text-[#F43F5E]/70',
-      vectorGlow: 'group-hover:drop-shadow-[0_0_14px_rgba(244,63,94,0.4)]',
+      badgeText: '24x7 Available',
+      badgeClass: 'bg-[#FFFBEB] border-[#FDE68A] text-[#B45309]',
+      icon: <Clock className="w-5 h-5 text-[#D97706]" />,
+      WatermarkIcon: Clock,
+      iconBoxClass:
+        'bg-gradient-to-br from-[#FFFBEB] to-[#FEF3C7] border border-[#FDE68A]/80 shadow-[3px_3px_7px_rgba(217,119,6,0.16),-2px_-2px_6px_rgba(255,255,255,0.95)]',
+      cardClass:
+        'border border-[#FDE68A] hover:border-[#FBBF24] bg-gradient-to-b from-white via-white to-[#FFFDF5]/60',
+      cardShadow:
+        'shadow-[4px_4px_14px_rgba(217,119,6,0.08),-4px_-4px_12px_rgba(255,255,255,0.95)]',
+      cardHoverShadow:
+        'hover:shadow-[6px_6px_22px_rgba(245,158,11,0.18),-4px_-4px_14px_rgba(255,255,255,1)]',
+      titleHoverClass: 'group-hover:text-[#D97706]',
+      checkColor: 'text-[#D97706]',
+      dividerClass: 'border-[#FDE68A]/60',
+      actionTextClass: 'text-[#D97706] group-hover:text-[#92400E]',
+      watermarkClass: 'text-amber-400/10 group-hover:text-amber-500/20',
     },
   };
 
   return (
-    <section id="services" className="py-10 sm:py-16 lg:py-20 bg-[#0b0b0e] relative border-t border-white/5">
+    <section id="services" className="py-14 sm:py-18 bg-[#F5FDFF] relative border-t border-[#bde9ff]/60">
       <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16 space-y-4">
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
-            Our Premium <span className="gold-gradient-text">Cab Services</span>
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3">
+          <p className="text-xs font-bold text-[#30AFFF] uppercase tracking-widest">
+            Reliable Cab Options
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a2a3d]">
+            Our Taxi <span className="text-[#30AFFF]">Booking Services</span>
           </h2>
-          <p className="text-gray-400 text-base leading-relaxed">
-            Whether it’s a quick local ride, a scheduled airport transfer, or an outstation trip, Velora Cabs delivers luxury comfort on every road.
+          <p className="text-[#2d6180] text-sm leading-relaxed">
+            Whether it&apos;s a quick local ride, airport transfer, or outstation journey, Velora Cabs delivers dependable service on every road.
           </p>
         </div>
 
-        {/* 4 Cards Grid with Related Lucide React Icons Backgrounds */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
+        {/* 4 Clean Neomorphic Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {SERVICES.map((service, idx) => {
-            const config = cardThemeMap[service.id] || cardThemeMap['local-rides'];
-            const BackgroundIcon = config.BackgroundIcon;
+            const config = cardConfigMap[service.id] || cardConfigMap['local-rides'];
+            const Watermark = config.WatermarkIcon;
 
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
                 onClick={() => handleSelectService(service.id)}
-                className={`neomorph-card ${config.cardClass} p-5 sm:p-7 flex flex-col justify-between group relative cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden`}
+                className={`rounded-2xl p-5 flex flex-col justify-between group cursor-pointer transition-all duration-300 relative overflow-hidden hover:-translate-y-1.5 ${config.cardClass} ${config.cardShadow} ${config.cardHoverShadow}`}
               >
-                {/* Background Frosted Glass Icon Watermark (Subtle watermark by default, softly glows on hover) */}
-                <div
-                  className={`absolute right-3 bottom-3 pointer-events-none transition-all duration-500 ease-out opacity-25 group-hover:opacity-60 group-hover:scale-105 z-0 ${config.vectorColor} ${config.vectorGlow}`}
-                >
-                  <BackgroundIcon className="w-14 h-14 sm:w-16 sm:h-16 stroke-[1.2] transition-all duration-500 blur-[0.8px] group-hover:blur-[1.2px]" />
+                {/* Neomorphic Watermark Icon in Background */}
+                <div className={`absolute -right-3 -bottom-3 pointer-events-none transition-all duration-500 group-hover:scale-110 ${config.watermarkClass}`}>
+                  <Watermark className="w-24 h-24 stroke-[1.2] blur-[0.5px]" />
                 </div>
 
-                {/* Top Corner Badge for ALL cards */}
-                <div className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full border text-[10px] font-extrabold tracking-wider uppercase ${config.badgeStyle}`}>
-                  {config.badgeText}
-                </div>
-
-                {/* Foreground Content inside Frosted Glass */}
                 <div className="relative z-10">
-                  {/* Icon Header */}
-                  <div className={`w-14 h-14 rounded-2xl neomorph-inset border ${config.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    {config.icon}
+                  {/* Top Badge & Neomorphic Icon */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform ${config.iconBoxClass}`}>
+                      {config.icon}
+                    </div>
+                    <span className={`px-2.5 py-1 rounded-full border text-[10px] font-bold uppercase tracking-wider ${config.badgeClass}`}>
+                      {config.badgeText}
+                    </span>
                   </div>
 
                   {/* Service Titles */}
-                  <h3 className={`text-xl font-extrabold text-white mb-1 ${config.hoverTitle} transition-colors`}>
+                  <h3 className={`text-lg font-bold text-[#0a2a3d] mb-1 transition-colors ${config.titleHoverClass}`}>
                     {service.title}
                   </h3>
-                  <span className="inline-block text-xs font-semibold text-gray-400 mb-3">
+                  <span className="inline-block text-xs font-semibold text-[#5c9ab8] mb-3">
                     {service.subtitle}
                   </span>
 
                   {/* Description */}
-                  <p className="text-gray-300 text-xs sm:text-sm mb-6 leading-relaxed line-clamp-3">
+                  <p className="text-[#2d6180] text-xs sm:text-sm mb-4 leading-relaxed">
                     {service.description}
                   </p>
 
                   {/* Features List */}
-                  <ul className="space-y-2.5 border-t border-white/5 pt-4">
-                    {service.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-center gap-2 text-xs text-gray-300">
-                        <CheckCircle2 className={`w-4 h-4 ${config.checkColor} shrink-0`} />
-                        <span>{feature}</span>
-                      </li>
+                  <div className={`space-y-1.5 border-t pt-3 ${config.dividerClass}`}>
+                    {service.features.map((feat, fIdx) => (
+                      <div key={fIdx} className="flex items-center gap-2 text-xs text-[#2d6180]">
+                        <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${config.checkColor}`} />
+                        <span>{feat}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
+                </div>
+
+                {/* Bottom Action */}
+                <div className={`pt-4 mt-4 border-t flex items-center justify-between text-xs font-bold transition-colors relative z-10 ${config.dividerClass} ${config.actionTextClass}`}>
+                  <span>Book This Service</span>
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </div>
               </motion.div>
             );

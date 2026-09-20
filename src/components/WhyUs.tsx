@@ -2,63 +2,51 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, UserCheck, Clock, Timer, BadgeIndianRupee, Sparkles, Award, CheckCircle2, ChevronRight } from 'lucide-react';
-import { WHY_US_FEATURES } from '@/lib/constants';
+import { ShieldCheck, UserCheck, Clock, Timer, BadgeIndianRupee, Sparkles, CheckCircle2, ChevronRight, Phone } from 'lucide-react';
+import { WHY_US_FEATURES, BUSINESS_INFO } from '@/lib/constants';
 
 const featureDetailsMap = [
   {
     num: '01',
     badge: '100% Safety Verified',
-    themeColor: '#F5B921',
-    badgeClass: 'bg-[#F5B921]/10 border-[#F5B921]/30 text-[#F5B921]',
-    glowStyle: 'text-[#F5B921]',
+    badgeClass: 'bg-[#3DBE6B]/60 border-[#28A745] text-[#1a5c2a]',
     LargeIcon: ShieldCheck,
-    highlight: 'GPS Tracking & Emergency SOS Button Enabled',
+    highlight: 'GPS Live Tracking & SOS Assistance Enabled',
   },
   {
     num: '02',
     badge: 'Police Verified 5★ Drivers',
-    themeColor: '#06B6D4',
-    badgeClass: 'bg-[#06B6D4]/10 border-[#06B6D4]/30 text-[#06B6D4]',
-    glowStyle: 'text-[#06B6D4]',
+    badgeClass: 'bg-[#EBF9FF] border-[#92EEFF] text-[#0a6ea8]',
     LargeIcon: UserCheck,
     highlight: 'Seasoned Highway Experts & Polite Conduct',
   },
   {
     num: '03',
     badge: 'Always Operating 24/7',
-    themeColor: '#F43F5E',
-    badgeClass: 'bg-[#F43F5E]/10 border-[#F43F5E]/30 text-[#F43F5E]',
-    glowStyle: 'text-[#F43F5E]',
+    badgeClass: 'bg-[#EBF9FF] border-[#bde9ff] text-[#074d78]',
     LargeIcon: Clock,
-    highlight: 'Immediate Late-Night & Flight Cab Assignment',
+    highlight: 'Immediate Late-Night & Flight Cab Dispatch',
   },
   {
     num: '04',
     badge: '10-Min Pre-Arrival',
-    themeColor: '#3B82F6',
-    badgeClass: 'bg-[#3B82F6]/10 border-[#3B82F6]/30 text-[#3B82F6]',
-    glowStyle: 'text-[#3B82F6]',
+    badgeClass: 'bg-[#DDF6FF] border-[#92EEFF] text-[#0a6ea8]',
     LargeIcon: Timer,
-    highlight: 'Driver Arrives 10 Minutes Prior to Pickup Time',
+    highlight: 'Chauffeur Arrives 10 Minutes Prior to Pickup Time',
   },
   {
     num: '05',
     badge: 'Zero Hidden Surge Charges',
-    themeColor: '#F59E0B',
-    badgeClass: 'bg-[#F59E0B]/10 border-[#F59E0B]/30 text-[#F59E0B]',
-    glowStyle: 'text-[#F59E0B]',
+    badgeClass: 'bg-[#EBF9FF] border-[#bde9ff] text-[#074d78]',
     LargeIcon: BadgeIndianRupee,
-    highlight: 'Clear Per-KM & Fixed Route Pricing Upfront',
+    highlight: 'Transparent Per-KM & Fixed Route Rates Upfront',
   },
   {
     num: '06',
     badge: 'Fresh & Sanitized Sedans',
-    themeColor: '#8B5CF6',
-    badgeClass: 'bg-[#8B5CF6]/10 border-[#8B5CF6]/30 text-[#8B5CF6]',
-    glowStyle: 'text-[#8B5CF6]',
+    badgeClass: 'bg-[#3DBE6B]/60 border-[#28A745] text-[#1a5c2a]',
     LargeIcon: Sparkles,
-    highlight: 'Thorough Sanitation & Interior Fragrance Refresh',
+    highlight: 'Thorough Cleaning & Fresh AC Fragrance',
   },
 ];
 
@@ -79,7 +67,6 @@ export default function WhyUs() {
         const sectionRect = sectionRef.current.getBoundingClientRect();
         const viewportCenter = window.innerHeight * 0.5;
 
-        // Skip if section is completely out of view
         if (sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) {
           return;
         }
@@ -129,32 +116,27 @@ export default function WhyUs() {
   };
 
   return (
-    <section id="why-us" ref={sectionRef} className="py-10 sm:py-16 lg:py-24 bg-[#09090c] relative border-t border-white/5">
-
-      {/* Dynamic Ambient Radial Lighting Glow (Subtle & Soft) */}
-      <div
-        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[350px] h-[350px] rounded-full blur-[90px] pointer-events-none transition-all duration-700 opacity-5"
-        style={{ backgroundColor: activeConfig.themeColor }}
-      />
-
+    <section id="why-us" ref={sectionRef} className="py-14 sm:py-18 bg-[#F5FDFF] relative border-t border-[#bde9ff]/60">
       <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16 space-y-4">
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
-            Why Choose <span className="gold-gradient-text">Velora Cabs</span>?
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF9FF] border border-[#92EEFF] text-[#0a2a3d] text-xs font-bold uppercase tracking-wider">
+            <span>Why Velora Cabs?</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a2a3d]">
+            6 Pillars of Our <span className="text-[#30AFFF]">Passenger Commitment</span>
           </h2>
-          <p className="text-gray-400 text-base leading-relaxed">
-            Explore our 6 core commitments below. Watch the interactive showcase on the right update dynamically as each reason comes into focus.
+          <p className="text-[#2d6180] text-sm leading-relaxed">
+            Built for safety, punctual arrivals, and zero hidden fare surprises across every journey.
           </p>
         </div>
 
-        {/* 2-Column Pinned Scroll Showcase Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* 2-Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
           {/* Left Scrolling Column: 6 Reason Cards */}
-          <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+          <div className="lg:col-span-7 space-y-3">
             {WHY_US_FEATURES.map((feature, idx) => {
               const config = featureDetailsMap[idx % featureDetailsMap.length];
               const isActive = idx === activeIndex;
@@ -166,59 +148,54 @@ export default function WhyUs() {
                     cardsRef.current[idx] = el;
                   }}
                   onClick={() => handleSelectCard(idx)}
-                  className={`neomorph-card p-5 sm:p-8 rounded-3xl cursor-pointer transition-all duration-500 relative overflow-hidden group ${isActive
-                      ? 'bg-[#161622] scale-[1.01] border-l-4'
-                      : 'border border-white/10 opacity-75 hover:opacity-100 hover:border-white/20'
-                    }`}
-                  style={{
-                    borderLeftColor: isActive ? config.themeColor : undefined,
-                    borderColor: isActive ? `${config.themeColor}44` : undefined,
-                    boxShadow: isActive ? `0 4px 20px rgba(0,0,0,0.3)` : undefined,
-                  }}
+                  className={`p-5 rounded-2xl cursor-pointer transition-all duration-300 relative border ${
+                    isActive
+                      ? 'bg-white border-[#30AFFF] shadow-lg shadow-[#30AFFF]/15 ring-2 ring-[#30AFFF]/20 opacity-100 blur-none scale-[1.01]'
+                      : 'bg-[#EBF9FF]/40 border-[#bde9ff]/70 opacity-60 blur-[0.8px] hover:opacity-95 hover:blur-none hover:bg-white hover:border-[#92EEFF]'
+                  }`}
                 >
-                  <div className="flex items-start gap-5 relative z-10">
+                  <div className="flex items-start gap-4 relative z-10">
 
                     {/* Index Badge */}
                     <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-black shrink-0 transition-all ${isActive ? 'text-amber-950 scale-105' : 'neomorph-inset text-gray-400'
-                        }`}
-                      style={{
-                        backgroundColor: isActive ? config.themeColor : undefined,
-                      }}
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center text-xs font-black shrink-0 transition-colors ${
+                        isActive
+                          ? 'bg-[#30AFFF] text-white font-black shadow-md shadow-[#30AFFF]/30'
+                          : 'bg-white border border-[#bde9ff] text-[#2d6180]'
+                      }`}
                     >
                       {config.num}
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-2 flex-1">
+                    <div className="space-y-1.5 flex-1">
                       <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${config.badgeClass}`}>
+                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${config.badgeClass}`}>
                           {config.badge}
                         </span>
                         <ChevronRight
-                          className={`w-5 h-5 transition-transform ${isActive ? 'translate-x-1' : 'text-gray-600'
-                            }`}
-                          style={{ color: isActive ? config.themeColor : undefined }}
+                          className={`w-4 h-4 transition-transform ${
+                            isActive ? 'translate-x-1 text-[#30AFFF]' : 'text-[#5c9ab8]'
+                          }`}
                         />
                       </div>
 
-                      <h3 className={`text-xl font-extrabold transition-colors ${isActive ? 'text-white' : 'text-gray-200 group-hover:text-white'}`}>
+                      <h3 className={`text-base font-bold transition-colors ${isActive ? 'text-[#0a2a3d]' : 'text-[#2d4a5e]'}`}>
                         {feature.title}
                       </h3>
 
-                      <p className="text-gray-300 text-sm leading-relaxed">
+                      <p className="text-[#2d6180] text-xs leading-relaxed">
                         {feature.description}
                       </p>
 
                       {isActive && (
                         <motion.div
-                          initial={{ opacity: 0, y: 8 }}
+                          initial={{ opacity: 0, y: 6 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="pt-3 flex items-center gap-2 text-xs font-semibold"
-                          style={{ color: config.themeColor }}
+                          className="pt-1.5 flex items-center gap-1.5 text-xs font-semibold text-[#1e7a35]"
                         >
-                          <CheckCircle2 className="w-4 h-4" />
-                          <span>Active Commitment Guaranteed</span>
+                          <CheckCircle2 className="w-4 h-4 text-[#1e7a35]" />
+                          <span>Guaranteed on every ride with Velora Cabs</span>
                         </motion.div>
                       )}
                     </div>
@@ -229,111 +206,87 @@ export default function WhyUs() {
             })}
           </div>
 
-          {/* Right Sticky Column: Interactive Liquid Glass Showcase Pod */}
-          <div className="hidden lg:block lg:col-span-5 lg:sticky lg:top-28 h-fit space-y-6 z-20">
+          {/* Right Sticky Column: Trust Showcase */}
+          <div className="hidden lg:block lg:col-span-5 lg:sticky lg:top-28 h-fit space-y-4 z-20">
+            <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0c2f48] via-[#103a58] to-[#0a263a] text-white shadow-2xl shadow-[#0c2f48]/25 flex flex-col justify-between items-center text-center min-h-[440px] relative overflow-hidden border border-[#30AFFF]/25">
+              
+              {/* Decorative aura glows */}
+              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-[#30AFFF]/20 blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-[#92EEFF]/15 blur-3xl pointer-events-none" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(48,175,255,0.08)_0%,_transparent_60%)] pointer-events-none" />
 
-            <div
-              className="relative p-8 rounded-3xl overflow-hidden bg-[#12121a]/60 backdrop-blur-2xl border border-white/20 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),_inset_0_-1px_2px_rgba(0,0,0,0.5),_0_20px_40px_rgba(0,0,0,0.6)] flex flex-col justify-between items-center text-center min-h-[460px] transition-all duration-700"
-            >
-              {/* Top & Bottom Specular Glare Reflection Lines */}
-              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none z-30" />
-              <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none z-30" />
-
-              {/* Liquid Fluid Background Morphing Orbs */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div
-                  className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-[75px] transition-all duration-700 opacity-20"
-                  style={{ backgroundColor: activeConfig.themeColor }}
-                />
-                <div
-                  className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-56 h-56 rounded-full blur-[65px] transition-all duration-700 opacity-15"
-                  style={{ backgroundColor: activeConfig.themeColor }}
-                />
-              </div>
-
-              {/* Top Dynamic Status Bar */}
+              {/* Top Status Bar */}
               <div className="w-full flex items-center justify-between z-20 pb-4 border-b border-white/10">
-                <span className="text-xs font-black text-white/50 tracking-wider">
-                  FEATURE {activeConfig.num} / 06
+                <span className="text-xs font-bold text-[#92EEFF] tracking-wider flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#30AFFF] animate-pulse" />
+                  FEATURE {activeConfig.num} OF 06
                 </span>
-                <span className={`px-3 py-1 rounded-full border text-[10px] font-extrabold tracking-wider uppercase backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] ${activeConfig.badgeClass}`}>
+                <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-[#30AFFF]/30 text-[#92EEFF] text-[10px] font-extrabold uppercase shadow-xs">
                   {activeConfig.badge}
                 </span>
               </div>
 
-              {/* Center Liquid Glass Orb & Morphing React Icon */}
-              <div className="relative my-6 flex items-center justify-center w-full h-56 z-20">
-
-                {/* Concentric Liquid Rings */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div
-                    className="w-52 h-52 rounded-full border border-white/10 opacity-30 shadow-[inset_0_1px_2px_rgba(255,255,255,0.15)]"
-                  />
-                  <div
-                    className="w-40 h-40 rounded-full border border-white/15 opacity-40 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]"
-                  />
-                </div>
-
-                {/* Liquid Glass Floating Orb Pod */}
+              {/* Center Icon & Feature Card with Blur-to-Clear Transition */}
+              <div className="my-5 flex flex-col items-center justify-center w-full z-20">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}
-                    initial={{ opacity: 0, scale: 0.82, rotate: -6 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                    exit={{ opacity: 0, scale: 0.82, rotate: 6 }}
+                    initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.92, y: 10 }}
+                    animate={{ opacity: 1, filter: 'blur(0px)', scale: 1, y: 0 }}
+                    exit={{ opacity: 0, filter: 'blur(10px)', scale: 0.92, y: -10 }}
                     transition={{ duration: 0.35, ease: 'easeOut' }}
-                    className="relative z-10 p-8 rounded-3xl bg-white/[0.07] border border-white/25 shadow-[inset_0_2px_4px_rgba(255,255,255,0.35),_inset_0_-2px_4px_rgba(0,0,0,0.5),_0_16px_36px_rgba(0,0,0,0.4)] backdrop-blur-3xl flex items-center justify-center group"
+                    className="w-full p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col items-center justify-center shadow-xl shadow-black/10 relative overflow-hidden"
                   >
-                    {/* Interior Glare Reflection */}
-                    <div className="absolute top-1 left-3 right-3 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none" />
-
-                    <ActiveIcon
-                      className="w-24 h-24 transition-colors duration-300 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-                      style={{ color: activeConfig.themeColor }}
-                    />
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#30AFFF]/30 to-[#30AFFF]/10 border border-[#30AFFF]/40 flex items-center justify-center mb-3.5 shadow-[0_0_20px_rgba(48,175,255,0.25)]">
+                      <ActiveIcon className="w-8 h-8 text-[#92EEFF] drop-shadow-[0_2px_8px_rgba(48,175,255,0.5)]" />
+                    </div>
+                    <h4 className="text-xl font-bold text-white mb-2 tracking-tight">
+                      {WHY_US_FEATURES[activeIndex]?.title}
+                    </h4>
+                    <p className="text-xs text-[#BAE6FD] max-w-xs leading-relaxed font-medium">
+                      {activeConfig.highlight}
+                    </p>
+                    <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[11px] font-semibold">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Guaranteed Standard</span>
+                    </div>
                   </motion.div>
                 </AnimatePresence>
-
               </div>
 
-              {/* Bottom Feature Live Highlight in Liquid Glass Card */}
-              <div className="w-full z-20 pt-4 border-t border-white/10 flex items-center justify-between text-left bg-white/[0.03] backdrop-blur-xl p-4 rounded-2xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]">
+              {/* Bottom Hotline */}
+              <div className="w-full z-20 pt-3 flex items-center justify-between text-left bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10">
                 <div>
-                  <h4 className="text-base font-extrabold text-white">
-                    {WHY_US_FEATURES[activeIndex].title}
-                  </h4>
-                  <p className="text-xs text-gray-300 mt-1 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: activeConfig.themeColor }} />
-                    <span>{activeConfig.highlight}</span>
-                  </p>
+                  <span className="text-[10px] text-[#92EEFF] uppercase tracking-wider block font-semibold">
+                    24x7 Driver Control Support
+                  </span>
+                  <span className="text-sm font-extrabold text-white">
+                    {BUSINESS_INFO.phones[0].display}
+                  </span>
                 </div>
-                <div className="p-3 rounded-xl bg-white/[0.07] border border-white/20 shrink-0 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]">
-                  <ActiveIcon className="w-5 h-5" style={{ color: activeConfig.themeColor }} />
-                </div>
+                <a
+                  href={`tel:${BUSINESS_INFO.phones[0].raw}`}
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#30AFFF] to-[#0284c7] hover:from-[#38BDF8] hover:to-[#0369A1] text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-[#30AFFF]/25 cursor-pointer"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>Call Now</span>
+                </a>
               </div>
 
             </div>
 
-            {/* Liquid Micro Progress Bar */}
+            {/* Micro Progress Bar */}
             <div className="grid grid-cols-6 gap-2 px-2">
               {WHY_US_FEATURES.map((_, i) => {
-                const cfg = featureDetailsMap[i];
                 const isSelected = i === activeIndex;
                 return (
                   <div
                     key={i}
                     onClick={() => handleSelectCard(i)}
-                    className="h-1.5 rounded-full cursor-pointer transition-all duration-300 relative overflow-hidden bg-white/10 border border-white/5 group/pill"
-                  >
-                    {isSelected && (
-                      <motion.div
-                        layoutId="liquid-pill"
-                        className="absolute inset-0 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.4)]"
-                        style={{ backgroundColor: cfg.themeColor }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
-                  </div>
+                    className={`h-1.5 rounded-full cursor-pointer transition-all duration-300 ${
+                      isSelected ? 'bg-[#30AFFF] shadow-sm' : 'bg-[#bde9ff] hover:bg-[#92EEFF]'
+                    }`}
+                  />
                 );
               })}
             </div>

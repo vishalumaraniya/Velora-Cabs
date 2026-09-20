@@ -7,6 +7,25 @@ export interface BookingFormData {
   tripTime: string;
   tripType: 'local' | 'outstation' | 'airport';
   message?: string;
+  carId?: string;
+  carName?: string;
+  passengers?: number;
+  distanceKm?: number;
+  estimatedFare?: number;
+  ratePerKm?: number;
+}
+
+export interface VehicleModel {
+  id: string;
+  name: string;
+  category: string;
+  subtitle: string;
+  ratePerKm: number;
+  passengers: number;
+  luggage: number;
+  image: string;
+  badge?: string;
+  features: string[];
 }
 
 export interface ServiceItem {
@@ -48,4 +67,5 @@ export interface TestimonialItem {
   route: string;
   comment: string;
   date: string;
+  image?: string;
 }

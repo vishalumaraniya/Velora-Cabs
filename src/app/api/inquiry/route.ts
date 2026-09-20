@@ -8,8 +8,14 @@ const inquirySchema = z.object({
   dropLocation: z.string().min(2),
   tripDate: z.string().min(1),
   tripTime: z.string().optional(),
-  tripType: z.enum(['local', 'outstation', 'airport']),
+  tripType: z.enum(['local', 'outstation', 'airport']).optional(),
   message: z.string().optional(),
+  carType: z.string().optional(),
+  carName: z.string().optional(),
+  passengers: z.number().or(z.string()).optional(),
+  distanceKm: z.number().optional(),
+  estimatedFare: z.number().optional(),
+  ratePerKm: z.number().optional(),
 });
 
 export async function POST(request: Request) {

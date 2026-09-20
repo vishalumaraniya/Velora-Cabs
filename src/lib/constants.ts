@@ -1,4 +1,4 @@
-import { ServiceItem, RouteItem, FleetItem, TestimonialItem } from '@/types';
+import { ServiceItem, RouteItem, FleetItem, TestimonialItem, VehicleModel } from '@/types';
 
 export const BUSINESS_INFO = {
   name: 'Velora Cabs',
@@ -10,8 +10,8 @@ export const BUSINESS_INFO = {
   ],
   whatsappNumber: '918780311279',
   email: 'veloracabs07@gmail.com',
-  address: 'Bhavnagar, Gujarat, India',
-  serviceAreas: ['Bhavnagar', 'Surat', 'Baroda (Vadodara)', 'Ahmedabad', 'Mumbai', 'All India Outstation'],
+  address: 'India',
+  serviceAreas: ['Local City Rides', 'Airport Transfers', 'Outstation Trips', 'Pan-India Service'],
   operatingHours: '24 Hours / 7 Days a Week',
   accentColor: '#F5B921',
   darkBg: '#0d0d0f',
@@ -31,7 +31,7 @@ export const SERVICES: ServiceItem[] = [
     id: 'airport-transfers',
     title: 'Airport Transfers',
     subtitle: 'On-time pickup & drop guaranteed',
-    description: 'Hassle-free airport drop and pickup to Ahmedabad, Surat, Vadodara, and Mumbai airports with luggage assistance.',
+    description: 'Hassle-free airport drop and pickup with real-time flight tracking and luggage assistance.',
     iconName: 'Plane',
     features: ['Flight Tracking', 'Zero Delay Guarantee', 'Spacious Boot for Luggage', '24x7 Availability'],
     recommendedFor: 'Travelers & corporate flyers',
@@ -40,7 +40,7 @@ export const SERVICES: ServiceItem[] = [
     id: 'outstation-trips',
     title: 'Outstation Trips',
     subtitle: 'One-way & round trips across India',
-    description: 'Reliable outstation cab service across Gujarat, Maharashtra, Rajasthan, and pan-India destinations at transparent per-km rates.',
+    description: 'Reliable outstation cab service across pan-India destinations at transparent per-km rates.',
     iconName: 'MapPin',
     features: ['One-Way & Round Trip Options', 'Experienced Highway Drivers', 'No Hidden Charges', 'Toll & State Tax Transparency'],
     recommendedFor: 'Family trips & intercity travel',
@@ -95,38 +95,108 @@ export const POPULAR_ROUTES: RouteItem[] = [
   },
 ];
 
-export const FLEET_CARS: FleetItem[] = [
+export const VEHICLE_OPTIONS: VehicleModel[] = [
   {
-    id: 'premium-ac-sedan',
-    name: 'Premium AC Sedan',
-    category: 'AC Compact Sedan',
+    id: 'sedan',
+    name: '4 Seater',
+    category: 'Sedan (Swift Dzire)',
+    subtitle: 'Comfortable AC sedan for up to 4 passengers',
+    ratePerKm: 11,
     passengers: 4,
     luggage: 2,
-    image: '/images/velora_dzire_sedan.jpg',
+    image: '/images/velora_dzire.png',
+    badge: '1 - 4 Persons',
     features: [
-      'Automatic / Manual AC',
-      'Ergonomic Leatherette Seats',
-      '378L Large Boot Luggage Space',
-      'Dual Airbags & ABS Safety',
-      'Clean & Sanitized After Every Trip',
-      'Bluetooth & USB Audio System',
+      'Clean AC Cabin',
+      'Comfortable 4 Seats',
+      'Boot Space for 2 Bags',
+      'Doorstep Pickup',
     ],
-    description: 'India\'s most loved sedan for smooth, comfortable, and fuel-efficient journeys both in-city and across highways.',
   },
   {
-    id: 'executive-sedans',
-    name: 'Comfort AC Sedan Fleet',
-    category: 'Executive Sedan',
-    passengers: 4,
-    luggage: 3,
-    image: '/images/velora_dzire_sedan.jpg',
+    id: 'ertiga',
+    name: '6-7 Seater',
+    category: 'Maruti Ertiga',
+    subtitle: 'Spacious cab for family trips and extra luggage',
+    ratePerKm: 15,
+    passengers: 7,
+    luggage: 4,
+    image: '/images/velora_ertiga.png',
+    badge: '5 - 7 Persons',
     features: [
-      'Ample Rear Legroom',
-      'High-Speed Highway Stability',
-      'Punctual Professional Drivers',
-      'Mobile Charging Outlets',
+      'Rear AC Vents',
+      'Comfortable 7 Seats',
+      'Extra Boot Space',
+      'Smooth Highway Ride',
     ],
-    description: 'Spacious sedan cabs optimized for outstation travel and airport transfers with maximum passenger relaxation.',
+  },
+  {
+    id: 'traveller',
+    name: 'More than 7 Seats',
+    category: 'Tempo Traveller',
+    subtitle: 'Spacious minibus for group tours and family events',
+    ratePerKm: 22,
+    passengers: 15,
+    luggage: 8,
+    image: '/images/velora_traveller.png',
+    badge: '8+ Persons',
+    features: [
+      'High Roof AC Cabin',
+      '8 to 15+ Passenger Seating',
+      'Large Luggage Carrier',
+      'Comfortable Long Trips',
+    ],
+  },
+];
+
+export const FLEET_CARS: FleetItem[] = [
+  {
+    id: 'sedan-fleet',
+    name: '4 Seater Sedan',
+    category: 'Maruti Swift Dzire',
+    passengers: 4,
+    luggage: 2,
+    image: '/images/velora_dzire.png',
+    features: [
+      'Chilled AC Cabin',
+      '4 Passenger Seating',
+      'Large Boot Luggage Space',
+      'Clean & Sanitized Daily',
+      'Safe & Punctual Driver',
+    ],
+    description: 'Comfortable, fuel-efficient sedan for solo, corporate, and small family trips across cities.',
+  },
+  {
+    id: 'ertiga-fleet',
+    name: '6-7 Seater Cab',
+    category: 'Maruti Suzuki Ertiga',
+    passengers: 7,
+    luggage: 4,
+    image: '/images/velora_ertiga.png',
+    features: [
+      '6-7 Passenger Seating',
+      'Dedicated Rear AC Vents',
+      'Foldable 3rd Row for Bags',
+      'Comfortable Long Highway Ride',
+      'Experienced Driver',
+    ],
+    description: 'The preferred choice for families needing extra seating and generous luggage space.',
+  },
+  {
+    id: 'traveller-fleet',
+    name: 'More than 7 Seats',
+    category: 'Tempo Traveller / Minibus',
+    passengers: 15,
+    luggage: 8,
+    image: '/images/velora_traveller.png',
+    features: [
+      '8 to 15+ Seater Options',
+      'Push-Back Comfortable Seats',
+      'Powerful Central AC',
+      'Huge Luggage Storage',
+      'Ideal for Pilgrimage & Groups',
+    ],
+    description: 'Spacious, high-roof vehicle designed for group tours, weddings, and outstation trips.',
   },
 ];
 
@@ -167,29 +237,32 @@ export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: '1',
     name: 'Rajesh Patel',
-    location: 'Bhavnagar',
+    location: 'Verified Passenger',
     rating: 5,
-    route: 'Bhavnagar to Surat One-Way',
-    comment: 'Booked Velora Cabs for an urgent business trip to Surat. Dharmeshbhai arranged the cab quickly. The cab was clean, smooth, and driver reached 15 minutes before time. Highly recommended!',
+    route: 'Intercity One-Way Ride',
+    comment: 'Booked Velora Cabs for an urgent business trip. They arranged the cab quickly. The cab was clean, smooth, and driver reached 15 minutes before time. Highly recommended!',
     date: 'August 2026',
+    image: '/images/passenger_rajesh.jpg',
   },
   {
     id: '2',
     name: 'Meera Shah',
-    location: 'Ahmedabad',
+    location: 'Verified Passenger',
     rating: 5,
-    route: 'Ahmedabad Airport Drop',
-    comment: 'Punctuality is top-notch! Reached Ahmedabad airport comfortably with zero stress. Driver drove safely throughout the highway. Will always use Velora Cabs for outstation travel.',
+    route: 'Airport Pickup & Drop',
+    comment: 'Punctuality is top-notch! Reached the airport comfortably with zero stress. Driver drove safely throughout the highway. Will always use Velora Cabs for travel.',
     date: 'July 2026',
+    image: '/images/passenger_meera.jpg',
   },
   {
     id: '3',
     name: 'Amitabh Joshi',
-    location: 'Vadodara',
+    location: 'Verified Passenger',
     rating: 5,
-    route: 'Baroda to Mumbai Outstation',
+    route: 'Family Outstation Journey',
     comment: 'Excellent outstation service. Transparent billing with no hidden surprises. The car was spotless and comfortable for my family. 5 stars for safety and service quality!',
     date: 'June 2026',
+    image: '/images/passenger_amitabh.jpg',
   },
 ];
 
@@ -202,19 +275,33 @@ export function buildWhatsAppLink(data: {
   tripTime?: string;
   tripType?: string;
   message?: string;
+  carName?: string;
+  passengers?: number | string;
+  distanceKm?: number;
+  estimatedFare?: number;
+  ratePerKm?: number;
 }) {
+  const distanceStr = data.distanceKm ? `~${data.distanceKm} km` : 'TBD';
+  const fareStr = data.estimatedFare
+    ? `₹${data.estimatedFare.toLocaleString('en-IN')} (Formula: ${data.distanceKm} km × ₹${data.ratePerKm || 11}/km)`
+    : 'Quote on request';
+
   const text = `Hello Velora Cabs, I would like to inquire about a cab booking:
-  
-🚗 *Name:* ${data.name || 'Not provided'}
-📞 *Phone:* ${data.phone || 'Not provided'}
-📍 *Pickup:* ${data.pickupLocation || 'Not provided'}
-🎯 *Drop:* ${data.dropLocation || 'Not provided'}
+
+🚗 *Vehicle Selected:* ${data.carName || 'Sedan'}
+👥 *Passengers:* ${data.passengers || '1-4'}
+📍 *Pickup Location:* ${data.pickupLocation || 'Not provided'}
+🎯 *Drop Location:* ${data.dropLocation || 'Not provided'}
+🛣️ *Estimated Distance:* ${distanceStr}
+💰 *Estimated Fare:* ${fareStr}
 📅 *Date:* ${data.tripDate || 'Asap'}
 ⏰ *Time:* ${data.tripTime || 'Flexible'}
-🏷️ *Trip Type:* ${data.tripType || 'Outstation / Local'}
+🏷️ *Trip Type:* ${data.tripType ? data.tripType.toUpperCase() : 'OUTSTATION'}
+👤 *Customer Name:* ${data.name || 'Not provided'}
+📞 *Phone:* ${data.phone || 'Not provided'}
 💬 *Notes:* ${data.message || 'None'}
 
-Please share quote and availability. Thank you!`;
+Please confirm cab availability and total quote. Thank you!`;
 
   return `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }
