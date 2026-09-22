@@ -136,7 +136,7 @@ export default function WhyUs() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
           {/* Left Scrolling Column: 6 Reason Cards */}
-          <div className="lg:col-span-7 space-y-3">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-5">
             {WHY_US_FEATURES.map((feature, idx) => {
               const config = featureDetailsMap[idx % featureDetailsMap.length];
               const isActive = idx === activeIndex;
@@ -148,43 +148,43 @@ export default function WhyUs() {
                     cardsRef.current[idx] = el;
                   }}
                   onClick={() => handleSelectCard(idx)}
-                  className={`p-5 rounded-2xl cursor-pointer transition-all duration-300 relative border ${
+                  className={`p-6 sm:p-7 rounded-2xl sm:rounded-3xl cursor-pointer transition-all duration-300 relative border min-h-[140px] sm:min-h-[160px] flex flex-col justify-center ${
                     isActive
-                      ? 'bg-white border-[#30AFFF] shadow-lg shadow-[#30AFFF]/15 ring-2 ring-[#30AFFF]/20 opacity-100 blur-none scale-[1.01]'
-                      : 'bg-[#EBF9FF]/40 border-[#bde9ff]/70 opacity-60 blur-[0.8px] hover:opacity-95 hover:blur-none hover:bg-white hover:border-[#92EEFF]'
+                      ? 'bg-white border-[#30AFFF] shadow-xl shadow-[#30AFFF]/15 ring-2 ring-[#30AFFF]/25 scale-[1.015]'
+                      : 'bg-white/90 border-[#bde9ff] hover:border-[#30AFFF] shadow-xs hover:shadow-md'
                   }`}
                 >
-                  <div className="flex items-start gap-4 relative z-10">
+                  <div className="flex items-start gap-4 sm:gap-5 relative z-10">
 
                     {/* Index Badge */}
                     <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center text-xs font-black shrink-0 transition-colors ${
+                      className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center text-xs sm:text-sm font-black shrink-0 transition-colors ${
                         isActive
                           ? 'bg-[#30AFFF] text-white font-black shadow-md shadow-[#30AFFF]/30'
-                          : 'bg-white border border-[#bde9ff] text-[#2d6180]'
+                          : 'bg-[#EBF9FF] border border-[#bde9ff] text-[#0a2a3d]'
                       }`}
                     >
                       {config.num}
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-1.5 flex-1">
+                    <div className="space-y-2 flex-1">
                       <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${config.badgeClass}`}>
+                        <span className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-0.5 rounded-full border ${config.badgeClass}`}>
                           {config.badge}
                         </span>
                         <ChevronRight
-                          className={`w-4 h-4 transition-transform ${
+                          className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform ${
                             isActive ? 'translate-x-1 text-[#30AFFF]' : 'text-[#5c9ab8]'
                           }`}
                         />
                       </div>
 
-                      <h3 className={`text-base font-bold transition-colors ${isActive ? 'text-[#0a2a3d]' : 'text-[#2d4a5e]'}`}>
+                      <h3 className={`text-base sm:text-lg font-extrabold transition-colors ${isActive ? 'text-[#0a2a3d]' : 'text-[#0a2a3d]'}`}>
                         {feature.title}
                       </h3>
 
-                      <p className="text-[#2d6180] text-xs leading-relaxed">
+                      <p className="text-[#2d6180] text-xs sm:text-sm leading-relaxed font-normal">
                         {feature.description}
                       </p>
 
@@ -192,7 +192,7 @@ export default function WhyUs() {
                         <motion.div
                           initial={{ opacity: 0, y: 6 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="pt-1.5 flex items-center gap-1.5 text-xs font-semibold text-[#1e7a35]"
+                          className="pt-2 flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#1e7a35]"
                         >
                           <CheckCircle2 className="w-4 h-4 text-[#1e7a35]" />
                           <span>Guaranteed on every ride with Velora Cabs</span>
@@ -221,21 +221,21 @@ export default function WhyUs() {
                   <span className="w-2 h-2 rounded-full bg-[#30AFFF] animate-pulse" />
                   FEATURE {activeConfig.num} OF 06
                 </span>
-                <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-[#30AFFF]/30 text-[#92EEFF] text-[10px] font-extrabold uppercase shadow-xs">
+                <span className="px-3 py-1 rounded-full bg-white/10 border border-[#30AFFF]/30 text-[#92EEFF] text-[10px] font-extrabold uppercase shadow-xs">
                   {activeConfig.badge}
                 </span>
               </div>
 
-              {/* Center Icon & Feature Card with Blur-to-Clear Transition */}
+              {/* Center Icon & Feature Card */}
               <div className="my-5 flex flex-col items-center justify-center w-full z-20">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}
-                    initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.92, y: 10 }}
-                    animate={{ opacity: 1, filter: 'blur(0px)', scale: 1, y: 0 }}
-                    exit={{ opacity: 0, filter: 'blur(10px)', scale: 0.92, y: -10 }}
-                    transition={{ duration: 0.35, ease: 'easeOut' }}
-                    className="w-full p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col items-center justify-center shadow-xl shadow-black/10 relative overflow-hidden"
+                    initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.96, y: -8 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                    className="w-full p-6 rounded-2xl bg-white/10 border border-white/15 flex flex-col items-center justify-center shadow-xl shadow-black/10 relative overflow-hidden"
                   >
                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#30AFFF]/30 to-[#30AFFF]/10 border border-[#30AFFF]/40 flex items-center justify-center mb-3.5 shadow-[0_0_20px_rgba(48,175,255,0.25)]">
                       <ActiveIcon className="w-8 h-8 text-[#92EEFF] drop-shadow-[0_2px_8px_rgba(48,175,255,0.5)]" />

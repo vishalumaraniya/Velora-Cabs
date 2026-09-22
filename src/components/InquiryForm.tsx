@@ -233,20 +233,20 @@ export default function InquiryForm() {
                 {/* Trip Type — 2x2 grid on mobile/tablet, 4 columns 1 row on desktop */}
                 <div>
                   <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1.5">Choose Trip Type</p>
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2 lg:gap-1 lg:p-1 lg:bg-white/5 lg:rounded-xl">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 sm:gap-1.5 lg:gap-1 lg:p-1 lg:bg-white/5 lg:rounded-xl">
                     {TRIP_TYPES.map(({ id, label, icon: Icon }) => {
                       const active = currentTripType === id;
                       return (
                         <button
                           key={id} type="button"
                           onClick={() => setValue('tripType', id as BookingFormValues['tripType'])}
-                          className={`py-1.5 sm:py-2 lg:py-1.5 px-2 sm:px-2.5 lg:px-1 rounded-xl lg:rounded-lg text-[10px] sm:text-[11px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 border lg:border-0 ${
+                          className={`py-1 sm:py-1.5 lg:py-1 px-1.5 sm:px-2 lg:px-1 rounded-lg text-[9px] sm:text-[10px] lg:text-[10.5px] font-medium transition-all cursor-pointer flex items-center justify-center gap-1 sm:gap-1.5 border lg:border-0 ${
                             active
-                              ? 'bg-[#30AFFF] text-white shadow-md shadow-[#30AFFF]/25'
+                              ? 'bg-[#30AFFF] text-white shadow-sm shadow-[#30AFFF]/20'
                               : 'bg-white/6 hover:bg-white/10 text-slate-300 hover:text-white border-white/10 lg:bg-transparent lg:text-slate-400 lg:hover:text-white'
                           }`}
                         >
-                          <Icon className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${active ? 'text-white' : 'text-[#30AFFF] lg:text-slate-400'}`} />
+                          <Icon className={`w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0 ${active ? 'text-white' : 'text-[#30AFFF] lg:text-slate-400'}`} />
                           <span className="truncate">{label}</span>
                         </button>
                       );
@@ -325,13 +325,13 @@ export default function InquiryForm() {
                 </div>
 
                 {/* Passengers + Date */}
-                <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
-                  <div className="relative">
-                    <Users className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+                <div className="grid grid-cols-2 gap-2 sm:gap-2.5 min-w-0">
+                  <div className="relative min-w-0">
+                    <Users className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none z-10" />
                     <select
                       value={currentPassengers}
                       onChange={(e) => setValue('passengers', Number(e.target.value))}
-                      className="w-full pl-7 sm:pl-8 pr-6 py-2 border border-white/10 focus:border-[#30AFFF]/60 rounded-xl text-[11px] sm:text-xs text-white appearance-none cursor-pointer outline-none transition-all"
+                      className="w-full min-w-0 max-w-full pl-7 sm:pl-8 pr-6 py-2 border border-white/10 focus:border-[#30AFFF]/60 rounded-xl text-[11px] sm:text-xs text-white appearance-none cursor-pointer outline-none transition-all box-border"
                       style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
                     >
                       {[1,2,3,4,5,6,7].map((n) => <option key={n} value={n} className="bg-[#0a2a3d]">{n} Pax</option>)}
@@ -340,13 +340,20 @@ export default function InquiryForm() {
                     </select>
                     <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
                   </div>
-                  <div className="relative">
-                    <Calendar className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+                  <div className="relative min-w-0 overflow-hidden">
+                    <Calendar className="absolute left-2 sm:left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none z-10" />
                     <input
                       type="date"
                       {...register('tripDate')}
-                      className="w-full pl-7 sm:pl-8 pr-2 py-2 border border-white/10 focus:border-[#30AFFF]/60 rounded-xl text-[11px] sm:text-xs text-white cursor-pointer outline-none transition-all"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.06)', colorScheme: 'dark' }}
+                      className="w-full min-w-0 max-w-full pl-6 sm:pl-7 pr-1 py-2 border border-white/10 focus:border-[#30AFFF]/60 rounded-xl text-[10px] sm:text-xs text-white cursor-pointer outline-none transition-all box-border appearance-none text-left"
+                      style={{
+                        backgroundColor: 'rgba(255,255,255,0.06)',
+                        colorScheme: 'dark',
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'none',
+                        minWidth: '0',
+                        maxWidth: '100%',
+                      }}
                     />
                   </div>
                 </div>
