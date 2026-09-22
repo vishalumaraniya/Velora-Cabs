@@ -103,7 +103,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen lg:h-screen flex items-center overflow-hidden bg-[#EBF9FF] border-b border-[#bde9ff]"
+      className="relative w-full min-h-screen lg:h-screen flex items-start lg:items-center overflow-hidden bg-[#EBF9FF] border-b border-[#bde9ff]"
     >
       {/* Decorative ambient backdrop glows & subtle geometry pattern for desktop depth */}
       <div className="absolute top-[-10%] right-[-5%] w-[650px] h-[650px] xl:w-[850px] xl:h-[850px] rounded-full bg-[#92EEFF]/30 blur-3xl pointer-events-none" />
@@ -111,7 +111,7 @@ export default function Hero() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-25 pointer-events-none bg-[radial-gradient(#30AFFF_1px,transparent_1px)] [background-size:32px_32px] hidden lg:block" />
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 sm:pt-28 lg:pt-16 xl:pt-20 pb-8 lg:pb-6 flex flex-col justify-center h-full">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 xs:pt-24 sm:pt-28 lg:pt-16 xl:pt-20 pb-8 lg:pb-6 flex flex-col justify-start lg:justify-center">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 xl:gap-12 items-center">
 
