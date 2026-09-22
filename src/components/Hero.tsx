@@ -103,7 +103,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full h-screen min-h-[640px] lg:h-screen flex items-center overflow-hidden bg-[#EBF9FF] border-b border-[#bde9ff]"
+      className="relative w-full min-h-screen lg:h-screen flex items-center overflow-hidden bg-[#EBF9FF] border-b border-[#bde9ff]"
     >
       {/* Decorative ambient backdrop glows & subtle geometry pattern for desktop depth */}
       <div className="absolute top-[-10%] right-[-5%] w-[650px] h-[650px] xl:w-[850px] xl:h-[850px] rounded-full bg-[#92EEFF]/30 blur-3xl pointer-events-none" />
@@ -111,19 +111,19 @@ export default function Hero() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-25 pointer-events-none bg-[radial-gradient(#30AFFF_1px,transparent_1px)] [background-size:32px_32px] hidden lg:block" />
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full pt-16 sm:pt-20 lg:pt-16 xl:pt-20 pb-4 lg:pb-6 flex flex-col justify-center h-full">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 sm:pt-28 lg:pt-16 xl:pt-20 pb-8 lg:pb-6 flex flex-col justify-center h-full">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 xl:gap-12 items-center">
 
           {/* Left Column: Interactive Category Tabs, Main Headline, Subtitle, Trust Cards & CTAs */}
-          <div className="lg:col-span-6 xl:col-span-6 space-y-5 lg:space-y-6 z-10">
+          <div className="lg:col-span-6 xl:col-span-6 space-y-4 sm:space-y-5 lg:space-y-6 z-10">
 
             {/* Interactive Category Selector Pill Bar */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex flex-wrap items-center gap-1 p-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#bde9ff] shadow-xs relative"
+              className="inline-flex flex-wrap items-center gap-1 p-1 sm:p-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#bde9ff] shadow-xs relative"
             >
               {SLIDES.map((slide, idx) => {
                 const isActive = idx === currentSlide;
@@ -133,7 +133,7 @@ export default function Hero() {
                     key={slide.id}
                     onClick={() => handleTabClick(idx)}
                     type="button"
-                    className={`relative flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-200 cursor-pointer ${
+                    className={`relative flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-sm font-bold transition-colors duration-200 cursor-pointer ${
                       isActive
                         ? 'text-white'
                         : 'text-[#2d6180] hover:text-[#0a2a3d] hover:bg-[#EBF9FF]/60'
@@ -150,7 +150,7 @@ export default function Hero() {
                         }}
                       />
                     )}
-                    <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 relative z-10 transition-colors ${isActive ? 'text-white' : 'text-[#0284c7]'}`} />
+                    <Icon className={`w-3 h-3 sm:w-4 sm:h-4 relative z-10 transition-colors ${isActive ? 'text-white' : 'text-[#0284c7]'}`} />
                     <span className="relative z-10">{slide.title}</span>
                   </button>
                 );
@@ -164,16 +164,16 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.05 }}
               className="font-black tracking-tight text-[#0a2a3d] leading-[1.1]"
             >
-              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl">
+              <span className="block text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl">
                 Safe Rides.
               </span>
-              <span className="bg-gradient-to-r from-[#30AFFF] via-[#0284c7] to-[#0072bc] bg-clip-text text-transparent block text-[22px] xs:text-2xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl mt-1 sm:mt-1.5">
+              <span className="bg-gradient-to-r from-[#30AFFF] via-[#0284c7] to-[#0072bc] bg-clip-text text-transparent block text-[20px] xs:text-2xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl mt-0.5 sm:mt-1.5">
                 On Time. Every Time.
               </span>
             </motion.h1>
 
-            {/* Subheading Box (Sufficient min-height with thin font weight & zero clipping) */}
-            <div className="min-h-[72px] sm:min-h-[76px] lg:min-h-[84px] xl:min-h-[92px] flex items-start">
+            {/* Subheading Box */}
+            <div className="min-h-[48px] sm:min-h-[76px] lg:min-h-[84px] xl:min-h-[92px] flex items-start">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={active.subtitle}
@@ -181,7 +181,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.3 }}
-                  className="text-base sm:text-lg lg:text-lg xl:text-xl text-[#2d6180] font-normal leading-relaxed max-w-xl xl:max-w-2xl"
+                  className="text-xs sm:text-lg lg:text-lg xl:text-xl text-[#2d6180] font-normal leading-relaxed max-w-xl xl:max-w-2xl"
                 >
                   {active.subtitle}
                 </motion.p>
@@ -189,47 +189,47 @@ export default function Hero() {
             </div>
 
             {/* Rider Trust & Ratings Social Proof Badge */}
-            <div className="flex flex-wrap items-center gap-3 pt-0.5">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-white/80 backdrop-blur-xs border border-[#bde9ff] shadow-xs">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-0.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-white/80 backdrop-blur-xs border border-[#bde9ff] shadow-xs">
                 <div className="flex items-center gap-0.5 text-[#F59E0B]">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#F59E0B]" />
+                    <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#F59E0B]" />
                   ))}
                 </div>
-                <span className="text-xs sm:text-sm font-extrabold text-[#0a2a3d]">4.9/5 Rating</span>
+                <span className="text-[11px] sm:text-sm font-extrabold text-[#0a2a3d]">4.9/5 Rating</span>
               </div>
-              <div className="text-xs sm:text-sm font-semibold text-[#2d6180] flex items-center gap-2 bg-[#92EEFF]/30 px-3.5 py-1.5 rounded-xl border border-[#bde9ff]">
-                <Sparkles className="w-4 h-4 text-[#0284c7]" />
+              <div className="text-[11px] sm:text-sm font-semibold text-[#2d6180] flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-[#92EEFF]/30 border border-[#bde9ff]">
+                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0284c7]" />
                 <span>15,000+ Happy Commuters</span>
               </div>
             </div>
 
-            {/* Trust Highlights Cards Grid */}
+            {/* Trust Highlights Cards Grid (Compact 3-column row on mobile) */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="pt-1 grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3 text-xs sm:text-sm font-semibold text-[#0a2a3d]"
+              className="pt-1 grid grid-cols-3 gap-1.5 sm:gap-3 text-xs sm:text-sm font-semibold text-[#0a2a3d]"
             >
-              <div className="flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl bg-white/80 border border-[#bde9ff] shadow-2xs hover:border-[#30AFFF] transition-colors">
-                <div className="w-7 h-7 rounded-lg bg-[#30AFFF]/15 flex items-center justify-center shrink-0">
-                  <Clock className="w-4 h-4 text-[#0284c7]" />
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1 sm:gap-2.5 p-2 sm:p-3 rounded-xl bg-white/80 border border-[#bde9ff] shadow-2xs hover:border-[#30AFFF] transition-colors text-center sm:text-left">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#30AFFF]/15 flex items-center justify-center shrink-0">
+                  <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0284c7]" />
                 </div>
-                <span className="font-bold text-xs sm:text-sm">24x7 Dispatch</span>
+                <span className="font-bold text-[10px] sm:text-xs lg:text-sm leading-tight">24x7 Dispatch</span>
               </div>
 
-              <div className="flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl bg-white/80 border border-[#bde9ff] shadow-2xs hover:border-[#28A745] transition-colors">
-                <div className="w-7 h-7 rounded-lg bg-[#28A745]/15 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-4 h-4 text-[#28A745]" />
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1 sm:gap-2.5 p-2 sm:p-3 rounded-xl bg-white/80 border border-[#bde9ff] shadow-2xs hover:border-[#28A745] transition-colors text-center sm:text-left">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#28A745]/15 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#28A745]" />
                 </div>
-                <span className="font-bold text-xs sm:text-sm">Verified Drivers</span>
+                <span className="font-bold text-[10px] sm:text-xs lg:text-sm leading-tight">Verified Drivers</span>
               </div>
 
-              <div className="flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl bg-white/80 border border-[#bde9ff] shadow-2xs hover:border-[#30AFFF] transition-colors col-span-2 sm:col-span-1">
-                <div className="w-7 h-7 rounded-lg bg-[#30AFFF]/15 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4 text-[#0284c7]" />
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1 sm:gap-2.5 p-2 sm:p-3 rounded-xl bg-white/80 border border-[#bde9ff] shadow-2xs hover:border-[#30AFFF] transition-colors text-center sm:text-left">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#30AFFF]/15 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0284c7]" />
                 </div>
-                <span className="font-bold text-xs sm:text-sm">Doorstep Pickup</span>
+                <span className="font-bold text-[10px] sm:text-xs lg:text-sm leading-tight">Doorstep Pickup</span>
               </div>
             </motion.div>
 
@@ -238,26 +238,26 @@ export default function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
+              className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4"
             >
               <a
                 href="#inquiry"
-                className="px-7 py-3.5 lg:px-8 lg:py-4 rounded-2xl font-bold text-sm sm:text-base bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#0284c7] hover:brightness-105 text-white shadow-lg shadow-[#0284c7]/25 hover:shadow-xl hover:shadow-[#0284c7]/35 transition-all duration-200 flex items-center justify-center gap-3 active:scale-95 group cursor-pointer"
+                className="px-5 py-3 sm:px-7 sm:py-3.5 lg:px-8 lg:py-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-base bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#0284c7] hover:brightness-105 text-white shadow-md shadow-[#0284c7]/25 hover:shadow-xl hover:shadow-[#0284c7]/35 transition-all duration-200 flex items-center justify-center gap-2.5 active:scale-95 group cursor-pointer"
               >
-                <Calendar className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:scale-110 transition-transform" />
                 <span>Book Now</span>
-                <ArrowRight className="w-5 h-5 text-white/90 group-hover:translate-x-1.5 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/90 group-hover:translate-x-1.5 transition-transform" />
               </a>
 
               <a
                 href={`tel:${BUSINESS_INFO.phones[0].raw}`}
-                className="px-7 py-3.5 lg:px-8 lg:py-4 rounded-2xl font-bold text-sm sm:text-base bg-white hover:bg-[#EBF9FF] text-[#0a2a3d] border border-[#bde9ff] hover:border-[#30AFFF] shadow-xs hover:shadow-md transition-all duration-200 flex items-center justify-center gap-3 active:scale-95 group cursor-pointer"
+                className="px-5 py-3 sm:px-7 sm:py-3.5 lg:px-8 lg:py-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-base bg-white hover:bg-[#EBF9FF] text-[#0a2a3d] border border-[#bde9ff] hover:border-[#30AFFF] shadow-xs hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2.5 active:scale-95 group cursor-pointer"
               >
-                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#28A745] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#28A745]" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-[#28A745]" />
                 </span>
-                <Phone className="w-5 h-5 text-[#0284c7] group-hover:rotate-12 transition-transform" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-[#0284c7] group-hover:rotate-12 transition-transform" />
                 <span>Call {BUSINESS_INFO.phones[0].display}</span>
               </a>
             </motion.div>
@@ -309,7 +309,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Stacked Transparent Illustrations (Sized to fit inside 100vh) */}
+              {/* Stacked Transparent Illustrations */}
               <div className="relative w-full">
                 {SLIDES.map((slide, index) => (
                   <div
@@ -333,7 +333,7 @@ export default function Hero() {
                       height={900}
                       priority={index === 0}
                       unoptimized
-                      className="w-full h-auto max-h-[380px] sm:max-h-[460px] lg:max-h-[500px] xl:max-h-[560px] 2xl:max-h-[620px] object-contain select-none filter drop-shadow-md"
+                      className="w-full h-auto max-h-[220px] xs:max-h-[260px] sm:max-h-[460px] lg:max-h-[500px] xl:max-h-[560px] 2xl:max-h-[620px] object-contain select-none filter drop-shadow-md"
                     />
                   </div>
                 ))}
@@ -342,7 +342,7 @@ export default function Hero() {
             </div>
 
             {/* Slide Navigation Indicators */}
-            <div className="flex items-center gap-2 pt-4 lg:pt-5 z-20">
+            <div className="flex items-center gap-2 pt-3 lg:pt-5 z-20">
               {SLIDES.map((slide, idx) => {
                 const isActive = idx === currentSlide;
                 return (
@@ -351,10 +351,10 @@ export default function Hero() {
                     onClick={() => handleTabClick(idx)}
                     type="button"
                     aria-label={`Switch to ${slide.title}`}
-                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                       isActive
-                        ? 'w-10 bg-gradient-to-r from-[#0284c7] to-[#30AFFF]'
-                        : 'w-2.5 bg-[#bde9ff] hover:bg-[#30AFFF]/50'
+                        ? 'w-7 sm:w-10 bg-gradient-to-r from-[#0284c7] to-[#30AFFF]'
+                        : 'w-2 sm:w-2.5 bg-[#bde9ff] hover:bg-[#30AFFF]/50'
                     }`}
                   />
                 );
