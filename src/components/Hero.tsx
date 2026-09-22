@@ -115,8 +115,47 @@ export default function Hero() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 xl:gap-12 items-center">
 
-          {/* Left Column: Main Headline, Subtitle, Trust Cards & CTAs */}
+          {/* Left Column: Interactive Category Tabs (Laptop/Desktop), Main Headline, Subtitle, Trust Cards & CTAs */}
           <div className="lg:col-span-6 xl:col-span-6 space-y-4 sm:space-y-5 lg:space-y-6 z-10">
+
+            {/* Interactive Category Selector Pill Bar (Hidden on Mobile, Visible on Laptop & Desktop) */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="hidden sm:inline-flex items-center gap-1 p-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#bde9ff] shadow-xs relative"
+            >
+              {SLIDES.map((slide, idx) => {
+                const isActive = idx === currentSlide;
+                const Icon = slide.icon;
+                return (
+                  <button
+                    key={slide.id}
+                    onClick={() => handleTabClick(idx)}
+                    type="button"
+                    className={`relative flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-200 cursor-pointer ${
+                      isActive
+                        ? 'text-white'
+                        : 'text-[#2d6180] hover:text-[#0a2a3d] hover:bg-[#EBF9FF]/60'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeHeroCategoryPill"
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#30AFFF] shadow-md shadow-[#0284c7]/25"
+                        transition={{
+                          type: 'spring',
+                          stiffness: 400,
+                          damping: 32,
+                        }}
+                      />
+                    )}
+                    <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 relative z-10 transition-colors ${isActive ? 'text-white' : 'text-[#0284c7]'}`} />
+                    <span className="relative z-10">{slide.title}</span>
+                  </button>
+                );
+              })}
+            </motion.div>
 
             {/* Main Headline */}
             <motion.h1
