@@ -276,32 +276,30 @@ export function buildWhatsAppLink(data: {
   tripType?: string;
   message?: string;
   carName?: string;
-  passengers?: number | string;
-  distanceKm?: number;
-  estimatedFare?: number;
-  ratePerKm?: number;
 }) {
-  const distanceStr = data.distanceKm ? `~${data.distanceKm} km` : 'TBD';
-  const fareStr = data.estimatedFare
-    ? `₹${data.estimatedFare.toLocaleString('en-IN')} (Formula: ${data.distanceKm} km × ₹${data.ratePerKm || 11}/km)`
-    : 'Quote on request';
+  const tripTypeLabel =
+    data.tripType === 'outstation'
+      ? 'One-Way Outstation'
+      : data.tripType === 'roundtrip'
+      ? 'Round Trip'
+      : data.tripType === 'airport'
+      ? 'Airport Transfer'
+      : data.tripType === 'local'
+      ? 'Local City Rental'
+      : (data.tripType || 'Outstation');
 
   const text = `Hello Velora Cabs, I would like to inquire about a cab booking:
 
-🚗 *Vehicle Selected:* ${data.carName || 'Sedan'}
-👥 *Passengers:* ${data.passengers || '1-4'}
+🚗 *Vehicle Selected:* ${data.carName || 'Maruti Swift Dzire'}
 📍 *Pickup Location:* ${data.pickupLocation || 'Not provided'}
 🎯 *Drop Location:* ${data.dropLocation || 'Not provided'}
-🛣️ *Estimated Distance:* ${distanceStr}
-💰 *Estimated Fare:* ${fareStr}
 📅 *Date:* ${data.tripDate || 'Asap'}
-⏰ *Time:* ${data.tripTime || 'Flexible'}
-🏷️ *Trip Type:* ${data.tripType ? data.tripType.toUpperCase() : 'OUTSTATION'}
+🏷️ *Trip Type:* ${tripTypeLabel}
 👤 *Customer Name:* ${data.name || 'Not provided'}
 📞 *Phone:* ${data.phone || 'Not provided'}
 💬 *Notes:* ${data.message || 'None'}
 
-Please confirm cab availability and total quote. Thank you!`;
+Please confirm cab availability and best rate quote. Thank you!`;
 
   return `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }

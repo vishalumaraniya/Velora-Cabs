@@ -8,7 +8,7 @@ const inquirySchema = z.object({
   dropLocation: z.string().min(2),
   tripDate: z.string().min(1),
   tripTime: z.string().optional(),
-  tripType: z.enum(['local', 'outstation', 'airport']).optional(),
+  tripType: z.enum(['local', 'outstation', 'airport', 'roundtrip']).optional(),
   message: z.string().optional(),
   carType: z.string().optional(),
   carName: z.string().optional(),
