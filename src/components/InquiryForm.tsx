@@ -270,8 +270,8 @@ export default function InquiryForm() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
 
           {/* ── LEFT: Simple Inquiry Form ── */}
-          <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 flex flex-col justify-between">
-            <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+          <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 flex flex-col justify-between overflow-hidden">
+            <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4 w-full max-w-full min-w-0">
 
               {/* Trip Type — 4 Crystal Clear Option Cards */}
               <div>
@@ -355,16 +355,17 @@ export default function InquiryForm() {
               </div>
 
               {/* Journey Date */}
-              <div>
+              <div className="w-full min-w-0 max-w-full">
                 <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">
                   Travel Date
                 </label>
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                <div className="relative w-full min-w-0 max-w-full">
+                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none z-10" />
                   <input
                     type="date"
                     {...register('tripDate')}
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 hover:border-slate-300 focus:border-[#30AFFF] focus:bg-white rounded-xl text-xs sm:text-sm text-slate-800 outline-none transition-all font-medium cursor-pointer"
+                    className="w-full max-w-full min-w-0 box-border block pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 hover:border-slate-300 focus:border-[#30AFFF] focus:bg-white rounded-xl text-xs sm:text-sm text-slate-800 outline-none transition-all font-medium cursor-pointer"
+                    style={{ width: '100%', maxWidth: '100%', minWidth: 0, boxSizing: 'border-box' }}
                   />
                 </div>
               </div>
