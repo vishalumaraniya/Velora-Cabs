@@ -151,6 +151,20 @@ export default function InquiryForm() {
 
   const onSubmit = async (data: BookingFormValues) => {
     setLoading(true);
+
+    // Build WhatsApp URL with full trip and car details
+    const waUrl = buildWhatsAppLink({
+      ...data,
+      carName: currentVehicle.name,
+    });
+
+    // Directly open WhatsApp immediately on submit click to prevent popup blockers
+    try {
+      window.open(waUrl, '_blank');
+    } catch (e) {
+      console.error('Failed to auto-open WhatsApp:', e);
+    }
+
     try {
       await fetch('/api/inquiry', {
         method: 'POST',
@@ -185,9 +199,9 @@ export default function InquiryForm() {
           <div className="w-20 h-20 rounded-full bg-emerald-50 border-2 border-emerald-400 flex items-center justify-center mx-auto">
             <CheckCircle2 className="w-10 h-10 text-emerald-500" />
           </div>
-          <h3 className="text-2xl font-bold text-slate-900">Booking Request Received!</h3>
+          <h3 className="text-2xl font-bold text-slate-900">Inquiry Sent to WhatsApp!</h3>
           <p className="text-slate-500 text-sm">
-            Thank you! We will call <span className="text-slate-800 font-semibold">{formWatch.phone}</span> within 15 minutes to confirm your ride.
+            Your booking details have been sent to WhatsApp directly. Our coordinator will confirm your ride with <span className="text-slate-800 font-semibold">{formWatch.phone}</span> shortly.
           </p>
           <div className="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm text-left text-xs space-y-2">
             {[
@@ -216,7 +230,7 @@ export default function InquiryForm() {
               onClick={openWhatsApp}
               className="flex-1 py-2.5 rounded-xl font-bold text-sm bg-emerald-500 text-white hover:bg-emerald-600 flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4" /> WhatsApp
+              <MessageCircle className="w-4 h-4" /> Re-open WhatsApp
             </button>
             <button
               onClick={() => setSubmitted(false)}
@@ -413,30 +427,26 @@ export default function InquiryForm() {
                 </span>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
+              {/* Action Button: Submits Inquiry & Directly Opens WhatsApp */}
+              <div className="pt-1">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-[#FFC107] to-[#F59E0B] hover:from-[#FFCA28] hover:to-[#FFA000] text-[#071828] shadow-md shadow-amber-500/20 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full py-3.5 px-4 rounded-xl font-bold text-xs sm:text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-md shadow-emerald-500/25 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   {loading ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
                   ) : (
                     <>
-                      <span>Submit Booking Inquiry</span>
+                      <MessageCircle className="w-4 h-4 fill-white" />
+                      <span>Submit & Open WhatsApp Directly</span>
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
                 </button>
-                <button
-                  type="button"
-                  onClick={openWhatsApp}
-                  className="py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-emerald-500 hover:bg-emerald-600 text-white shadow-md shadow-emerald-500/20 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>WhatsApp Inquiry</span>
-                </button>
+                <p className="text-[11px] text-center text-slate-400 mt-2">
+                  Instant response · Automatically opens WhatsApp with your pre-filled ride details
+                </p>
               </div>
 
             </form>
