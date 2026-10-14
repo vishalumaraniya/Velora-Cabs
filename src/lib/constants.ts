@@ -341,18 +341,20 @@ export function buildWhatsAppLink(data: {
       ? 'Local City Rental'
       : (data.tripType || 'Outstation');
 
-  const text = `Hello Velora Cabs, I would like to inquire about a cab booking:
-
-🚗 *Vehicle Selected:* ${data.carName || 'Maruti Swift Dzire'}
-📍 *Pickup Location:* ${data.pickupLocation || 'Not provided'}
-🎯 *Drop Location:* ${data.dropLocation || 'Not provided'}
-📅 *Date:* ${data.tripDate || 'Asap'}
-🏷️ *Trip Type:* ${tripTypeLabel}
-👤 *Customer Name:* ${data.name || 'Not provided'}
-📞 *Phone:* ${data.phone || 'Not provided'}
-💬 *Notes:* ${data.message || 'None'}
-
-Please confirm cab availability and best rate quote. Thank you!`;
+  const text = `🚖 *VELORA CABS — NEW BOOKING INQUIRY*
+══════════════════════════════
+  FIELD           DETAILS
+══════════════════════════════
+  Passenger     : ${data.name || 'Not provided'}
+  Contact       : ${data.phone || 'Not provided'}
+  Pickup        : ${data.pickupLocation || 'Bhavnagar'}
+  Drop          : ${data.dropLocation || 'Ahmedabad'}
+  Date          : ${data.tripDate || 'Asap'}
+  Trip Type     : ${tripTypeLabel}
+  Car Model     : ${data.carName || 'Maruti Swift Dzire'}
+  Special Note  : ${data.message || 'None'}
+══════════════════════════════
+Kindly confirm driver assignment & best price. Thank you!`;
 
   return `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }
