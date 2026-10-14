@@ -2,13 +2,25 @@
 
 import React from 'react';
 import { Phone, Mail, MessageCircle, ShieldCheck } from 'lucide-react';
-import { BUSINESS_INFO } from '@/lib/constants';
+import { BUSINESS_INFO, DESTINATION_CITIES } from '@/lib/constants';
 import VeloraLogo from '@/components/VeloraLogo';
 
 export default function Footer() {
   return (
     <footer className="bg-[#071828] text-[#5c9ab8] border-t border-[#1a3a52] pb-20 sm:pb-0">
-      <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-5 space-y-3">
+        {/* SEO Cities Coverage Strip */}
+        <div className="pb-3 border-b border-[#132c42] flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-[11px] text-[#5c9ab8]">
+          <span className="font-bold text-white/80">Covered Cities & Cab Hubs:</span>
+          {DESTINATION_CITIES.map((city, idx) => (
+            <React.Fragment key={city}>
+              <span className="hover:text-[#92EEFF] transition-colors">{city}</span>
+              {idx < DESTINATION_CITIES.length - 1 && <span className="text-[#1a3a52]">•</span>}
+            </React.Fragment>
+          ))}
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
 
         {/* Left: Brand & Copyright */}
         <div className="flex items-center justify-center sm:justify-start gap-3 text-center sm:text-left flex-wrap">
@@ -55,6 +67,7 @@ export default function Footer() {
           </a>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
   );
 }

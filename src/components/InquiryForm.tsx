@@ -40,8 +40,20 @@ const bookingSchema = z.object({
 type BookingFormValues = z.infer<typeof bookingSchema>;
 
 export const MAJOR_CITIES = [
-  'Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Bhavnagar',
-  'Jamnagar', 'Gandhinagar', 'Somnath', 'Dwarka', 'Vapi', 'Bhuj', 'Mumbai',
+  'Bhavnagar',
+  'Ahmedabad',
+  'Vadodara',
+  'Surat',
+  'Bharuch',
+  'Dahej',
+  'Vapi',
+  'Daman',
+  'Dholera',
+  'Mumbai',
+  'Bhuj',
+  'Gandhidham',
+  'Amreli',
+  'Palitana',
 ] as const;
 
 const TRIP_TYPES = [
@@ -98,7 +110,7 @@ export default function InquiryForm() {
       name: '',
       phone: '',
       pickupLocation: 'Bhavnagar',
-      dropLocation: 'Surat',
+      dropLocation: 'Ahmedabad',
       tripDate: new Date().toISOString().split('T')[0],
       tripType: 'outstation',
       message: '',
