@@ -22,7 +22,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from 'lucide-react';
-import { buildWhatsAppLink } from '@/lib/constants';
+import { buildWhatsAppLink, formatDateToDDMMYYYY } from '@/lib/constants';
 
 const bookingSchema = z.object({
   name: z.string().min(2, { message: 'Please enter your name' }),
@@ -217,7 +217,7 @@ export default function InquiryForm() {
                   ? 'Airport Transfer'
                   : 'Local Rental',
               ],
-              ['Journey Date', formWatch.tripDate],
+              ['Journey Date', formatDateToDDMMYYYY(formWatch.tripDate)],
             ].map(([k, v]) => (
               <div key={k} className="flex justify-between py-1 border-b border-slate-50 last:border-0">
                 <span className="text-slate-400">{k}</span>

@@ -319,6 +319,16 @@ export const TESTIMONIALS: TestimonialItem[] = [
   },
 ];
 
+export function formatDateToDDMMYYYY(dateStr?: string): string {
+  if (!dateStr) return 'Asap';
+  const parts = dateStr.trim().split('-');
+  if (parts.length === 3 && parts[0].length === 4) {
+    const [year, month, day] = parts;
+    return `${day}/${month}/${year}`;
+  }
+  return dateStr;
+}
+
 export function buildWhatsAppLink(data: {
   name?: string;
   phone?: string;
@@ -341,6 +351,9 @@ export function buildWhatsAppLink(data: {
       ? 'Local City Rental'
       : (data.tripType || 'Outstation');
 
+  const formattedDate = formatDateToDDMMYYYY(data.tripDate);
+  const specialNote = data.message?.trim() || 'None';
+
   const text = `🚖 *VELORA CABS — NEW BOOKING INQUIRY*
 ══════════════════════════════
   FIELD           DETAILS
@@ -349,10 +362,14 @@ export function buildWhatsAppLink(data: {
   Contact       : ${data.phone || 'Not provided'}
   Pickup        : ${data.pickupLocation || 'Bhavnagar'}
   Drop          : ${data.dropLocation || 'Ahmedabad'}
-  Date          : ${data.tripDate || 'Asap'}
+  Date          : ${formattedDate}
   Trip Type     : ${tripTypeLabel}
   Car Model     : ${data.carName || 'Maruti Swift Dzire'}
-  Special Note  : ${data.message || 'None'}
+══════════════════════════════
+
+📌 *SPECIAL NOTE:*
+👉 ${specialNote}
+
 ══════════════════════════════
 Kindly confirm driver assignment & best price. Thank you!`;
 
