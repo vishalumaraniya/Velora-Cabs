@@ -1,15 +1,19 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle, Menu, X, ChevronRight } from 'lucide-react';
-import { BUSINESS_INFO } from '@/lib/constants';
+import { SITE } from '@/data/site';
 import VeloraLogo from '@/components/VeloraLogo';
+import { trackEvent } from '@/lib/analytics';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
   const isClickScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -40,52 +44,20 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Section observer to detect which section is currently in view
-  useEffect(() => {
-    const sectionIds = ['home', 'services', 'why-us', 'testimonials', 'inquiry'];
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Prevent scroll-spy from overriding the active tab during smooth scroll
-        if (isClickScrollingRef.current) return;
-
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '-20% 0px -55% 0px',
-        threshold: 0,
-      }
-    );
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'Why Us', href: '#why-us' },
-    { name: 'Book Cab', href: '#inquiry' },
-    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Home', href: '/' },
+    { name: 'Routes', href: '/taxi' },
+    { name: 'Cities', href: '/cab-service' },
+    { name: 'Fleet', href: '/fleet' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#')) {
+    if (href.startsWith('#') && isHomePage) {
       e.preventDefault();
       const targetId = href.substring(1);
-      
-      // Lock scroll-spy updates so it slides smoothly to the clicked menu without bouncing through intermediate items
       isClickScrollingRef.current = true;
-      setActiveSection(targetId);
 
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
@@ -97,7 +69,6 @@ export default function Navbar() {
       };
       window.addEventListener('scrollend', handleScrollEnd, { once: true });
 
-      // Fallback timeout in case scrollend doesn't fire
       scrollTimeoutRef.current = setTimeout(() => {
         isClickScrollingRef.current = false;
         window.removeEventListener('scrollend', handleScrollEnd);
@@ -116,9 +87,9 @@ export default function Navbar() {
 
         window.history.pushState(null, '', href);
       }
-      if (mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
+    }
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
     }
   };
 
@@ -134,11 +105,10 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-
+          
           {/* Brand Logo */}
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, '#home')}
+          <Link
+            href="/"
             className="flex items-center gap-3 group cursor-pointer"
           >
             <div className="p-1 rounded-2xl bg-white/95 backdrop-blur-md border border-[#bde9ff] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
@@ -152,16 +122,15 @@ export default function Navbar() {
                 Safe Rides. On Time.
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/90 p-1.5 rounded-full border border-[#bde9ff] shadow-xs backdrop-blur-md relative">
+          <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-1 bg-white/90 p-1.5 rounded-full border border-[#bde9ff] shadow-xs backdrop-blur-md relative">
             {navLinks.map((link) => {
-              const sectionId = link.href.substring(1);
-              const isActive = activeSection === sectionId;
+              const isActive = pathname === link.href;
 
               return (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
@@ -174,7 +143,7 @@ export default function Navbar() {
                   {isActive && (
                     <motion.div
                       layoutId="activeDesktopNav"
-                      className="absolute inset-0 rounded-full bg-[#3DBE6B] border border-[#28A745]"
+                      className="absolute inset-0 rounded-full bg-[#0284c7] border border-[#0284c7]"
                       transition={{
                         type: 'spring',
                         stiffness: 380,
@@ -183,7 +152,7 @@ export default function Navbar() {
                     />
                   )}
                   <span className="relative z-10">{link.name}</span>
-                </a>
+                </Link>
               );
             })}
           </nav>
@@ -192,42 +161,44 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2.5">
             {/* Direct Phone Call Button */}
             <a
-              href={`tel:${BUSINESS_INFO.phones[0].raw}`}
+              href={`tel:${SITE.phoneFormatted}`}
               aria-label="Call Velora Cabs"
+              onClick={() => trackEvent('call_click', { location: 'header' })}
               className="flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold bg-white/90 hover:bg-white text-[#0a2a3d] border border-[#bde9ff] transition-all shadow-xs active:scale-95"
             >
               <Phone className="w-3.5 h-3.5 text-[#30AFFF]" />
-              <span className="font-bold">{BUSINESS_INFO.phones[0].display}</span>
+              <span className="font-bold">{SITE.phone}</span>
             </a>
 
             {/* WhatsApp Direct Chat */}
             <a
-              href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(
+              href={`${SITE.whatsapp}?text=${encodeURIComponent(
                 'Hello Velora Cabs, I would like to inquire about cab booking.'
               )}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
+              onClick={() => trackEvent('whatsapp_click', { location: 'header' })}
               className="flex items-center justify-center w-9 h-9 rounded-full bg-[#28A745] text-white hover:bg-[#1e8c38] transition-all shadow-xs active:scale-95"
             >
               <MessageCircle className="w-4 h-4" />
             </a>
 
             {/* Book Button */}
-            <a
-              href="#inquiry"
+            <Link
+              href={isHomePage ? '#inquiry' : '/#inquiry'}
               onClick={(e) => handleNavClick(e, '#inquiry')}
               className="flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-extrabold bg-[#0a2a3d] hover:bg-[#123952] text-white shadow-sm shadow-[#0a2a3d]/20 hover:shadow-md transition-all cursor-pointer active:scale-95"
             >
               <span>Book Ride</span>
               <ChevronRight className="w-4 h-4 text-[#92EEFF]" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Hamburger / Close Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl text-[#0a2a3d] bg-white/90 border border-[#bde9ff] hover:bg-white shadow-xs"
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-[#0a2a3d]" /> : <Menu className="w-5 h-5 text-[#0a2a3d]" />}
@@ -248,37 +219,58 @@ export default function Navbar() {
             <div className="space-y-6">
               <div className="grid grid-cols-1 gap-2 pt-2">
                 {navLinks.map((link) => {
-                  const sectionId = link.href.substring(1);
-                  const isActive = activeSection === sectionId;
+                  const isActive = pathname === link.href;
 
                   return (
-                    <a
+                    <Link
                       key={link.name}
                       href={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
                       className={`relative px-4 py-3.5 rounded-xl text-base font-semibold flex items-center justify-between border transition-colors cursor-pointer ${
                         isActive
-                          ? 'text-white bg-[#3DBE6B] border-[#28A745] font-bold'
+                          ? 'text-white bg-[#0284c7] border-[#0284c7] font-bold'
                           : 'text-[#2d6180] hover:text-[#0a2a3d] hover:bg-white border-[#bde9ff]'
                       }`}
                     >
                       <span className="relative z-10">{link.name}</span>
                       <ChevronRight className={`w-5 h-5 relative z-10 ${isActive ? 'text-white' : 'text-[#5c9ab8]'}`} />
-                    </a>
+                    </Link>
                   );
                 })}
+              </div>
+
+              {/* Mobile Quick Contact info */}
+              <div className="pt-4 border-t border-[#bde9ff] space-y-3">
+                <a
+                  href={`tel:${SITE.phoneFormatted}`}
+                  onClick={() => trackEvent('call_click', { location: 'header' })}
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-[#bde9ff] text-[#0a2a3d] font-bold text-sm"
+                >
+                  <Phone className="w-4 h-4 text-[#30AFFF]" />
+                  <span>Call {SITE.phone}</span>
+                </a>
+                <a
+                  href={SITE.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('whatsapp_click', { location: 'header' })}
+                  className="flex items-center gap-3 p-3 rounded-xl bg-[#28A745] text-white font-bold text-sm"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Chat on WhatsApp</span>
+                </a>
               </div>
             </div>
 
             <div className="pt-4 border-t border-[#bde9ff]">
-              <a
-                href="#inquiry"
+              <Link
+                href={isHomePage ? '#inquiry' : '/#inquiry'}
                 onClick={(e) => handleNavClick(e, '#inquiry')}
                 className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#0a2a3d] hover:bg-[#123952] text-white font-bold text-sm shadow-md transition-all cursor-pointer active:scale-[0.98]"
               >
                 <span>Book Ride</span>
                 <ChevronRight className="w-4 h-4 text-[#92EEFF]" />
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

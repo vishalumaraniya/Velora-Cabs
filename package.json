@@ -13,6 +13,7 @@
     "@mantine/carousel": "^9.6.1",
     "@mantine/core": "^9.6.1",
     "@mantine/hooks": "^9.6.1",
+    "@next/third-parties": "^16.4.2",
     "@tabler/icons-react": "^3.46.0",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
@@ -35,6 +36,7 @@
     "eslint-config-next": "16.3.4",
     "postcss": "^8.5.28",
     "postcss-preset-mantine": "^1.18.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

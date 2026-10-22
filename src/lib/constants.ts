@@ -157,7 +157,7 @@ export const VEHICLE_OPTIONS: VehicleModel[] = [
     ratePerKm: 11,
     passengers: 4,
     luggage: 2,
-    image: '/images/velora_dzire.png',
+    image: '/images/velora_dzire.webp',
     badge: '1 - 4 Persons',
     features: [
       'Clean AC Cabin',
@@ -174,7 +174,7 @@ export const VEHICLE_OPTIONS: VehicleModel[] = [
     ratePerKm: 15,
     passengers: 7,
     luggage: 4,
-    image: '/images/velora_ertiga.png',
+    image: '/images/velora_ertiga.webp',
     badge: '5 - 7 Persons',
     features: [
       'Rear AC Vents',
@@ -191,7 +191,7 @@ export const VEHICLE_OPTIONS: VehicleModel[] = [
     ratePerKm: 22,
     passengers: 15,
     luggage: 8,
-    image: '/images/velora_traveller.png',
+    image: '/images/velora_traveller.webp',
     badge: '8+ Persons',
     features: [
       'High Roof AC Cabin',
@@ -209,7 +209,7 @@ export const FLEET_CARS: FleetItem[] = [
     category: 'Maruti Swift Dzire',
     passengers: 4,
     luggage: 2,
-    image: '/images/velora_dzire.png',
+    image: '/images/velora_dzire.webp',
     features: [
       'Chilled AC Cabin',
       '4 Passenger Seating',
@@ -225,7 +225,7 @@ export const FLEET_CARS: FleetItem[] = [
     category: 'Maruti Suzuki Ertiga',
     passengers: 7,
     luggage: 4,
-    image: '/images/velora_ertiga.png',
+    image: '/images/velora_ertiga.webp',
     features: [
       '6-7 Passenger Seating',
       'Dedicated Rear AC Vents',
@@ -241,7 +241,7 @@ export const FLEET_CARS: FleetItem[] = [
     category: 'Tempo Traveller / Minibus',
     passengers: 15,
     luggage: 8,
-    image: '/images/velora_traveller.png',
+    image: '/images/velora_traveller.webp',
     features: [
       '8 to 15+ Seater Options',
       'Push-Back Comfortable Seats',
@@ -295,7 +295,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     route: 'Intercity One-Way Ride',
     comment: 'Booked Velora Cabs for an urgent business trip. They arranged the cab quickly. The cab was clean, smooth, and driver reached 15 minutes before time. Highly recommended!',
     date: 'August 2026',
-    image: '/images/passenger_rajesh.jpg',
+    image: '/images/passenger_rajesh.webp',
   },
   {
     id: '2',
@@ -305,7 +305,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     route: 'Airport Pickup & Drop',
     comment: 'Punctuality is top-notch! Reached the airport comfortably with zero stress. Driver drove safely throughout the highway. Will always use Velora Cabs for travel.',
     date: 'July 2026',
-    image: '/images/passenger_meera.jpg',
+    image: '/images/passenger_meera.webp',
   },
   {
     id: '3',
@@ -315,7 +315,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     route: 'Family Outstation Journey',
     comment: 'Excellent outstation service. Transparent billing with no hidden surprises. The car was spotless and comfortable for my family. 5 stars for safety and service quality!',
     date: 'June 2026',
-    image: '/images/passenger_amitabh.jpg',
+    image: '/images/passenger_amitabh.webp',
   },
 ];
 

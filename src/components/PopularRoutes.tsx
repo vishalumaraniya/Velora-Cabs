@@ -44,9 +44,6 @@ export default function PopularRoutes() {
         {/* Routes Grid with Frosted Glass & Related Lucide Icons floating behind */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {POPULAR_ROUTES.map((route, idx) => {
-            // Corner glow on Card #0 ONLY
-            const isFeatured = idx === 0;
-
             let BackgroundIcon = Navigation;
             let badgeClass = 'bg-amber-500/15 text-[#F5B921] border-amber-500/30';
             let iconColor = 'text-[#F5B921]';

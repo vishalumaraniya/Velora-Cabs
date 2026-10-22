@@ -33,14 +33,14 @@ export default function Preloader() {
 
             {/* VELORA CABS Text Animation */}
             <div className="text-center space-y-1">
-              <motion.h1
+              <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
                 className="text-2xl font-black tracking-widest text-[#0a2a3d]"
               >
                 VELORA <span className="text-[#30AFFF]">CABS</span>
-              </motion.h1>
+              </motion.p>
 
               <motion.p
                 initial={{ opacity: 0 }}

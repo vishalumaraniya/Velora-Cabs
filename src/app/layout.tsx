@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import MantineProviderWrapper from '@/components/MantineProviderWrapper';
 import FloatingActionBar from '@/components/FloatingActionBar';
 import Preloader from '@/components/Preloader';
-import { BUSINESS_INFO } from '@/lib/constants';
+import { SITE, getSameAs } from '@/data/site';
 import './globals.css';
 
+// PHASE 2: next/font with display:swap, latin subset only
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
@@ -18,116 +20,29 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// PHASE 1: metadataBase = canonical primary domain
+// PHASE 2: Global metadata
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
-    default: 'Velora Cabs | Cab Booking in Bhavnagar, Ahmedabad, Vadodara, Mumbai & Gujarat',
+    default: 'Cab Service in Bhavnagar | Outstation & Airport Taxi – Velora Cabs',
     template: '%s | Velora Cabs',
   },
   description:
-    'Book safe 24x7 cabs with Velora Cabs across Bhavnagar, Ahmedabad, Vadodara, Surat, Bharuch, Dahej, Vapi, Daman, Dholera, Mumbai, Bhuj, Gandhidham, Amreli & Palitana. Clean AC cars, doorstep pickup & transparent rates. Call +91 87803 11279.',
-  keywords: [
-    // Brand keywords
-    'Velora Cabs',
-    'Velora Cab booking',
-    'Velora Cabs Bhavnagar',
-    'Velora Taxi Gujarat',
-
-    // City-specific cab services
-    'Bhavnagar cab service',
-    'Bhavnagar taxi booking',
-    'Ahmedabad cab service',
-    'Ahemdabad cab service',
-    'Ahmedabad taxi booking',
-    'Ahemdabad taxi',
-    'Vadodara cab service',
-    'Baroda taxi service',
-    'Surat cab service',
-    'Surat taxi booking',
-    'Bharuch cab service',
-    'Bharuch taxi booking',
-    'Dahej cab service',
-    'Dahej port taxi',
-    'Vapi cab service',
-    'Vapi taxi booking',
-    'Daman cab service',
-    'Daman taxi booking',
-    'Dholera cab service',
-    'Dholera SIR taxi service',
-    'Mumbai outstation cab',
-    'Mumbai to Bhavnagar taxi',
-    'Bhuj cab service',
-    'Bhuj Kutch taxi booking',
-    'Gandhidham cab service',
-    'Gandhidham taxi',
-    'Amreli cab service',
-    'Amreli taxi booking',
-    'Palitana cab service',
-    'Palitana Shatrunjaya taxi',
-
-    // Intercity and highway route keywords
-    'Bhavnagar to Ahmedabad cab',
-    'Ahmedabad to Bhavnagar cab',
-    'Ahemdabad to Bhavnagar taxi',
-    'Bhavnagar to Vadodara cab',
-    'Vadodara to Bhavnagar taxi',
-    'Bhavnagar to Surat cab',
-    'Surat to Bhavnagar cab',
-    'Bhavnagar to Mumbai cab',
-    'Mumbai to Bhavnagar cab',
-    'Bhavnagar to Bharuch cab',
-    'Bharuch to Bhavnagar cab',
-    'Bhavnagar to Dahej cab',
-    'Dahej to Bhavnagar taxi',
-    'Bhavnagar to Dholera cab',
-    'Dholera to Bhavnagar cab',
-    'Bhavnagar to Palitana cab',
-    'Palitana to Bhavnagar taxi',
-    'Bhavnagar to Amreli cab',
-    'Amreli to Bhavnagar taxi',
-    'Bhavnagar to Vapi cab',
-    'Vapi to Bhavnagar cab',
-    'Bhavnagar to Daman cab',
-    'Daman to Bhavnagar taxi',
-    'Bhavnagar to Bhuj cab',
-    'Bhuj to Bhavnagar cab',
-    'Bhavnagar to Gandhidham cab',
-    'Gandhidham to Bhavnagar taxi',
-    'Bharuch to Dahej cab',
-    'Vapi to Daman taxi',
-    'Bhuj to Gandhidham cab',
-    'Ahmedabad to Dholera cab',
-    'Mumbai to Vapi cab',
-
-    // General high-intent taxi queries
-    'Outstation cab service Gujarat',
-    'One way cab Gujarat',
-    'Round trip taxi booking Gujarat',
-    'Airport taxi Ahmedabad Bhavnagar',
-    'Doorstep cab pickup',
-    '24x7 cab service Gujarat',
-    'AC sedan taxi booking',
-    'Affordable outstation taxi',
-  ],
-  authors: [{ name: 'Velora Cabs' }, { name: 'Dharmeshbhai B. Kava' }],
-  creator: 'Velora Cabs',
-  publisher: 'Velora Cabs',
-  category: 'Transportation',
-  metadataBase: new URL('https://veloracabs.com'),
-  alternates: {
-    canonical: 'https://veloracabs.com',
-  },
+    'Book 24x7 AC cabs from Bhavnagar to Ahmedabad, Surat, Vadodara & Mumbai. Verified drivers, doorstep pickup, fixed fares. Call +91 87803 11279.',
+  // PHASE 2: remove meta keywords entirely per prompt rule
   openGraph: {
-    title: 'Velora Cabs | Cab Booking in Bhavnagar, Ahmedabad, Vadodara, Mumbai & Gujarat',
+    title: 'Cab Service in Bhavnagar | Outstation & Airport Taxi – Velora Cabs',
     description:
-      'Book reliable outstation & local AC cabs across Bhavnagar, Ahmedabad, Vadodara, Surat, Bharuch, Dahej, Vapi, Daman, Dholera, Mumbai, Bhuj, Gandhidham, Amreli & Palitana. 24x7 doorstep pickup & best rates.',
-    url: 'https://veloracabs.com',
-    siteName: 'Velora Cabs',
+      'Book 24x7 AC cabs from Bhavnagar to Ahmedabad, Surat, Vadodara & Mumbai. Verified drivers, doorstep pickup, fixed fares.',
+    url: SITE.url,
+    siteName: SITE.name,
     images: [
       {
-        url: '/images/velora_dzire_sedan.jpg',
+        url: '/images/og-velora.jpg',
         width: 1200,
-        height: 675,
-        alt: 'Velora Cabs - Bhavnagar, Ahmedabad, Vadodara, Mumbai Cab Service',
+        height: 630,
+        alt: 'Velora Cabs – Cab Service in Bhavnagar & Gujarat',
       },
     ],
     locale: 'en_IN',
@@ -135,10 +50,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Velora Cabs | Gujarat Outstation & Airport Taxi Service',
+    title: 'Cab Service in Bhavnagar | Outstation & Airport Taxi – Velora Cabs',
     description:
-      'Safe & on-time cabs in Bhavnagar, Ahmedabad, Vadodara, Bharuch, Dahej, Vapi, Daman, Dholera, Mumbai, Bhuj, Gandhidham, Amreli & Palitana.',
-    images: ['/images/velora_dzire_sedan.jpg'],
+      'Book 24x7 AC cabs from Bhavnagar to Ahmedabad, Surat, Vadodara & Mumbai. Fixed fares, verified drivers.',
+    images: ['/images/og-velora.jpg'],
   },
   robots: {
     index: true,
@@ -153,155 +68,99 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    shortcut: '/icon.svg',
-    apple: '/apple-touch-icon.png',
+    shortcut: '/favicon-48x48.png',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/manifest.webmanifest',
+  alternates: {
+    canonical: '/',
   },
 };
 
-const jsonLd = {
+// PHASE 6: Homepage JSON-LD — TaxiService + WebSite
+const businessJsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['TaxiService', 'LocalBusiness'],
-  name: BUSINESS_INFO.name,
-  image: 'https://veloracabs.com/images/velora_dzire_sedan.jpg',
-  logo: 'https://veloracabs.com/images/velora_logo.jpg',
+  '@type': 'TaxiService',
+  '@id': `${SITE.url}/#business`,
+  name: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/icon-512.png`,
+  image: `${SITE.url}/images/og-velora.jpg`,
   description:
-    'Safe Rides. On Time. Every Time. Premier local & outstation taxi service with clean AC cabs across Bhavnagar, Ahmedabad, Vadodara, Surat, Bharuch, Dahej, Vapi, Daman, Dholera, Mumbai, Bhuj, Gandhidham, Amreli, and Palitana.',
-  telephone: BUSINESS_INFO.phones[0].display,
-  email: BUSINESS_INFO.email,
-  priceRange: '₹₹',
+    'Safe Rides. On Time. Every Time. 24x7 AC cab service from Bhavnagar across Gujarat and to Mumbai.',
+  telephone: SITE.phoneFormatted,
+  email: SITE.email,
+  // NO priceRange, NO aggregateRating, NO Review (Global Rules 3 & 4)
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Bhavnagar',
-    addressRegion: 'Gujarat',
-    addressCountry: 'IN',
+    addressLocality: SITE.address.addressLocality,
+    addressRegion: SITE.address.addressRegion,
+    addressCountry: SITE.address.addressCountry,
+    // TODO: owner to confirm street address and postal code
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 21.7645,
-    longitude: 72.1519,
+    latitude: SITE.geo.latitude,
+    longitude: SITE.geo.longitude,
   },
-  areaServed: [
-    { '@type': 'City', name: 'Bhavnagar' },
-    { '@type': 'City', name: 'Ahmedabad' },
-    { '@type': 'City', name: 'Vadodara' },
-    { '@type': 'City', name: 'Surat' },
-    { '@type': 'City', name: 'Bharuch' },
-    { '@type': 'City', name: 'Dahej' },
-    { '@type': 'City', name: 'Vapi' },
-    { '@type': 'City', name: 'Daman' },
-    { '@type': 'City', name: 'Dholera' },
-    { '@type': 'City', name: 'Mumbai' },
-    { '@type': 'City', name: 'Bhuj' },
-    { '@type': 'City', name: 'Gandhidham' },
-    { '@type': 'City', name: 'Amreli' },
-    { '@type': 'City', name: 'Palitana' },
-  ],
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Intercity Taxi Routes',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Ahmedabad Cab Service',
-          description: 'Safe, comfortable one-way and round trip taxi from Bhavnagar to Ahmedabad and Ahmedabad Airport.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Vadodara (Baroda) Cab Service',
-          description: 'Direct highway cab service between Bhavnagar and Vadodara with doorstep pickup.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Mumbai Outstation Cab Service',
-          description: 'Interstate long distance outstation cab from Bhavnagar to Mumbai and Mumbai to Bhavnagar.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Surat Cab Service',
-          description: 'Reliable one-way and round trip taxi service between Bhavnagar and Surat.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Bharuch & Dahej Cab Service',
-          description: 'Industrial corridor taxi service connecting Bhavnagar, Bharuch and Dahej Port.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Dholera SIR Cab Service',
-          description: 'Direct cab transfers between Bhavnagar and Dholera Special Investment Region.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Palitana & Amreli Cab Service',
-          description: 'Pilgrimage and Saurashtra intercity taxi service to Palitana Shatrunjaya and Amreli.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Vapi & Daman Cab Service',
-          description: 'South Gujarat corridor and tourist cab service to Vapi and Daman.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bhavnagar to Bhuj & Gandhidham Cab Service',
-          description: 'Kutch express outstation cab service between Bhavnagar, Gandhidham and Bhuj.',
-        },
-      },
-    ],
-  },
+  areaServed: SITE.cities.map((city) => ({
+    '@type': 'City',
+    name: city,
+  })),
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ],
     opens: '00:00',
     closes: '23:59',
   },
-  founder: {
-    '@type': 'Person',
-    name: BUSINESS_INFO.contactPerson,
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '128',
-  },
+  // Only real, non-empty URLs from social config
+  sameAs: getSameAs(),
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+};
+
+function JsonLd({ data }: { data: object }) {
   return (
-    <html lang="en" className={`${inter.variable}`} style={{ colorScheme: 'light' }}>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data).replace(/</g, '\\u003c'),
+      }}
+    />
+  );
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
+  return (
+    // PHASE 2 + 3: lang="en-IN"
+    <html lang="en-IN" className={`${inter.variable}`} style={{ colorScheme: 'light' }}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={businessJsonLd} />
+        <JsonLd data={websiteJsonLd} />
       </head>
       <body className="min-h-screen bg-[#EBF9FF] text-[#0a2a3d] antialiased font-sans">
         <MantineProviderWrapper>
@@ -309,6 +168,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <FloatingActionBar />
         </MantineProviderWrapper>
+        {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>
     </html>
   );

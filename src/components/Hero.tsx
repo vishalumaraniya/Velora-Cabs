@@ -28,7 +28,7 @@ const SLIDES = [
     badgeClass: 'border-[#92EEFF] text-[#0a2a3d] bg-white/90',
     dotClass: 'bg-[#30AFFF]',
     icon: Car,
-    image: '/images/velora_hero_city_v2.png',
+    image: '/images/velora_hero_city_v2.webp',
     alt: 'Modern Online Taxi Cab Booking Service with GPS Map and Car Illustration',
     tag: 'Quick City Drops',
     subtitle: 'Swift daily commutes and local city drops across major routes. Clean, sanitized AC vehicles with verified drivers and transparent zero surge pricing.',
@@ -48,7 +48,7 @@ const SLIDES = [
     badgeClass: 'border-[#92EEFF] text-[#0a2a3d] bg-white/90',
     dotClass: 'bg-[#30AFFF]',
     icon: Plane,
-    image: '/images/velora_hero_airport_v2.png',
+    image: '/images/velora_hero_airport_v2.webp',
     alt: 'Airport Taxi Transfer with Chauffeur and Flight Departures Illustration',
     tag: 'Flight Ready',
     subtitle: 'Guaranteed on-time airport pickups and drops 24 hours a day. Enjoy real-time flight tracking, zero wait fee on delays, and full luggage assistance.',
@@ -68,7 +68,7 @@ const SLIDES = [
     badgeClass: 'border-[#28A745] text-[#0a2a3d] bg-white/90',
     dotClass: 'bg-[#28A745]',
     icon: Compass,
-    image: '/images/velora_hero_outstation_v2.png',
+    image: '/images/velora_hero_outstation_v2.webp',
     alt: 'Family Outstation Road Trip with Happy Family and Kids Illustration',
     tag: 'Family Road Trip',
     subtitle: 'Spacious AC sedans, Ertiga & Innova cabs for family holidays. Experience comfortable outstation travel with transparent flat rates and zero return charges.',
@@ -157,20 +157,24 @@ export default function Hero() {
               })}
             </motion.div>
 
-            {/* Main Headline */}
+            {/* Main Headline - Exactly ONE <h1> on the homepage per Phase 3 */}
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05 }}
               className="font-black tracking-tight text-[#0a2a3d] leading-[1.1]"
             >
-              <span className="block text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl">
-                Safe Rides.
+              <span className="block text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl whitespace-nowrap">
+                24x7 Cab Service
               </span>
-              <span className="bg-gradient-to-r from-[#30AFFF] via-[#0284c7] to-[#0072bc] bg-clip-text text-transparent block text-[20px] xs:text-2xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl mt-0.5 sm:mt-1.5">
-                On Time. Every Time.
+              <span className="bg-gradient-to-r from-[#30AFFF] via-[#0284c7] to-[#0072bc] bg-clip-text text-transparent block text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[26px] xl:text-3xl 2xl:text-4xl mt-1 sm:mt-1.5 whitespace-nowrap">
+                Local, Airport & Outstation
               </span>
             </motion.h1>
+
+            <p className="text-xs sm:text-sm font-bold text-[#0284c7] uppercase tracking-wider">
+              Safe Rides. On Time. Every Time.
+            </p>
 
             {/* Subheading Box */}
             <div className="min-h-[48px] sm:min-h-[76px] lg:min-h-[84px] xl:min-h-[92px] flex items-start">
@@ -196,7 +200,7 @@ export default function Hero() {
                     <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#F59E0B]" />
                   ))}
                 </div>
-                <span className="text-[11px] sm:text-sm font-extrabold text-[#0a2a3d]">4.9/5 Rating</span>
+                <span className="text-[11px] sm:text-sm font-extrabold text-[#0a2a3d]">4.2/5 Rating</span>
               </div>
               <div className="text-[11px] sm:text-sm font-semibold text-[#2d6180] flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-[#92EEFF]/30 border border-[#bde9ff]">
                 <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0284c7]" />
@@ -332,7 +336,7 @@ export default function Hero() {
                       width={1200}
                       height={900}
                       priority={index === 0}
-                      unoptimized
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                       className="w-full h-auto max-h-[220px] xs:max-h-[260px] sm:max-h-[460px] lg:max-h-[500px] xl:max-h-[560px] 2xl:max-h-[620px] object-contain select-none filter drop-shadow-md"
                     />
                   </div>
