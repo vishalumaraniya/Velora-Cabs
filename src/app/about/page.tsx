@@ -63,17 +63,19 @@ export default function AboutPage() {
             </p>
 
             {/* Instagram Social Follow Link */}
-            <div className="pt-2">
-              <a
-                href={SITE.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer me"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0d2236] text-[#92EEFF] hover:text-white border border-[#1a3a52] text-xs font-bold transition-all shadow-xs"
-              >
-                <InstagramIcon className="w-4 h-4" />
-                <span>Follow us on Instagram @velora_cabs_official</span>
-              </a>
-            </div>
+            {SITE.social?.instagram && (
+              <div className="pt-2">
+                <a
+                  href={SITE.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer me"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0d2236] text-[#92EEFF] hover:text-white border border-[#1a3a52] text-xs font-bold transition-all shadow-xs"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                  <span>Follow us on Instagram @velora_cabs_official</span>
+                </a>
+              </div>
+            )}
           </div>
         </section>
 
@@ -83,24 +85,24 @@ export default function AboutPage() {
             
             {/* Story Text */}
             <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-[#bde9ff] space-y-6">
-              <h2 className="text-2xl font-black text-[#0a2a3d]">
+              <h2 className="text-2xl font-black text-[#0B1F33]">
                 Bhavnagar’s Dedicated Passenger Transportation Partner
               </h2>
 
               <div className="space-y-4 text-sm sm:text-base text-[#2d6180] leading-relaxed">
                 <p>
-                  Established in Bhavnagar {/* TODO: owner to confirm founding year */}, Velora Cabs was born to solve the challenges travelers routinely face: unpredictable taxi cancellations, opaque pricing structures, and unpunctual airport transfers.
+                  Established in Bhavnagar, Velora Cabs was founded to solve the challenges travelers routinely face: unpredictable taxi cancellations, opaque pricing structures, and unpunctual airport transfers.
                 </p>
                 <p>
                   From our central dispatch base in Bhavnagar, our operations have steadily expanded across Saurashtra, Central Gujarat, the southern industrial corridor of Bharuch, Dahej, Vapi, and Daman, and long-distance connectivity into Mumbai.
                 </p>
                 <p>
-                  We operate under professional passenger transport guidelines {/* TODO: owner to confirm official registration and fleet licensing details */}. Our fleet comprises fuel-efficient Maruti Swift Dzire sedans, spacious Maruti Suzuki Ertiga MUVs, and large-capacity Tempo Travellers for group pilgrimages and corporate tours.
+                  We operate under professional passenger transport guidelines. Our fleet comprises fuel-efficient Maruti Swift Dzire sedans, spacious Maruti Suzuki Ertiga MUVs, and large-capacity Tempo Travellers for group pilgrimages and corporate tours.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-[#bde9ff] space-y-3">
-                <h3 className="text-base font-bold text-[#0a2a3d]">
+                <h3 className="text-base font-bold text-[#0B1F33]">
                   Our Safety Commitments:
                 </h3>
                 <ul className="space-y-2 text-xs sm:text-sm text-[#2d6180]">
@@ -126,15 +128,17 @@ export default function AboutPage() {
 
             {/* Fast Facts Card */}
             <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-[#bde9ff] space-y-6">
-              <h2 className="text-xl font-black text-[#0a2a3d]">
+              <h2 className="text-xl font-black text-[#0B1F33]">
                 At a Glance
               </h2>
 
               <div className="space-y-4 text-xs sm:text-sm">
                 <div className="p-4 rounded-2xl bg-[#EBF9FF] border border-[#bde9ff]">
-                  <span className="font-bold text-[#0a2a3d] block">Operational Headquarters:</span>
-                  <span className="text-[#2d6180]">Bhavnagar, Gujarat, India</span>
-                  <span className="text-[11px] text-[#5c9ab8] block">({SITE.address.streetAddress})</span>
+                  <span className="font-bold text-[#0B1F33] block">Operational Headquarters:</span>
+                  <span className="text-[#2d6180]">{SITE.address?.city ?? 'Bhavnagar'}, {SITE.address?.state ?? 'Gujarat'}, India</span>
+                  {SITE.address?.street && (
+                    <span className="text-[11px] text-[#5c9ab8] block">{SITE.address.street}</span>
+                  )}
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#EBF9FF] border border-[#bde9ff]">

@@ -62,17 +62,19 @@ export default function ContactPage() {
               Have questions about an upcoming journey, need a customized multi-city tour quote, or require immediate emergency dispatch? Reach out to our 24x7 coordination desk anytime via phone, WhatsApp, or email.
             </p>
 
-            <div className="pt-2">
-              <a
-                href={SITE.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer me"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0d2236] text-[#92EEFF] hover:text-white border border-[#1a3a52] text-xs font-bold transition-all shadow-xs"
-              >
-                <InstagramIcon className="w-4 h-4" />
-                <span>Follow us on Instagram @velora_cabs_official</span>
-              </a>
-            </div>
+            {SITE.social?.instagram && (
+              <div className="pt-2">
+                <a
+                  href={SITE.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer me"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0d2236] text-[#92EEFF] hover:text-white border border-[#1a3a52] text-xs font-bold transition-all shadow-xs"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                  <span>Follow us on Instagram @velora_cabs_official</span>
+                </a>
+              </div>
+            )}
           </div>
         </section>
 
@@ -162,8 +164,10 @@ export default function ContactPage() {
                 </p>
               </div>
               <div className="pt-2 border-t border-[#bde9ff]/60 text-xs text-[#2d6180]">
-                <strong>{SITE.address.addressLocality}, {SITE.address.addressRegion}</strong>
-                <span className="block text-[11px] text-[#5c9ab8]">({SITE.address.streetAddress})</span>
+                <strong>{SITE.address?.city ?? 'Bhavnagar'}, {SITE.address?.state ?? 'Gujarat'}</strong>
+                {SITE.address?.street && (
+                  <span className="block text-[11px] text-[#5c9ab8]">{SITE.address.street}</span>
+                )}
               </div>
             </div>
 
@@ -177,24 +181,23 @@ export default function ContactPage() {
             {/* Map Placeholder */}
             <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-[#bde9ff] space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-bold text-[#0a2a3d]">
+                <h2 className="text-lg font-bold text-[#0B1F33]">
                   Service Base Location: Bhavnagar, Gujarat
                 </h2>
-                <span className="text-xs text-[#5c9ab8]">TODO: Google Map Embed</span>
+                <span className="text-xs text-[#0284c7] font-semibold">Active Service Map</span>
               </div>
 
-              {/* Lazy Google Map Placeholder per Phase 5 specs */}
-              <div className="w-full h-72 sm:h-80 rounded-2xl bg-[#EBF9FF] border border-[#bde9ff] flex flex-col items-center justify-center p-6 text-center space-y-2">
-                <MapPin className="w-10 h-10 text-[#0284c7]" />
-                <span className="font-bold text-sm text-[#0a2a3d]">
-                  Velora Cabs Headquarters • Bhavnagar
-                </span>
-                <p className="text-xs text-[#2d6180] max-w-sm">
-                  Service Area: Bhavnagar, Ahmedabad, Vadodara, Surat, Bharuch, Dahej, Vapi, Daman, Dholera, Mumbai, Bhuj, Gandhidham, Amreli, and Palitana.
-                </p>
-                <span className="text-[11px] text-[#5c9ab8] italic">
-                  (Google Maps embed placeholder — TODO: owner to confirm exact Google Business Profile embed URL)
-                </span>
+              {/* Lazy Google Map per Section 5.8 */}
+              <div className="w-full h-72 sm:h-80 rounded-2xl overflow-hidden border border-[#bde9ff] bg-[#EBF9FF]">
+                <iframe
+                  title="Velora Cabs Service Area Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118556.88392238478!2d72.08381864560737!3d21.764491741289196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395f5081abb97b2f%3A0xf676d64b6e137161!2sBhavnagar%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </div>
 

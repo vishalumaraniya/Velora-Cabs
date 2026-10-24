@@ -3,95 +3,95 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { SITE } from '@/data/site';
-import { ShieldCheck, AlertCircle } from 'lucide-react';
+import { SITE } from '@/lib/site';
+import { ShieldCheck, Mail, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description:
-    'Velora Cabs privacy policy. Read how we collect, use, and protect passenger booking details, contact numbers, and travel information.',
+  title: 'Privacy Policy | Velora Cabs',
+  description: 'Privacy Policy explaining how Velora Cabs collects and protects customer travel data.',
   robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: '/privacy-policy',
+    index: false,
+    follow: false,
   },
 };
 
 export default function PrivacyPolicyPage() {
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+  ];
+
   return (
     <div className="min-h-screen bg-[#EBF9FF] flex flex-col">
       <Navbar />
 
-      <main className="flex-1 pt-24 sm:pt-28 pb-16">
-        <Breadcrumbs items={[{ label: 'Privacy Policy' }]} />
+      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
+        <div className="mb-6">
+          <Breadcrumbs items={breadcrumbs} />
+        </div>
 
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
-          <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#bde9ff] shadow-sm space-y-8">
-            
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF9FF] text-[#0284c7] text-xs font-bold border border-[#bde9ff]">
-                <ShieldCheck className="w-4 h-4" />
-                <span>Last Updated: October 2026</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl font-black text-[#0a2a3d]">
-                Privacy Policy
-              </h1>
-
-              {/* Visible Legal Review Notice */}
-              <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs sm:text-sm flex items-start gap-2.5">
-                <AlertCircle className="w-5 h-5 shrink-0 text-amber-600 mt-0.5" />
-                <div>
-                  <strong>Notice:</strong> This is a standard operational draft for Velora Cabs passenger booking services. <em>TODO: owner to complete formal legal review with legal counsel.</em>
-                </div>
-              </div>
+        <article className="bg-white rounded-3xl p-6 sm:p-10 border border-[#bde9ff] space-y-8 shadow-xs">
+          <div className="space-y-3 border-b border-[#bde9ff]/60 pb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF9FF] text-[#0284c7] text-xs font-bold border border-[#bde9ff]">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Customer Data Protection</span>
             </div>
+            <h1 className="text-2xl sm:text-3xl font-black text-[#0B1F33]">
+              Privacy Policy
+            </h1>
+          </div>
 
-            <div className="space-y-6 text-sm text-[#2d6180] leading-relaxed">
-              <section className="space-y-2">
-                <h2 className="text-lg font-bold text-[#0a2a3d]">1. Introduction</h2>
-                <p>
-                  Velora Cabs (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is committed to protecting the privacy and personal information of our customers and website visitors. This Privacy Policy outlines what information we collect when you use our website ({SITE.url}) or book a cab via phone or WhatsApp, and how that information is utilized.
-                </p>
-              </section>
+          <div className="space-y-6 text-sm text-[#2d6180] leading-relaxed">
+            <section className="space-y-2">
+              <h2 className="text-lg font-bold text-[#0B1F33]">1. Introduction</h2>
+              <p>
+                Velora Cabs (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is committed to protecting the privacy and personal information of our passengers and website visitors. This Privacy Policy outlines what information we collect when you visit our website ({SITE.url}) or schedule a cab via phone or WhatsApp, and how that information is safeguarded.
+              </p>
+            </section>
 
-              <section className="space-y-2">
-                <h2 className="text-lg font-bold text-[#0a2a3d]">2. Information We Collect</h2>
-                <p>When you book a cab or request a fare quote with Velora Cabs, we collect only necessary travel details, including:</p>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Your name and contact phone number.</li>
-                  <li>Pickup address, destination, travel dates, and scheduled departure times.</li>
-                  <li>Optional travel preferences, passenger count, and luggage specifications.</li>
-                </ul>
-              </section>
+            <section className="space-y-2">
+              <h2 className="text-lg font-bold text-[#0B1F33]">2. Information We Collect</h2>
+              <p>When you request a quote or confirm a booking with Velora Cabs, we collect only necessary travel details, including:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Your name and contact mobile number.</li>
+                <li>Pickup location, drop destination, journey date, and scheduled departure time.</li>
+                <li>Vehicle category preference and passenger count.</li>
+              </ul>
+            </section>
 
-              <section className="space-y-2">
-                <h2 className="text-lg font-bold text-[#0a2a3d]">3. How We Use Your Information</h2>
-                <p>We use your information exclusively to:</p>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Confirm your cab reservation and dispatch the assigned driver to your doorstep.</li>
-                  <li>Provide real-time WhatsApp updates, driver contact cards, and vehicle registration details.</li>
-                  <li>Respond promptly to your customer support inquiries and feedback.</li>
-                </ul>
-              </section>
+            <section className="space-y-2">
+              <h2 className="text-lg font-bold text-[#0B1F33]">3. How We Use Your Information</h2>
+              <p>We use your travel information exclusively to:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Coordinate your doorstep pickup and assign a qualified driver.</li>
+                <li>Send ride confirmations and quote details directly via WhatsApp or phone.</li>
+                <li>Provide customer assistance in the event of schedule updates or flight delays.</li>
+              </ul>
+              <p>We do not sell, rent, or trade your personal data with third-party marketing companies.</p>
+            </section>
 
-              <section className="space-y-2">
-                <h2 className="text-lg font-bold text-[#0a2a3d]">4. Data Protection & Sharing</h2>
-                <p>
-                  We do not sell, rent, or trade your personal information to third-party marketing companies. Your contact details and pickup coordinates are shared only with the assigned professional driver solely for coordinating your booked ride.
-                </p>
-              </section>
-
-              <section className="space-y-2">
-                <h2 className="text-lg font-bold text-[#0a2a3d]">5. Contact Us</h2>
-                <p>
-                  If you have questions about our privacy practices, please contact us at {SITE.email} or call our Bhavnagar office at {SITE.phone}.
-                </p>
-              </section>
-            </div>
-
+            <section className="space-y-2">
+              <h2 className="text-lg font-bold text-[#0B1F33]">4. Contact Our Privacy Team</h2>
+              <p>
+                If you have questions regarding your data or wish to have your contact details updated, please contact our administrative desk:
+              </p>
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0B1F33] text-white text-xs font-bold hover:bg-[#123952] transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#30AFFF]" />
+                  <span>{SITE.email}</span>
+                </a>
+                <a
+                  href={`tel:${SITE.phone}`}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-[#bde9ff] text-[#0B1F33] text-xs font-bold hover:bg-[#EBF9FF] transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0284c7]" />
+                  <span>{SITE.phoneDisplay}</span>
+                </a>
+              </div>
+            </section>
           </div>
         </article>
       </main>

@@ -1,22 +1,60 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Star, MapPin, CheckCircle2, Quote } from 'lucide-react';
-import { TESTIMONIALS } from '@/lib/constants';
+import { Star, MessageSquare } from 'lucide-react';
+import { REVIEWS } from '@/lib/reviews';
+import { SITE } from '@/lib/site';
 
+/**
+ * Testimonials Component strictly complying with Section 5.3 of SEO Master Prompt:
+ * - Removes "Verified Passenger" labels, stock photos, and future-dated reviews
+ * - Shows testimonials ONLY if lib/reviews.ts contains real, permissioned reviews (default: empty array)
+ * - If empty and SITE.googleReviewUrl is defined, renders a neutral Google Reviews link
+ * - If empty and SITE.googleReviewUrl is undefined, removes the section completely (returns null)
+ */
 export default function Testimonials() {
+  if (REVIEWS.length === 0) {
+    if (!SITE.googleReviewUrl) {
+      return null;
+    }
+
+    return (
+      <section id="reviews" className="py-12 bg-[#EBF9FF] border-t border-[#bde9ff]/60">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#bde9ff]">
+            <Star className="w-4 h-4 text-[#F5B921] fill-[#F5B921]" />
+            <span className="text-xs font-bold text-[#0B1F33]">Google Verified Feedback</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1F33]">
+            Customer Reviews
+          </h2>
+          <p className="text-[#2d6180] text-sm max-w-md mx-auto">
+            Read authentic experiences from travellers who choose Velora Cabs across Gujarat and Mumbai.
+          </p>
+          <div>
+            <a
+              href={SITE.googleReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 border border-[#bde9ff] text-[#0284c7] font-bold text-sm shadow-xs transition-colors"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>Read our Google reviews</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="testimonials" className="py-14 sm:py-18 bg-[#EBF9FF] relative border-t border-[#bde9ff]/60">
       <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3">
           <p className="text-xs font-bold text-[#30AFFF] uppercase tracking-widest">
-            Verified Passenger Feedback
+            Passenger Feedback
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a2a3d]">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1F33]">
             What Our <span className="text-[#30AFFF]">Passengers Say</span>
           </h2>
           <p className="text-[#2d6180] text-sm leading-relaxed">
@@ -24,72 +62,34 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {TESTIMONIALS.map((review, idx) => (
-            <motion.div
+          {REVIEWS.map((review) => (
+            <div
               key={review.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="bg-white border border-[#bde9ff] hover:border-[#30AFFF] rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-[4px_4px_14px_rgba(2,132,199,0.06),-3px_-3px_10px_#ffffff] hover:shadow-[6px_6px_20px_rgba(48,175,255,0.14),-3px_-3px_12px_#ffffff] hover:-translate-y-1 transition-all group relative overflow-hidden"
+              className="bg-white border border-[#bde9ff] rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-xs"
             >
-              {/* Subtle decorative quote mark in background */}
-              <Quote className="absolute right-4 top-4 w-12 h-12 text-[#92EEFF]/15 pointer-events-none stroke-[1.2]" />
-
-              <div className="relative z-10">
-                {/* 5-Star Rating */}
+              <div>
                 <div className="flex items-center gap-1 mb-3">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#30AFFF] text-[#30AFFF]" />
+                    <Star key={i} className="w-4 h-4 fill-[#F5B921] text-[#F5B921]" />
                   ))}
                 </div>
-
-                {/* Route Pill */}
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#EBF9FF] border border-[#bde9ff] text-xs text-[#2d6180] font-medium mb-3">
-                  <MapPin className="w-3 h-3 text-[#30AFFF]" />
-                  <span>{review.route}</span>
-                </div>
-
-                {/* Comment Body */}
-                <p className="text-[#2d6180] text-sm leading-relaxed mb-5">
+                {review.route && (
+                  <span className="inline-block px-2.5 py-1 rounded-md bg-[#EBF9FF] text-xs font-semibold text-[#0284c7] mb-3">
+                    {review.route}
+                  </span>
+                )}
+                <p className="text-[#2d6180] text-sm leading-relaxed mb-4">
                   &ldquo;{review.comment}&rdquo;
                 </p>
               </div>
-
-              {/* Author Footer */}
-              <div className="pt-3 border-t border-[#bde9ff] flex items-center justify-between relative z-10">
-                <div className="flex items-center gap-3">
-                  {review.image ? (
-                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#30AFFF]/40 ring-2 ring-[#92EEFF]/30 shadow-xs shrink-0 relative">
-                      <Image
-                        src={review.image}
-                        alt={review.name}
-                        fill
-                        className="object-cover"
-                        sizes="40px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-[#3DBE6B]/60 border border-[#28A745] flex items-center justify-center text-[#1a5c2a] font-bold text-xs shrink-0">
-                      {review.name.charAt(0)}
-                    </div>
-                  )}
-                  <div>
-                    <h3 className="text-sm font-bold text-[#0a2a3d] flex items-center gap-1.5">
-                      <span>{review.name}</span>
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#1e7a35]" />
-                    </h3>
-                    <span className="text-xs text-[#5c9ab8]">{review.location}</span>
-                  </div>
-                </div>
-                <span className="text-[11px] text-[#5c9ab8]">{review.date}</span>
+              <div className="pt-3 border-t border-[#bde9ff] flex items-center justify-between text-xs">
+                <span className="font-bold text-[#0B1F33]">{review.name}</span>
+                <span className="text-[#5c9ab8]">{review.date}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-
       </div>
     </section>
   );

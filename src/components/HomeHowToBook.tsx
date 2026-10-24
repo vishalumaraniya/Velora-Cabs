@@ -74,8 +74,8 @@ export default function HomeHowToBook() {
                 </div>
 
                 {idx < 2 && (
-                  <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-[#EBF9FF] border border-[#bde9ff] flex items-center justify-center text-[#0284c7]">
-                    <ChevronRight className="w-4 h-4" />
+                  <div className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-[#EBF9FF] border border-[#bde9ff] items-center justify-center text-[#0284c7] shadow-xs">
+                    <ChevronRight className="w-4 h-4 shrink-0" />
                   </div>
                 )}
               </div>

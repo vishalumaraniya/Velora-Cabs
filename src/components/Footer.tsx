@@ -4,14 +4,15 @@ import React from 'react';
 import Link from 'next/link';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import InstagramIcon from '@/components/InstagramIcon';
-import { SITE } from '@/data/site';
-import { CITIES } from '@/data/cities';
-import { ROUTES } from '@/data/routes';
+import { SITE } from '@/lib/site';
+import { getConfirmedCities } from '@/data/cities';
+import { getConfirmedRoutes } from '@/data/routes';
 import VeloraLogo from '@/components/VeloraLogo';
-import { trackEvent } from '@/lib/analytics';
+import { trackCallClick, trackWhatsAppClick } from '@/lib/analytics';
 
 export default function Footer() {
-  const topRoutes = ROUTES.slice(0, 8);
+  const topRoutes = getConfirmedRoutes().slice(0, 8);
+  const confirmedCities = getConfirmedCities();
 
   return (
     <footer className="bg-[#071828] text-[#5c9ab8] border-t border-[#1a3a52] pt-12 pb-24 sm:pb-12 text-sm">
@@ -31,7 +32,7 @@ export default function Footer() {
                   VELORA <span className="text-[#30AFFF]">CABS</span>
                 </span>
                 <span className="text-xs text-[#92EEFF] block font-medium">
-                  {SITE.tagline}
+                  Safe Rides. On Time. Every Time.
                 </span>
               </div>
             </div>
@@ -40,23 +41,26 @@ export default function Footer() {
               Your dependable 24x7 taxi partner headquartered in Bhavnagar, serving all major business hubs, airports, and spiritual destinations across Gujarat and to Mumbai. Doorstep pickup with verified professional drivers.
             </p>
 
-            {/* NAP Block */}
+            {/* Address & Service Area Block (Section 5.8) */}
             <div className="space-y-2 text-xs pt-2 border-t border-[#132c42]">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#30AFFF] shrink-0 mt-0.5" />
                 <span>
-                  <strong>Headquarters:</strong> {SITE.address.addressLocality}, {SITE.address.addressRegion}, India
-                  <span className="block text-[11px] text-[#5c9ab8]/80">({SITE.address.streetAddress})</span>
+                  <strong>Headquarters:</strong> {SITE.address?.city ?? 'Bhavnagar'}, {SITE.address?.state ?? 'Gujarat'}, India
+                  {SITE.address?.street && (
+                    <span className="block text-[11px] text-[#5c9ab8]/80">{SITE.address.street}</span>
+                  )}
+                  <span className="block text-[11px] text-[#92EEFF]/90 font-medium">Service Area: Gujarat, Mumbai & Nearby States</span>
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#30AFFF] shrink-0" />
                 <a
-                  href={`tel:${SITE.phoneFormatted}`}
-                  onClick={() => trackEvent('call_click', { location: 'footer' })}
+                  href={`tel:${SITE.phone}`}
+                  onClick={() => trackCallClick('footer')}
                   className="text-white hover:text-[#30AFFF] font-semibold transition-colors"
                 >
-                  {SITE.phone}
+                  {SITE.phoneDisplay}
                 </a>
               </div>
               <div className="flex items-center gap-2">
@@ -70,20 +74,36 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social Follow */}
-            <div className="pt-2 flex items-center gap-3">
-              <span className="text-xs text-white/80 font-medium">Follow us:</span>
-              <a
-                href={SITE.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer me"
-                aria-label="Velora Cabs on Instagram"
-                onClick={() => trackEvent('instagram_click', { location: 'footer' })}
-                className="w-8 h-8 rounded-lg bg-[#0d2236] border border-[#1a3a52] flex items-center justify-center text-[#92EEFF] hover:text-white hover:border-[#30AFFF] transition-all"
-              >
-                <InstagramIcon className="w-4 h-4" />
-              </a>
+            {/* Embedded Google Map (Lazy-Loaded) Section 5.8 */}
+            <div className="pt-2">
+              <div className="w-full max-w-sm h-32 rounded-xl overflow-hidden border border-[#1a3a52] bg-[#0d2236]">
+                <iframe
+                  title="Velora Cabs Service Area Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118556.88392238478!2d72.08381864560737!3d21.764491741289196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395f5081abb97b2f%3A0xf676d64b6e137161!2sBhavnagar%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
+
+            {/* Social Follow */}
+            {SITE.social?.instagram && (
+              <div className="pt-2 flex items-center gap-3">
+                <span className="text-xs text-white/80 font-medium">Follow us:</span>
+                <a
+                  href={SITE.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer me"
+                  aria-label="Velora Cabs on Instagram"
+                  className="w-8 h-8 rounded-lg bg-[#0d2236] border border-[#1a3a52] flex items-center justify-center text-[#92EEFF] hover:text-white hover:border-[#30AFFF] transition-all"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Col 2: Services */}
@@ -93,33 +113,28 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/airport-taxi" className="hover:text-[#92EEFF] transition-colors">
+                <Link href="/services/airport-taxi-transfer" className="hover:text-[#92EEFF] transition-colors">
                   Airport Transfers
                 </Link>
               </li>
               <li>
-                <Link href="/outstation-taxi" className="hover:text-[#92EEFF] transition-colors">
+                <Link href="/services/outstation-taxi" className="hover:text-[#92EEFF] transition-colors">
                   Outstation One-Way & Return
                 </Link>
               </li>
               <li>
-                <Link href="/local-city-rides" className="hover:text-[#92EEFF] transition-colors">
+                <Link href="/services/local-city-cab" className="hover:text-[#92EEFF] transition-colors">
                   Local City Rides
                 </Link>
               </li>
               <li>
-                <Link href="/taxi-24x7" className="hover:text-[#92EEFF] transition-colors">
-                  24x7 Emergency Cabs
+                <Link href="/services/24x7-cab-service" className="hover:text-[#92EEFF] transition-colors">
+                  24x7 Cab Service
                 </Link>
               </li>
               <li>
                 <Link href="/fleet" className="hover:text-[#92EEFF] transition-colors">
                   Our Fleet (Dzire, Ertiga, Traveller)
-                </Link>
-              </li>
-              <li>
-                <Link href="/taxi" className="hover:text-[#92EEFF] transition-colors font-semibold text-[#30AFFF]">
-                  View All Outstation Routes →
                 </Link>
               </li>
             </ul>
@@ -134,7 +149,7 @@ export default function Footer() {
               {topRoutes.map((route) => (
                 <li key={route.slug}>
                   <Link
-                    href={`/taxi/${route.slug}`}
+                    href={`/routes/${route.slug}`}
                     className="hover:text-[#92EEFF] transition-colors block truncate"
                     title={`${route.from} to ${route.to} Taxi`}
                   >
@@ -142,11 +157,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="/taxi" className="text-[#30AFFF] hover:underline font-semibold block pt-1">
-                  More Routes (+15) →
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -171,24 +181,14 @@ export default function Footer() {
                   Frequently Asked Questions
                 </Link>
               </li>
-              <li>
-                <Link href="/blog" className="hover:text-[#92EEFF] transition-colors">
-                  Travel Blog & Guides
-                </Link>
-              </li>
               <li className="pt-2 border-t border-[#132c42]">
                 <Link href="/privacy-policy" className="hover:text-[#92EEFF] transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-[#92EEFF] transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/cancellation-policy" className="hover:text-[#92EEFF] transition-colors">
-                  Cancellation & Refund Policy
+                <Link href="/terms-and-conditions" className="hover:text-[#92EEFF] transition-colors">
+                  Terms & Conditions
                 </Link>
               </li>
             </ul>
@@ -201,20 +201,17 @@ export default function Footer() {
             <span className="text-xs font-bold text-white uppercase tracking-wider">
               Cab Service in Gujarat & Mumbai (14 Cities):
             </span>
-            <Link href="/cab-service" className="text-xs text-[#30AFFF] hover:underline font-semibold">
-              View All Cities →
-            </Link>
           </div>
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            {CITIES.map((city, idx) => (
+            {confirmedCities.map((city, idx) => (
               <React.Fragment key={city.slug}>
                 <Link
-                  href={`/cab-service/${city.slug}`}
+                  href={`/taxi-service/${city.slug}`}
                   className="hover:text-[#92EEFF] transition-colors"
                 >
                   {city.name} Taxi
                 </Link>
-                {idx < CITIES.length - 1 && <span className="text-[#1a3a52]">•</span>}
+                {idx < confirmedCities.length - 1 && <span className="text-[#1a3a52]">•</span>}
               </React.Fragment>
             ))}
           </div>
@@ -225,21 +222,21 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Velora Cabs. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <a
-              href={`tel:${SITE.phoneFormatted}`}
-              onClick={() => trackEvent('call_click', { location: 'footer' })}
+              href={`tel:${SITE.phone}`}
+              onClick={() => trackCallClick('footer')}
               className="text-[#92EEFF] hover:text-white transition-colors"
             >
-              Call: {SITE.phone}
+              Call: {SITE.phoneDisplay}
             </a>
             <span>•</span>
             <a
               href={SITE.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackEvent('whatsapp_click', { location: 'footer' })}
+              onClick={() => trackWhatsAppClick('footer')}
               className="text-[#28A745] hover:underline font-semibold"
             >
-              WhatsApp Support
+              WhatsApp Quote
             </a>
           </div>
         </div>

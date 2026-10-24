@@ -21,9 +21,11 @@ import {
   Repeat,
   ShieldCheck,
   Sparkles,
+  Phone,
 } from 'lucide-react';
 import { buildWhatsAppLink, formatDateToDDMMYYYY } from '@/lib/constants';
-import { trackEvent } from '@/lib/analytics';
+import { trackBookingSubmit, trackWhatsAppClick } from '@/lib/analytics';
+import { SITE } from '@/lib/site';
 
 const bookingSchema = z.object({
   name: z.string().min(2, { message: 'Please enter your name' }),
@@ -168,8 +170,16 @@ export default function InquiryForm() {
 
   const onSubmit = async (data: BookingFormValues) => {
     setLoading(true);
-    trackEvent('form_submit', { location: 'hero' });
-    trackEvent('whatsapp_click', { location: 'hero' });
+    trackBookingSubmit({
+      trip_type: data.tripType,
+      route: `${data.pickupLocation} to ${data.dropLocation}`,
+      vehicle: currentVehicle.name,
+    });
+    trackWhatsAppClick('inquiry_form', {
+      trip_type: data.tripType,
+      route: `${data.pickupLocation} to ${data.dropLocation}`,
+      vehicle: currentVehicle.name,
+    });
 
     // Build WhatsApp URL with full trip and car details
     const waUrl = buildWhatsAppLink({
@@ -244,18 +254,24 @@ export default function InquiryForm() {
               </div>
             ))}
           </div>
-          <div className="flex gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row gap-2.5 pt-2">
             <button
               onClick={openWhatsApp}
               className="flex-1 py-2.5 rounded-xl font-bold text-sm bg-emerald-500 text-white hover:bg-emerald-600 flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4" /> Re-open WhatsApp
+              <MessageCircle className="w-4 h-4" /> Open WhatsApp
             </button>
+            <a
+              href={`tel:${SITE.phone}`}
+              className="flex-1 py-2.5 rounded-xl font-bold text-sm bg-white border border-slate-200 text-slate-800 hover:border-[#30AFFF] flex items-center justify-center gap-2 transition-colors cursor-pointer"
+            >
+              <Phone className="w-4 h-4 text-[#0284c7]" /> Call {SITE.phoneDisplay}
+            </a>
             <button
               onClick={() => setSubmitted(false)}
-              className="flex-1 py-2.5 rounded-xl text-sm text-slate-600 border border-slate-200 hover:border-[#30AFFF] hover:text-[#30AFFF] transition-colors cursor-pointer"
+              className="py-2.5 px-3 rounded-xl text-xs text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
             >
-              Book Another Ride
+              Reset
             </button>
           </div>
         </div>
@@ -382,6 +398,7 @@ export default function InquiryForm() {
                   <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#38bdf8] pointer-events-none z-10" />
                   <input
                     type="date"
+                    min={new Date().toISOString().split('T')[0]}
                     {...register('tripDate')}
                     className="w-full max-w-full min-w-0 box-border block pl-9 pr-3 py-2.5 bg-[#0a2035] border border-[#1b3e64] hover:border-[#2a598c] focus:border-[#38bdf8] focus:bg-[#0d2742] rounded-xl text-xs sm:text-sm text-white outline-none transition-all font-medium cursor-pointer [color-scheme:dark]"
                     style={{ width: '100%', maxWidth: '100%', minWidth: 0, boxSizing: 'border-box' }}
@@ -459,13 +476,13 @@ export default function InquiryForm() {
                   ) : (
                     <>
                       <MessageCircle className="w-4 h-4 fill-white" />
-                      <span>Submit & Open WhatsApp Directly</span>
+                      <span>Request a quote on WhatsApp</span>
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
                 </button>
-                <p className="text-[11px] text-center text-slate-400 mt-2">
-                  Instant response · Automatically opens WhatsApp with your pre-filled ride details
+                <p className="text-[11px] text-center text-slate-300 mt-2">
+                  We will confirm availability and fare on WhatsApp · Fast doorstep pickup
                 </p>
               </div>
 

@@ -1,25 +1,15 @@
-'use client';
-
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Car, Plane, MapPin, Clock, CheckCircle2, ChevronRight } from 'lucide-react';
 import { SERVICES } from '@/lib/constants';
 
-export default function Services() {
-  const handleSelectService = (serviceId: string) => {
-    const formElement = document.getElementById('inquiry');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' });
-      const event = new CustomEvent('select-trip-type', {
-        detail: serviceId.includes('airport')
-          ? 'airport'
-          : serviceId.includes('outstation')
-            ? 'outstation'
-            : 'local',
-      });
-      window.dispatchEvent(event);
-    }
-  };
+const SERVICE_URLS: Record<string, string> = {
+  'local-rides': '/services/local-city-cab',
+  'airport-transfers': '/services/airport-taxi-transfer',
+  'outstation-trips': '/services/outstation-taxi',
+  'express-service': '/services/24x7-cab-service',
+};
 
   const cardConfigMap: Record<
     string,
@@ -117,6 +107,7 @@ export default function Services() {
     },
   };
 
+export default function Services() {
   return (
     <section id="services" className="py-14 sm:py-18 bg-[#F5FDFF] relative border-t border-[#bde9ff]/60">
       <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,14 +131,12 @@ export default function Services() {
             const config = cardConfigMap[service.id] || cardConfigMap['local-rides'];
             const Watermark = config.WatermarkIcon;
 
+            const serviceUrl = SERVICE_URLS[service.id] || '/services/outstation-taxi';
+
             return (
-              <motion.div
+              <Link
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                onClick={() => handleSelectService(service.id)}
+                href={serviceUrl}
                 className={`rounded-2xl p-5 flex flex-col justify-between group cursor-pointer transition-all duration-300 relative overflow-hidden hover:-translate-y-1.5 ${config.cardClass} ${config.cardShadow} ${config.cardHoverShadow}`}
               >
                 {/* Neomorphic Watermark Icon in Background */}
@@ -192,10 +181,10 @@ export default function Services() {
 
                 {/* Bottom Action */}
                 <div className={`pt-4 mt-4 border-t flex items-center justify-between text-xs font-bold transition-colors relative z-10 ${config.dividerClass} ${config.actionTextClass}`}>
-                  <span>Book This Service</span>
+                  <span>Explore Service & Fares</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </div>
-              </motion.div>
+              </Link>
             );
           })}
         </div>

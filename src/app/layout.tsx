@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 import MantineProviderWrapper from '@/components/MantineProviderWrapper';
 import FloatingActionBar from '@/components/FloatingActionBar';
 import Preloader from '@/components/Preloader';
-import { SITE, getSameAs } from '@/data/site';
+import ScrollToTop from '@/components/ScrollToTop';
+import JsonLd from '@/components/JsonLd';
+import { SITE } from '@/lib/site';
 import './globals.css';
 
-// PHASE 2: next/font with display:swap, latin subset only
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
@@ -20,26 +21,26 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// PHASE 1: metadataBase = canonical primary domain
-// PHASE 2: Global metadata
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'Cab Service in Bhavnagar | Outstation & Airport Taxi – Velora Cabs',
+    default: 'Velora Cabs | Taxi Service in Bhavnagar & Gujarat',
     template: '%s | Velora Cabs',
   },
   description:
-    'Book 24x7 AC cabs from Bhavnagar to Ahmedabad, Surat, Vadodara & Mumbai. Verified drivers, doorstep pickup, fixed fares. Call +91 87803 11279.',
-  // PHASE 2: remove meta keywords entirely per prompt rule
+    'Book local, airport and outstation AC cabs from Bhavnagar to Ahmedabad, Vadodara, Surat, Mumbai & more. Call +91 87803 11279 for a quote.',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'Cab Service in Bhavnagar | Outstation & Airport Taxi – Velora Cabs',
+    title: 'Velora Cabs | Taxi Service in Bhavnagar & Gujarat',
     description:
-      'Book 24x7 AC cabs from Bhavnagar to Ahmedabad, Surat, Vadodara & Mumbai. Verified drivers, doorstep pickup, fixed fares.',
+      'Book local, airport and outstation AC cabs from Bhavnagar to Ahmedabad, Vadodara, Surat, Mumbai & more. Call +91 87803 11279 for a quote.',
     url: SITE.url,
     siteName: SITE.name,
     images: [
       {
-        url: '/images/og-velora.jpg',
+        url: `${SITE.url}/og/home.jpg`,
         width: 1200,
         height: 630,
         alt: 'Velora Cabs – Cab Service in Bhavnagar & Gujarat',
@@ -50,10 +51,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cab Service in Bhavnagar | Outstation & Airport Taxi – Velora Cabs',
+    title: 'Velora Cabs | Taxi Service in Bhavnagar & Gujarat',
     description:
-      'Book 24x7 AC cabs from Bhavnagar to Ahmedabad, Surat, Vadodara & Mumbai. Fixed fares, verified drivers.',
-    images: ['/images/og-velora.jpg'],
+      'Book local, airport and outstation AC cabs from Bhavnagar to Ahmedabad, Vadodara, Surat, Mumbai & more. Call +91 87803 11279 for a quote.',
+    images: [`${SITE.url}/og/home.jpg`],
   },
   robots: {
     index: true,
@@ -81,94 +82,44 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.webmanifest',
-  alternates: {
-    canonical: '/',
-  },
 };
-
-// PHASE 6: Homepage JSON-LD — TaxiService + WebSite
-const businessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'TaxiService',
-  '@id': `${SITE.url}/#business`,
-  name: SITE.name,
-  url: SITE.url,
-  logo: `${SITE.url}/icon-512.png`,
-  image: `${SITE.url}/images/og-velora.jpg`,
-  description:
-    'Safe Rides. On Time. Every Time. 24x7 AC cab service from Bhavnagar across Gujarat and to Mumbai.',
-  telephone: SITE.phoneFormatted,
-  email: SITE.email,
-  // NO priceRange, NO aggregateRating, NO Review (Global Rules 3 & 4)
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: SITE.address.addressLocality,
-    addressRegion: SITE.address.addressRegion,
-    addressCountry: SITE.address.addressCountry,
-    // TODO: owner to confirm street address and postal code
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: SITE.geo.latitude,
-    longitude: SITE.geo.longitude,
-  },
-  areaServed: SITE.cities.map((city) => ({
-    '@type': 'City',
-    name: city,
-  })),
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
-    ],
-    opens: '00:00',
-    closes: '23:59',
-  },
-  // Only real, non-empty URLs from social config
-  sameAs: getSameAs(),
-};
-
-const websiteJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: SITE.name,
-  url: SITE.url,
-};
-
-function JsonLd({ data }: { data: object }) {
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(data).replace(/</g, '\\u003c'),
-      }}
-    />
-  );
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const gaId = SITE.gaId || process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    // PHASE 2 + 3: lang="en-IN"
     <html lang="en-IN" className={`${inter.variable}`} style={{ colorScheme: 'light' }}>
       <head>
-        <JsonLd data={businessJsonLd} />
-        <JsonLd data={websiteJsonLd} />
+        <JsonLd type="root" />
+        {SITE.gscVerification && (
+          <meta name="google-site-verification" content={SITE.gscVerification} />
+        )}
       </head>
       <body className="min-h-screen bg-[#EBF9FF] text-[#0a2a3d] antialiased font-sans">
         <MantineProviderWrapper>
           <Preloader />
+          <ScrollToTop />
           {children}
           <FloatingActionBar />
         </MantineProviderWrapper>
-        {gaId && <GoogleAnalytics gaId={gaId} />}
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

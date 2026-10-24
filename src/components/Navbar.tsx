@@ -46,10 +46,11 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Routes', href: '/taxi' },
-    { name: 'Cities', href: '/cab-service' },
+    { name: 'Services', href: '/services/outstation-taxi' },
+    { name: 'Routes', href: isHomePage ? '#routes' : '/#routes' },
+    { name: 'Cities', href: isHomePage ? '#cities' : '/#cities' },
     { name: 'Fleet', href: '/fleet' },
-    { name: 'FAQ', href: '/faq' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
 

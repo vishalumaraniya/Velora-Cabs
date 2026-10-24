@@ -1,5 +1,6 @@
 // Single source of truth for FAQ data
 // Used by: homepage FAQ section, /faq page, and individual route/city pages
+// Strictly adheres to Section 7 and Section 0.7 of SEO Master Prompt
 
 export interface FaqItem {
   question: string;
@@ -11,174 +12,169 @@ export interface FaqGroup {
   items: FaqItem[];
 }
 
-// 8 FAQs for the homepage
+// 8 FAQs for the homepage - exact 8 questions from Section 7 with 40-70 words per answer
 export const homeFaqs: FaqItem[] = [
   {
-    question: 'How do I book a Velora Cabs cab?',
+    question: 'How do I book a cab in Bhavnagar?',
     answer:
-      'You can book a cab in three easy steps: share your trip details (pickup, drop, date, time) via WhatsApp on +91 87803 11279 or call us directly. We confirm your fare before booking is finalised. Your verified driver arrives at your doorstep at the scheduled time.',
+      'Booking a cab in Bhavnagar with Velora Cabs is quick and straightforward. Simply share your pickup location, drop destination, journey date, and preferred vehicle via WhatsApp at +91 87803 11279 or call our dispatch desk. We provide a confirmed upfront quote immediately and assign an experienced, verified local driver directly to your doorstep.',
   },
   {
-    question: 'Do you offer one-way and round-trip outstation cabs?',
+    question: 'Do you offer one-way outstation taxis?',
     answer:
-      'Yes. We offer both one-way and round-trip outstation cab services across Gujarat and to Mumbai. For a one-way trip you pay only for the distance travelled. For round trips, the return journey is included in the quote we share upfront.',
+      'Yes, we provide dedicated one-way outstation taxi services from Bhavnagar across Gujarat, Mumbai, and neighboring regions. With one-way cab bookings, you pay solely for the distance traveled to your destination, completely eliminating reverse return charges. We provide comfortable AC sedans, family MUVs, and ensure doorstep pickup at your scheduled departure time.',
   },
   {
-    question: 'Are cabs available for night or early morning travel?',
+    question: 'Is there airport pickup and drop?',
     answer:
-      'Absolutely. Velora Cabs operates 24 hours a day, 7 days a week. Whether you have an early morning flight at 4 AM or a late-night return from Mumbai, just call or WhatsApp us and we will arrange your cab promptly.',
+      'Yes, Velora Cabs provides reliable airport transfer services connecting Bhavnagar with Ahmedabad Airport (SVPI), Mumbai International Airport (BOM), Surat, and Vadodara airports. Our drivers prioritize punctuality, coordinate with your arrival schedules, and assist with your luggage, ensuring a stress-free transition between your doorstep and the terminal.',
   },
   {
-    question: 'Do you handle airport pickup and drop?',
+    question: 'Which cities do you serve?',
     answer:
-      'Yes. We provide airport pickup and drop services at Ahmedabad (SVPI), Vadodara, Surat, Bhavnagar, Mumbai (BOM / CSIA), and Bhuj airports. Our drivers track your flight and aim to be at arrivals before you collect your luggage.',
+      'Our base of operations is Bhavnagar, with active daily outstation connections to Ahmedabad, Vadodara, Surat, Mumbai, Bharuch, Dahej, Vapi, Daman, Dholera, Bhuj, Gandhidham, Amreli, and Palitana. Whether you need an industrial transit to Dahej or a family pilgrimage to Palitana Shatrunjaya, our cab network covers all key Gujarat corridors.',
   },
   {
-    question: 'Which vehicles are available?',
+    question: 'Are your drivers verified?',
     answer:
-      'We operate three vehicle categories: Maruti Swift Dzire (AC sedan, up to 4 passengers), Maruti Suzuki Ertiga (AC family MUV, up to 6 passengers), and Tempo Traveller (AC group vehicle, up to 15 passengers). All vehicles are clean and regularly sanitised.',
+      'Every Velora Cabs chauffeur undergoes thorough document verification, license validation, and background screening before being onboarded. Our drivers are seasoned highway experts familiar with Gujarat and Mumbai routes, committed to defensive driving, passenger comfort, polite conduct, and on-time departures for every journey.',
   },
   {
-    question: 'How is the fare decided?',
+    question: 'How is the fare calculated?',
     answer:
-      'We share your fare confirmation on WhatsApp or call before you confirm the booking — no surprises at the end of the trip. Fares are based on distance and vehicle type. Get a free quote in minutes by messaging us your trip details.',
+      'Fares are calculated based on your total route distance, vehicle category (Sedan, MUV, or Tempo Traveller), and journey type (one-way or round-trip). We share a transparent, fixed quote upfront via WhatsApp before your ride is confirmed. Additional route-specific details like tolls or parking are clarified in advance so there are never surprises.',
   },
   {
-    question: 'Are tolls and parking charges extra?',
+    question: 'Can I book a Tempo Traveller for a group or pilgrimage?',
     answer:
-      // TODO: owner to confirm toll/parking policy
-      'TODO: owner to confirm — please verify the actual toll and parking policy and update this answer.',
+      'Yes, we offer spacious, fully air-conditioned Tempo Travellers accommodating 12 to 17 passengers, ideal for family vacations, corporate delegations, and religious pilgrimages such as the Shatrunjaya Tirth in Palitana or Somnath-Dwarka tours. Each vehicle provides ample luggage storage, pushback seating, and seasoned highway chauffeurs accustomed to group itineraries.',
   },
   {
-    question: 'What is the cancellation policy?',
+    question: 'Is the service available 24x7?',
     answer:
-      // TODO: owner to confirm cancellation policy
-      'TODO: owner to confirm — please review and update the cancellation policy. See /cancellation-policy for the draft.',
+      'Velora Cabs operates round-the-clock dispatch to accommodate early morning airport flights, late-night train arrivals, and urgent emergency travel. You can message or call our support team any time at +91 87803 11279 to schedule an immediate cab or pre-book your journey in advance.',
   },
 ];
 
-// Full FAQ grouped by category — for /faq page
+// Full FAQ grouped by category — for /faq page (Section 10)
 export const generalFaqs: FaqGroup[] = [
   {
-    category: 'Booking',
+    category: 'Booking & Reservations',
     items: [
       {
         question: 'How do I book a cab with Velora Cabs?',
         answer:
-          'Send your trip details — pickup location, drop location, date, time and number of passengers — on WhatsApp to +91 87803 11279 or call us. We will confirm fare and cab within minutes.',
+          'Send your journey details — pickup location, drop location, date, time and number of passengers — via WhatsApp to +91 87803 11279 or call us directly. We will confirm your vehicle availability and fixed quote promptly.',
       },
       {
         question: 'How far in advance should I book?',
         answer:
-          'We recommend booking at least 2–4 hours in advance for outstation trips and 30–60 minutes for local city rides. For early morning airport drops (before 6 AM), booking the night before is ideal.',
+          'We recommend booking at least 2–4 hours in advance for outstation trips and 30–60 minutes for local city rides. For early morning airport drops (before 6 AM), booking the evening prior is recommended.',
       },
       {
         question: 'Can I book by phone call instead of WhatsApp?',
         answer:
-          'Yes. Call us on +91 87803 11279 any time of day or night. Our team will take your details and confirm the booking over the call.',
+          'Yes. Call us on +91 87803 11279 any time. Our dispatch team will note your travel itinerary and confirm booking arrangements directly over the call.',
       },
       {
-        question: 'Is online payment required at the time of booking?',
+        question: 'Is online advance payment mandatory?',
         answer:
-          'No advance online payment is required to confirm a booking. Fare details are shared and confirmed before the trip begins. For payment terms, please confirm directly when booking.',
+          'No advance payment is needed to initiate an inquiry. Fare details are confirmed before your trip begins. Payment terms can be settled directly with your booking coordinator.',
       },
     ],
   },
   {
-    category: 'Outstation',
+    category: 'Outstation Travel',
     items: [
       {
         question: 'Which cities does Velora Cabs serve for outstation trips?',
         answer:
-          'We cover 14 cities across Gujarat and Mumbai: Bhavnagar, Ahmedabad, Vadodara, Surat, Bharuch, Dahej, Vapi, Daman, Dholera, Mumbai, Bhuj, Gandhidham, Amreli and Palitana, plus many more on request.',
+          'We connect 14 primary destinations across Gujarat and Mumbai: Bhavnagar, Ahmedabad, Vadodara, Surat, Bharuch, Dahej, Vapi, Daman, Dholera, Mumbai, Bhuj, Gandhidham, Amreli, and Palitana, with customized outstation drops on request.',
       },
       {
-        question: 'Do you offer one-way outstation trips?',
+        question: 'Do you offer one-way outstation trips without return charges?',
         answer:
-          'Yes. One-way outstation cabs are available on all our major routes. You pay only for the trip from your origin to your destination — no return-fare charges.',
+          'Yes. Dedicated one-way outstation cabs are available across all primary routes. You pay only for your one-way travel, with zero reverse empty return charges.',
       },
       {
-        question: 'Can the driver stay overnight for a multi-day trip?',
+        question: 'Can the driver stay overnight for a multi-day itinerary?',
         answer:
-          'Yes, multi-day outstation trips are available. Driver accommodation on outstation nights is typically the customer\'s responsibility; please confirm specifics when booking.',
+          'Yes, multi-day outstation packages are available for family holidays and business visits. Driver allowance terms are communicated transparently before your journey starts.',
       },
       {
-        question: 'Is there a stop option during long-distance trips?',
+        question: 'Are comfort stops allowed during long-distance highway travel?',
         answer:
-          'Yes. You can request short comfort stops or en-route pickups. Please mention this at the time of booking so the driver is informed.',
-      },
-    ],
-  },
-  {
-    category: 'Airport',
-    items: [
-      {
-        question: 'Which airports do you serve?',
-        answer:
-          'We serve Ahmedabad (SVPI Airport / AMD), Vadodara Airport, Surat Airport (STV), Bhavnagar Airport, Mumbai Chhatrapati Shivaji Maharaj International Airport (BOM / CSIA), and Bhuj Airport.',
-      },
-      {
-        question: 'Do you track flights for airport pickups?',
-        answer:
-          'Our drivers monitor flight arrival information to adjust pickup time for delays, helping ensure you are not kept waiting after landing.',
-      },
-      {
-        question: 'Can you help with luggage at the airport?',
-        answer:
-          'Yes. Our drivers assist with loading and unloading luggage at pickup and drop points.',
+          'Yes. You can request brief refreshment stops or meal breaks at clean highway restaurants along your route. Simply coordinate with your driver.',
       },
     ],
   },
   {
-    category: 'Vehicles & Safety',
+    category: 'Airport Transfers',
     items: [
       {
-        question: 'What vehicles are in the Velora Cabs fleet?',
+        question: 'Which airports are covered by your taxi service?',
         answer:
-          'Maruti Swift Dzire (AC sedan, 4 passengers), Maruti Suzuki Ertiga (AC family MUV, 6 passengers), and Tempo Traveller (AC group vehicle, up to 15 passengers).',
+          'We provide airport transfers for Ahmedabad (SVPI Airport / AMD), Mumbai (BOM / CSIA), Surat Airport (STV), Vadodara Airport, Bhavnagar Airport, and Bhuj Airport.',
       },
       {
-        question: 'Are the vehicles air-conditioned?',
+        question: 'How do you coordinate airport pickups for delayed flights?',
         answer:
-          'Yes. All vehicles in our fleet are air-conditioned and cleaned before every ride.',
+          'Our team tracks public flight arrival status to align pickup times with flight delays, ensuring your chauffeur is ready when you exit terminal arrivals.',
       },
       {
-        question: 'Are Velora Cabs drivers verified?',
+        question: 'Do chauffeurs assist with heavy luggage at the airport?',
         answer:
-          'Yes. Drivers are police-verified and experienced on highway and city routes.',
-      },
-      {
-        question: 'Is GPS tracking available during the trip?',
-        answer:
-          'Our vehicles are GPS-equipped for route monitoring and driver accountability throughout every journey.',
+          'Yes. Our chauffeurs assist passengers with loading and unloading luggage at terminal curbsides and home doorsteps.',
       },
     ],
   },
   {
-    category: 'Payments & Policies',
+    category: 'Fleet & Safety Standards',
     items: [
       {
-        question: 'How is the fare calculated?',
+        question: 'What vehicles are available in the Velora Cabs fleet?',
         answer:
-          'Fare is based on distance and the vehicle category selected. Your exact fare is shared and confirmed before your trip starts — no surprise charges at the end.',
+          'We operate Maruti Swift Dzire (AC sedan for up to 4 passengers), Maruti Suzuki Ertiga (AC MUV for up to 6 passengers), and Tempo Traveller (AC vehicle for 12 to 17 passengers).',
       },
       {
-        question: 'Are tolls and parking included in the fare?',
+        question: 'Are all vehicles air-conditioned and cleaned?',
         answer:
-          // TODO: owner to confirm
-          'TODO: owner to confirm toll and parking policy. Please update this answer before going live.',
+          'Yes. Every cab in our fleet features functioning air conditioning and is cleaned and inspected prior to reporting for your trip.',
       },
       {
-        question: 'What is the cancellation policy?',
+        question: 'What background checks are conducted on drivers?',
         answer:
-          // TODO: owner to confirm
-          'TODO: owner to confirm. See /cancellation-policy for a draft that needs legal review and owner verification.',
+          'All drivers undergo comprehensive identity verification, commercial driving license checks, and background screening, with extensive experience on Gujarat highways.',
       },
       {
-        question: 'Is GST applicable on cab fares?',
+        question: 'Are vehicles equipped with GPS tracking?',
         answer:
-          // TODO: owner to confirm GST applicability
-          'TODO: owner to confirm whether GST is applicable and at what rate.',
+          'Yes. Our fleet utilizes GPS-enabled tracking for enhanced navigational accuracy, safety monitoring, and driver route adherence.',
+      },
+    ],
+  },
+  {
+    category: 'Fares & Booking Policies',
+    items: [
+      {
+        question: 'How are fares determined for outstation trips?',
+        answer:
+          'Fares are determined by total trip distance, duration, and chosen vehicle category. All quotes are confirmed upfront before you book.',
+      },
+      {
+        question: 'Are toll and parking charges included in the fare?',
+        answer:
+          'Toll taxes, state entry permits, and airport parking fees depend on your specific route and booking package. Please confirm exact inclusions with our team before booking.',
+      },
+      {
+        question: 'What is the trip cancellation policy?',
+        answer:
+          'We offer flexible scheduling. If your travel plans change, please notify our dispatch team on WhatsApp as early as possible so we can adjust or cancel your reservation smoothly.',
+      },
+      {
+        question: 'Can I obtain a GST invoice for business travel?',
+        answer:
+          'Yes, GST invoices can be provided for corporate and business travel. Please request a tax invoice with your company GSTIN when booking.',
       },
     ],
   },

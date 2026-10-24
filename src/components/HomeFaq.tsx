@@ -5,22 +5,14 @@ import { homeFaqs } from '@/data/faqs';
 import JsonLd from '@/components/JsonLd';
 
 export default function HomeFaq() {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: homeFaqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  };
+  const faqItems = homeFaqs.map((faq) => ({
+    q: faq.question,
+    a: faq.answer,
+  }));
 
   return (
     <section id="faq-section" className="py-20 bg-[#EBF9FF] border-b border-[#bde9ff]">
-      <JsonLd data={faqSchema} />
+      <JsonLd type="faq" items={faqItems} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Section Header */}
@@ -31,7 +23,7 @@ export default function HomeFaq() {
               Answers & Assistance
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a2a3d]">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1F33]">
             Frequently Asked Questions
           </h2>
           <p className="text-sm sm:text-base text-[#2d6180] leading-relaxed">
@@ -46,7 +38,7 @@ export default function HomeFaq() {
               key={idx}
               className="group bg-white rounded-2xl border border-[#bde9ff] overflow-hidden transition-colors open:border-[#30AFFF] open:shadow-xs"
             >
-              <summary className="flex items-center justify-between p-5 cursor-pointer list-none select-none font-bold text-sm sm:text-base text-[#0a2a3d] group-hover:text-[#0284c7] transition-colors">
+              <summary className="flex items-center justify-between p-5 cursor-pointer list-none select-none font-bold text-sm sm:text-base text-[#0B1F33] group-hover:text-[#0284c7] transition-colors">
                 <span className="pr-4">{faq.question}</span>
                 <ChevronDown className="w-4 h-4 text-[#0284c7] shrink-0 transition-transform duration-200 group-open:rotate-180" />
               </summary>

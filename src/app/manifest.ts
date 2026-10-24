@@ -1,14 +1,14 @@
 import type { MetadataRoute } from 'next';
-import { SITE } from '@/data/site';
+import { SITE } from '@/lib/site';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: SITE.name,
     short_name: 'Velora Cabs',
-    description: SITE.description,
+    description: 'Safe Rides. On Time. Every Time. Reliable AC cab and taxi service in Bhavnagar and across Gujarat.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#071828',
+    background_color: '#0B1F33',
     theme_color: '#30AFFF',
     icons: [
       {

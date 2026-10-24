@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npx tsx scripts/validate-seo.ts && next build",
+    "validate:seo": "npx tsx scripts/validate-seo.ts",
     "start": "next start",
     "lint": "eslint"
   },

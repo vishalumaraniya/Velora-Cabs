@@ -55,7 +55,6 @@ export type GujaratBigCity = (typeof GUJARAT_BIG_CITIES)[number];
 export const KNOWN_CITIES: Record<string, LocationCoordinates> = {
   bhavnagar: { name: 'Bhavnagar', lat: 21.7645, lon: 72.1519 },
   ahmedabad: { name: 'Ahmedabad', lat: 23.0225, lon: 72.5714 },
-  ahemdabad: { name: 'Ahmedabad', lat: 23.0225, lon: 72.5714 },
   'ahmedabad airport': { name: 'Ahmedabad Airport (AMD)', lat: 23.0734, lon: 72.6347 },
   'ahmedabad airport (amd)': { name: 'Ahmedabad Airport (AMD)', lat: 23.0734, lon: 72.6347 },
   surat: { name: 'Surat', lat: 21.1702, lon: 72.8311 },
@@ -105,8 +104,6 @@ const EXACT_HIGHWAY_PAIRS: Record<string, { km: number; duration: string }> = {
   'surat-bhavnagar': { km: 270, duration: '5h 30m' },
   'bhavnagar-ahmedabad': { km: 172, duration: '3h 15m' },
   'ahmedabad-bhavnagar': { km: 172, duration: '3h 15m' },
-  'bhavnagar-ahemdabad': { km: 172, duration: '3h 15m' },
-  'ahemdabad-bhavnagar': { km: 172, duration: '3h 15m' },
   'bhavnagar-ahmedabad airport': { km: 185, duration: '3h 30m' },
   'ahmedabad airport-bhavnagar': { km: 185, duration: '3h 30m' },
   'bhavnagar-vadodara': { km: 205, duration: '3h 50m' },

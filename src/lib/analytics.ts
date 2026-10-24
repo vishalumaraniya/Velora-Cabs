@@ -1,5 +1,6 @@
 // Google Analytics 4 event tracking helper
 // Safely checks for window.gtag before calling
+// Strictly conforms to Section 2.14 of SEO Master Prompt
 
 declare global {
   interface Window {
@@ -11,24 +12,17 @@ declare global {
   }
 }
 
-export type EventLocation =
-  | 'header'
-  | 'hero'
-  | 'footer'
-  | 'route_page'
-  | 'city_page'
-  | 'contact'
-  | 'about'
-  | 'floating_button'
-  | 'services'
-  | 'fleet'
-  | 'faq'
-  | 'blog'
-  | 'cta_band';
+export type AnalyticsEventName =
+  | 'click_call'
+  | 'click_whatsapp'
+  | 'submit_booking_form'
+  | 'call_click'      // legacy alias
+  | 'whatsapp_click'  // legacy alias
+  | 'form_submit';    // legacy alias
 
 export function trackEvent(
-  eventName: 'call_click' | 'whatsapp_click' | 'form_submit' | 'instagram_click',
-  params?: { location?: EventLocation; [key: string]: unknown }
+  eventName: AnalyticsEventName,
+  params?: Record<string, unknown>
 ) {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     try {
@@ -37,4 +31,29 @@ export function trackEvent(
       // Ignore analytics failures silently
     }
   }
+}
+
+export function trackCallClick(location: string = 'general') {
+  trackEvent('click_call', { event_category: 'engagement', location });
+  trackEvent('call_click', { location });
+}
+
+export function trackWhatsAppClick(location: string = 'general', details?: Record<string, unknown>) {
+  trackEvent('click_whatsapp', { event_category: 'engagement', location, ...details });
+  trackEvent('whatsapp_click', { location, ...details });
+}
+
+export function trackBookingSubmit(details: {
+  trip_type?: string;
+  route?: string;
+  vehicle?: string;
+  [key: string]: unknown;
+}) {
+  trackEvent('submit_booking_form', {
+    event_category: 'conversion',
+    trip_type: details.trip_type,
+    route: details.route,
+    vehicle: details.vehicle,
+  });
+  trackEvent('form_submit', { location: 'booking_form' });
 }

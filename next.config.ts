@@ -3,28 +3,15 @@ import type { NextConfig } from 'next';
 const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-  {
-    key: 'Content-Security-Policy',
-    value:
-      "frame-ancestors 'none'",
-  },
+  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
 ];
 
 const nextConfig: NextConfig = {
-  // PHASE 1: Domain canonical
-  // Redirect rule note: bare-domain and .com redirects should be set at
-  // the DNS/hosting level (Vercel Domain Settings or Netlify _redirects).
-  // Doing 301s inside Next.js for the apex domain can cause redirect loops
-  // if the host is already pointing to the same Next.js app.
-  //
-  // Manual steps for Vercel:
-  //   1. Add domain veloracabs.in, www.veloracabs.in, veloracabs.com,
-  //      www.veloracabs.com in Vercel Project → Settings → Domains.
-  //   2. Set www.veloracabs.in as the primary. Vercel auto-301s the rest.
-  //
-  // HTTPS is enforced by Vercel/Netlify automatically.
+  // Domain canonical & routing consistency (Section 2.3)
+  trailingSlash: false,
+  compress: true,
 
-  // PHASE 9: Image optimisation
+  // Image optimization (Section 3.1)
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [],
@@ -37,6 +24,70 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: securityHeaders,
+      },
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
+
+  async redirects() {
+    return [
+      {
+        source: '/cab-service/:city',
+        destination: '/taxi-service/:city',
+        permanent: true,
+      },
+      {
+        source: '/cab-service',
+        destination: '/#cities',
+        permanent: true,
+      },
+      {
+        source: '/taxi/:slug',
+        destination: '/routes/:slug',
+        permanent: true,
+      },
+      {
+        source: '/taxi',
+        destination: '/#routes',
+        permanent: true,
+      },
+      {
+        source: '/outstation-taxi',
+        destination: '/services/outstation-taxi',
+        permanent: true,
+      },
+      {
+        source: '/airport-taxi',
+        destination: '/services/airport-taxi-transfer',
+        permanent: true,
+      },
+      {
+        source: '/local-city-rides',
+        destination: '/services/local-city-cab',
+        permanent: true,
+      },
+      {
+        source: '/taxi-24x7',
+        destination: '/services/24x7-cab-service',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug*',
+        destination: '/services/outstation-taxi',
+        permanent: true,
+      },
+      {
+        source: '/blog',
+        destination: '/services/outstation-taxi',
+        permanent: true,
       },
     ];
   },
