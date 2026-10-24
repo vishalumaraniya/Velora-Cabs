@@ -9,7 +9,7 @@ export const BUSINESS_INFO = {
   ],
   whatsappNumber: '918780311279',
   email: 'veloracabs07@gmail.com',
-  address: 'Bhavnagar, Gujarat, India',
+  address: '404, Shyam Residency, Near Nari Chokdi, Vartej, Bhavnagar, Gujarat 364060, India',
   serviceAreas: ['Local City Rides', 'Airport Transfers', 'Outstation Trips', 'Gujarat & Mumbai Routes'],
   operatingHours: '24 Hours / 7 Days a Week',
   accentColor: '#30AFFF',
@@ -23,7 +23,8 @@ export const SERVICES: ServiceItem[] = [
     subtitle: 'Point-to-point within city limits',
     description: 'Comfortable, AC sedan rides for daily commutes, shopping trips, business meetings, and city exploration.',
     iconName: 'Car',
-    features: ['Doorstep Pickup', 'Transparent Rates', 'Clean AC Sedans', 'GPS Monitored'],
+    // TODO: Confirm with Dharmeshbhai if GPS-monitored is defensible across all cabs
+    features: ['Doorstep Pickup', 'Fixed quote on WhatsApp', 'Clean AC Sedans', 'GPS Monitored'],
     recommendedFor: 'City commuters & shopping trips',
   },
   {
@@ -41,7 +42,7 @@ export const SERVICES: ServiceItem[] = [
     subtitle: 'One-way & round trips across Gujarat & Mumbai',
     description: 'Reliable outstation cab service across Gujarat and Mumbai destinations with upfront fixed quotes.',
     iconName: 'MapPin',
-    features: ['One-Way & Round Trip Options', 'Experienced Highway Drivers', 'Transparent Upfront Pricing', 'Route Guidance'],
+    features: ['One-Way & Round Trip Options', 'Experienced Highway Drivers', 'Fixed quote on WhatsApp', 'Route Guidance'],
     recommendedFor: 'Family trips & intercity travel',
   },
   {
@@ -254,6 +255,7 @@ export const FLEET_CARS: FleetItem[] = [
 
 export const WHY_US_FEATURES = [
   {
+    // TODO: Confirm with Dharmeshbhai if GPS-monitored is defensible
     title: 'Safety-Focused Travel',
     description: 'Your safety is our top priority. All cabs are GPS-monitored and maintained to high safety standards for complete peace of mind.',
     iconName: 'ShieldCheck',
@@ -274,7 +276,8 @@ export const WHY_US_FEATURES = [
     iconName: 'Timer',
   },
   {
-    title: 'Transparent Pricing',
+    // TODO: Keep 'no surge pricing / no hidden surge charges' only if confirmed by business owner
+    title: 'Fixed quote on WhatsApp',
     description: 'No surge pricing. Fixed, transparent route quotes confirmed upfront via WhatsApp before your trip starts.',
     iconName: 'BadgeIndianRupee',
   },

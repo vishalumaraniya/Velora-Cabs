@@ -29,7 +29,7 @@ const SLIDES = [
     image: '/images/velora_hero_city_v2.webp',
     alt: 'Maruti Swift Dzire taxi for Bhavnagar local city rides and daily commutes',
     subtitle:
-      'Comfortable daily city commutes and local point-to-point drops in Bhavnagar. Well-maintained AC sedans with verified drivers and transparent pricing.',
+      'Comfortable daily city commutes and local point-to-point drops in Bhavnagar. Well-maintained AC sedans with verified drivers and fixed quote on WhatsApp.',
     badge: 'On-Time Local Pickup',
   },
   {
@@ -38,9 +38,9 @@ const SLIDES = [
     label: 'Airport Pickups & Drops',
     icon: Plane,
     image: '/images/velora_hero_airport_v2.webp',
-    alt: 'Airport taxi transfer from Bhavnagar to Ahmedabad SVPI Airport with luggage assistance',
+    alt: 'Airport taxi transfer from Bhavnagar to Ahmedabad Airport (AMD) with luggage assistance',
     subtitle:
-      'Punctual airport pickup and drop connecting Bhavnagar with Ahmedabad (SVPI), Mumbai, Surat, and Vadodara airports with full luggage assistance.',
+      'Punctual airport pickup and drop connecting Bhavnagar with Ahmedabad Airport (AMD), Mumbai, Surat, and Vadodara airports with full luggage assistance.',
     badge: 'Airport Schedule Focus',
   },
   {
@@ -82,14 +82,14 @@ export default function Hero() {
       <div className="absolute bottom-[-10%] left-[-5%] w-[550px] h-[550px] xl:w-[750px] xl:h-[750px] rounded-full bg-[#3DBE6B]/15 blur-3xl pointer-events-none" />
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 sm:pt-28 lg:pt-16 pb-12 flex flex-col justify-center">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 sm:pt-28 lg:pt-28 xl:pt-32 pb-8 sm:pb-12 flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
           {/* Left Column: Headlines, CTAs, Trust Elements */}
-          <div className="lg:col-span-6 space-y-5 z-10 text-left">
+          <div className="lg:col-span-6 space-y-4 sm:space-y-5 z-10 text-left">
 
-            {/* Category Selector Tab Pills */}
-            <div className="inline-flex items-center gap-1 p-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#bde9ff] shadow-xs">
+            {/* Category Selector Tab Pills (Hidden on Mobile) */}
+            <div className="hidden sm:inline-flex items-center gap-1 p-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#bde9ff] shadow-xs">
               {SLIDES.map((slide, idx) => {
                 const isActive = idx === currentSlide;
                 const Icon = slide.icon;
@@ -111,11 +111,11 @@ export default function Hero() {
             </div>
 
             {/* Exactly ONE H1 on the homepage per Section 7 */}
-            <div className="space-y-2">
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-4xl xl:text-5xl font-black text-[#0B1F33] tracking-tight leading-[1.15]">
-                Cab & Taxi Service in Bhavnagar and Across Gujarat
+            <div className="space-y-1.5">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-3xl xl:text-4xl font-black text-[#0B1F33] tracking-tight leading-[1.2] max-w-xl">
+                Cab & Taxi Service in Bhavnagar <span className="sm:block">and Across Gujarat</span>
               </h1>
-              <p className="text-base sm:text-lg font-bold text-[#0284c7] tracking-wide">
+              <p className="text-sm sm:text-base font-bold text-[#0284c7] tracking-wide">
                 Safe Rides. On Time. Every Time.
               </p>
             </div>
@@ -154,9 +154,10 @@ export default function Hero() {
                   <span>Read our Google reviews</span>
                 </a>
               ) : (
+                /* TODO: Show real rating only after verified Google reviews exist */
                 <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#bde9ff] shadow-xs text-xs font-bold text-[#0B1F33]">
-                  <Star className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B]" />
-                  <span>4.2★ on Google</span>
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#28A745]" />
+                  <span>Verified Drivers & Fleet</span>
                 </div>
               )}
 
@@ -165,7 +166,7 @@ export default function Hero() {
                 <span>
                   {SITE.stats?.trips
                     ? `${SITE.stats.trips.toLocaleString()}+ Trips Completed`
-                    : 'Trusted by thousands of travellers across Gujarat'}
+                    : 'Serving Bhavnagar & All Gujarat'}
                 </span>
               </div>
             </div>
@@ -214,6 +215,7 @@ export default function Hero() {
                 <Clock className="w-3.5 h-3.5 text-[#0284c7]" /> 24x7 Dispatch
               </span>
               <span>·</span>
+              {/* TODO: Confirm with Dharmeshbhai if GPS-monitored is defensible */}
               <span className="flex items-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#28A745]" /> GPS-tracked cabs
               </span>
@@ -222,8 +224,9 @@ export default function Hero() {
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#0284c7]" /> Verified drivers
               </span>
               <span>·</span>
+              {/* TODO: Show real rating only after verified Google reviews exist */}
               <span className="flex items-center gap-1 text-[#0B1F33] font-bold">
-                <Star className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B]" /> 4.2★ on Google
+                <Sparkles className="w-3.5 h-3.5 text-[#0284c7]" /> Sanitized AC Cabs
               </span>
             </div>
 

@@ -13,6 +13,7 @@ export default function HomeHowToBook() {
     {
       number: '02',
       title: 'Get Fixed Fare Confirmation',
+      // TODO: Keep "No hidden surge pricing" only if confirmed by business owner
       description:
         'We promptly reply with your transparent fixed quote on WhatsApp or phone call. No hidden surge pricing, no unexpected meter surprises.',
       icon: MessageSquareCheck,

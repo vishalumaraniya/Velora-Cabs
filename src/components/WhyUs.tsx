@@ -8,9 +8,10 @@ import { WHY_US_FEATURES, BUSINESS_INFO } from '@/lib/constants';
 const featureDetailsMap = [
   {
     num: '01',
-    badge: 'Safety-Focused Travel',
+    badge: 'Passenger Safety First',
     badgeClass: 'bg-[#3DBE6B]/60 border-[#28A745] text-[#1a5c2a]',
     LargeIcon: ShieldCheck,
+    // TODO: Confirm with Dharmeshbhai if GPS-monitored is defensible across every fleet vehicle
     highlight: 'GPS-Monitored Vehicles & Safety Priority',
   },
   {
@@ -36,7 +37,7 @@ const featureDetailsMap = [
   },
   {
     num: '05',
-    badge: 'Transparent Upfront Quotes',
+    badge: 'Fixed quote on WhatsApp',
     badgeClass: 'bg-[#EBF9FF] border-[#bde9ff] text-[#074d78]',
     LargeIcon: BadgeIndianRupee,
     highlight: 'Clear Route Fares Confirmed Before Booking',
@@ -195,6 +196,7 @@ export default function WhyUs() {
                           className="pt-2 flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#1e7a35]"
                         >
                           <CheckCircle2 className="w-4 h-4 text-[#1e7a35]" />
+                          {/* TODO: Confirm with Dharmeshbhai if "Guaranteed on every ride" is defensible */}
                           <span>Guaranteed on every ride with Velora Cabs</span>
                         </motion.div>
                       )}

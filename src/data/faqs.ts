@@ -27,7 +27,7 @@ export const homeFaqs: FaqItem[] = [
   {
     question: 'Is there airport pickup and drop?',
     answer:
-      'Yes, Velora Cabs provides reliable airport transfer services connecting Bhavnagar with Ahmedabad Airport (SVPI), Mumbai International Airport (BOM), Surat, and Vadodara airports. Our drivers prioritize punctuality, coordinate with your arrival schedules, and assist with your luggage, ensuring a stress-free transition between your doorstep and the terminal.',
+      'Yes, Velora Cabs provides reliable airport transfer services connecting Bhavnagar with Ahmedabad Airport (AMD), Mumbai International Airport (BOM), Surat, and Vadodara airports. Our drivers prioritize punctuality, coordinate with your arrival schedules, and assist with your luggage, ensuring a stress-free transition between your doorstep and the terminal.',
   },
   {
     question: 'Which cities do you serve?',
@@ -114,7 +114,7 @@ export const generalFaqs: FaqGroup[] = [
       {
         question: 'Which airports are covered by your taxi service?',
         answer:
-          'We provide airport transfers for Ahmedabad (SVPI Airport / AMD), Mumbai (BOM / CSIA), Surat Airport (STV), Vadodara Airport, Bhavnagar Airport, and Bhuj Airport.',
+          'We provide airport transfers for Ahmedabad Airport (AMD), Mumbai (BOM / CSIA), Surat Airport (STV), Vadodara Airport, Bhavnagar Airport, and Bhuj Airport.',
       },
       {
         question: 'How do you coordinate airport pickups for delayed flights?',

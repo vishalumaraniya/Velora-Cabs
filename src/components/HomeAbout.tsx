@@ -86,7 +86,8 @@ export default function HomeAbout() {
               <div className="w-9 h-9 rounded-xl bg-white border border-[#bde9ff] flex items-center justify-center text-[#F59E0B]">
                 <Award className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-bold text-[#0B1F33]">Transparent Quotes</h3>
+              <h3 className="text-sm font-bold text-[#0B1F33]">Fixed quote on WhatsApp</h3>
+              {/* TODO: Keep "zero surprise surge charges" only if confirmed by business owner */}
               <p className="text-xs text-[#2d6180]">
                 Clear fixed quotes shared upfront via WhatsApp with zero surprise surge charges at destination.
               </p>

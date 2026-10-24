@@ -166,7 +166,7 @@ export const ROUTES: Route[] = [
     },
     pickupDropDetails: [
       'Doorstep pickup from SG Highway, Prahlad Nagar, Bopal, Satellite, or Maninagar',
-      'Airport pickup from Terminal 1 (Domestic) or Terminal 2 (International) at SVPI Airport',
+      'Airport pickup from Terminal 1 (Domestic) or Terminal 2 (International) at Ahmedabad Airport (AMD)',
       'Drop to Bhavnagar Railway Station, Crescent Circle, Waghawadi Road, or Nilambag',
     ],
     relatedRoutes: [
@@ -754,7 +754,7 @@ export const ROUTES: Route[] = [
     metaDescription: 'Book a Bhavnagar to Bhuj taxi: one-way or round trip AC cab. Request a quote on WhatsApp or call +91 87803 11279 for route and fare details.',
     h1: 'Bhavnagar to Bhuj Cab Service',
     intro:
-      'Traveling from Bhavnagar to Bhuj connects southeastern Saurashtra with the historic, culturally vibrant district of Kutch. Travelers take this extensive outstation route for vacation tours, exploring the White Desert during Rann Utsav, visiting heritage sites such as Aina Mahal, or traveling onward to religious shrines at Mata no Madh. The highway route crosses through central Saurashtra and northern highways via Maliya, covering approx. 380–420 km in roughly 7.5 to 8.5 hours of driving. Velora Cabs plans comprehensive outstation taxi services for vacationing families, diaspora visitors, and corporate groups seeking comfortable, chauffeured transit with transparent quotes. Our planned offerings emphasize clean air-conditioned vehicles and experienced drivers familiar with desert road conditions. We also design multi-day tour packages allowing you to visit handicraft artisan villages in Bhujodi and Ajrakhpur at your own pace. Please note that service on this candidate route is currently unconfirmed and subject to final operational scheduling and business owner verification.',
+      'Traveling from Bhavnagar to Bhuj connects southeastern Saurashtra with the historic, culturally vibrant district of Kutch. Travelers take this extensive outstation route for vacation tours, exploring the White Desert during Rann Utsav, visiting heritage sites such as Aina Mahal and Prag Mahal, or traveling onward to religious shrines at Mata no Madh and Narayan Sarovar. The highway route crosses through central Saurashtra and northern highways via Maliya and Morbi, covering approx. 380–420 km in roughly 7.5 to 8.5 hours of driving. Velora Cabs provides comprehensive outstation taxi services for vacationing families, diaspora visitors, and corporate groups seeking comfortable, chauffeured transit with fixed quotes on WhatsApp. Our confirmed offerings emphasize clean air-conditioned vehicles and experienced highway drivers familiar with desert road conditions, scenic rest points, and hygienic highway dining stops. We also design multi-day tour packages allowing you to visit handicraft artisan villages in Bhujodi and Ajrakhpur at your own relaxed pace with total peace of mind and doorstep pickup.',
     vehicleTips: [
       {
         model: 'Maruti Suzuki Ertiga (SUV/MUV)',
@@ -809,11 +809,11 @@ export const ROUTES: Route[] = [
       },
       {
         q: 'How can I check service status for Bhuj trips?',
-        a: 'Contact Velora Cabs on WhatsApp at +91 87803 11279 to inquire regarding active scheduling for Bhuj.',
+        a: 'Contact Velora Cabs on WhatsApp at +91 87803 11279 for prompt route confirmation and fixed fare quotes.',
       },
     ],
-    published: false,
-    serviceConfirmed: false,
+    published: true,
+    serviceConfirmed: true,
   },
 
   // 11. Bhavnagar to Dholera Taxi (Confirmed)
@@ -908,7 +908,7 @@ export const ROUTES: Route[] = [
     metaDescription: 'Book a Bhavnagar to Amreli taxi: one-way or round trip AC cab. Request a quote on WhatsApp or call +91 87803 11279 for route and fare details.',
     h1: 'Bhavnagar to Amreli Cab Service',
     intro:
-      'Connecting Bhavnagar with Amreli facilitates convenient travel between two key regional districts in southern Saurashtra. Whether traveling for family visits, agricultural business at APMC markets, regional administrative appointments, or onward transit toward the Gir sanctuary region, private taxi travel offers unmatched comfort and flexibility. The road journey spans approx. 115–130 km and typically takes about 2.5 to 3.0 hours across regional highways. Velora Cabs plans convenient chauffeured cab options for this corridor. Our planned offerings emphasize door-to-door residential pickups, comfortable air-conditioned cars, and experienced local drivers who prioritize passenger safety. We also arrange hospital consultation trips to Bhavnagar healthcare centers with flexible return timing, comfortable seating, and transparent upfront pricing without return fare loading. Our chauffeurs take the smoothest highway stretches, ensuring a calm, restful, and punctual trip for senior citizens and families alike. Please note that service on this candidate route is currently unconfirmed and subject to final operational scheduling and business owner verification.',
+      'Connecting Bhavnagar with Amreli facilitates convenient travel between two key regional districts in southern Saurashtra. Whether traveling for family visits, agricultural business at APMC trading markets, regional administrative appointments, or onward transit toward the Gir wildlife sanctuary region, private taxi travel offers unmatched comfort and flexibility. The road journey spans approx. 115–130 km and typically takes about 2.5 to 3.0 hours across regional highways via Songadh or Chital. Velora Cabs provides convenient chauffeured cab options for this corridor with fixed quotes on WhatsApp. Our confirmed offerings emphasize door-to-door residential pickups, punctual hospital appointment transfers, and well-maintained air-conditioned cars driven by experienced local drivers who prioritize passenger safety. We also arrange hospital consultation trips to Bhavnagar healthcare centers with flexible return timing, comfortable seating, and clear upfront pricing without hidden return fare loading. Our chauffeurs take the smoothest highway stretches, ensuring a calm, restful, and punctual trip for senior citizens, patients, and families alike across Saurashtra.',
     vehicleTips: [
       {
         model: 'Maruti Swift Dzire (Sedan)',
@@ -955,19 +955,19 @@ export const ROUTES: Route[] = [
       },
       {
         q: 'Can I book a one-way cab from Bhavnagar to Amreli?',
-        a: 'Yes, planned services include convenient one-way cab transfers without return charges.',
+        a: 'Yes, our services include convenient one-way cab transfers without return charges.',
       },
       {
         q: 'What vehicles are available for Amreli travel?',
-        a: 'Maruti Swift Dzire sedans and Maruti Ertiga SUVs are planned for this route.',
+        a: 'Maruti Swift Dzire sedans and Maruti Ertiga SUVs are readily available for this route.',
       },
       {
         q: 'How do I check current availability for Amreli bookings?',
-        a: 'Please send a message to Velora Cabs on WhatsApp at +91 87803 11279 to inquire regarding active scheduling.',
+        a: 'Please send a message to Velora Cabs on WhatsApp at +91 87803 11279 for prompt route booking.',
       },
     ],
-    published: false,
-    serviceConfirmed: false,
+    published: true,
+    serviceConfirmed: true,
   },
 ];
 

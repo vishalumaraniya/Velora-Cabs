@@ -89,6 +89,11 @@ const nextConfig: NextConfig = {
         destination: '/services/outstation-taxi',
         permanent: true,
       },
+      {
+        source: '/terms-and-conditions',
+        destination: '/terms',
+        permanent: true,
+      },
     ];
   },
 };

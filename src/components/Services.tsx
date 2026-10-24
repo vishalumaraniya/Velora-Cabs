@@ -181,7 +181,7 @@ export default function Services() {
 
                 {/* Bottom Action */}
                 <div className={`pt-4 mt-4 border-t flex items-center justify-between text-xs font-bold transition-colors relative z-10 ${config.dividerClass} ${config.actionTextClass}`}>
-                  <span>Explore Service & Fares</span>
+                  <span>View Service Details</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </div>
               </Link>

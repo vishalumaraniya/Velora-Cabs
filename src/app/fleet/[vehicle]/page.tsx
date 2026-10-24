@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import JsonLd from '@/components/JsonLd';
 import { SITE } from '@/data/site';
 import { ROUTES } from '@/data/routes';
 import {
@@ -108,19 +109,23 @@ const VEHICLE_EXTRAS: Record<
 };
 
 export async function generateStaticParams() {
-  return SITE.vehicles.map((v) => ({
-    vehicle: v.id,
-  }));
+  return [
+    { vehicle: 'swift-dzire' },
+    { vehicle: 'ertiga' },
+    { vehicle: 'tempo-traveller' },
+  ];
 }
 
 export async function generateMetadata({ params }: FleetDetailPageProps): Promise<Metadata> {
   const { vehicle: vehicleId } = await params;
-  const vehicle = SITE.vehicles.find((v) => v.id === vehicleId);
+  const normalizedId = vehicleId === 'swift-dzire' ? 'dzire' : vehicleId;
+  const vehicle = SITE.vehicles.find((v) => v.id === normalizedId || v.id === vehicleId);
 
   if (!vehicle) {
     return { title: 'Vehicle Not Found | Velora Cabs' };
   }
 
+  const canonicalSlug = vehicle.id === 'dzire' ? 'swift-dzire' : vehicle.id;
   const title = `${vehicle.name} Taxi Rental | ${vehicle.type} Hire`;
   const description = `Book a clean, AC ${vehicle.name} (${vehicle.passengers} pax) with Velora Cabs. Verified driver, ample luggage space, fixed fare quotes for Gujarat and Mumbai trips.`;
 
@@ -128,12 +133,12 @@ export async function generateMetadata({ params }: FleetDetailPageProps): Promis
     title,
     description,
     alternates: {
-      canonical: `/fleet/${vehicle.id}`,
+      canonical: `/fleet/${canonicalSlug}`,
     },
     openGraph: {
       title,
       description,
-      url: `${SITE.url}/fleet/${vehicle.id}`,
+      url: `${SITE.url}/fleet/${canonicalSlug}`,
       siteName: SITE.name,
       images: [
         {
@@ -149,13 +154,14 @@ export async function generateMetadata({ params }: FleetDetailPageProps): Promis
 
 export default async function FleetDetailPage({ params }: FleetDetailPageProps) {
   const { vehicle: vehicleId } = await params;
-  const vehicle = SITE.vehicles.find((v) => v.id === vehicleId);
+  const normalizedId = vehicleId === 'swift-dzire' ? 'dzire' : vehicleId;
+  const vehicle = SITE.vehicles.find((v) => v.id === normalizedId || v.id === vehicleId);
 
   if (!vehicle) {
     notFound();
   }
 
-  const extras = VEHICLE_EXTRAS[vehicle.id] || {
+  const extras = VEHICLE_EXTRAS[vehicle.id] || VEHICLE_EXTRAS[normalizedId] || {
     tagline: 'Reliable Passenger Vehicle',
     longDescription:
       'Fully equipped, commercially certified, and regularly serviced passenger vehicle operated by Velora Cabs.',
@@ -325,6 +331,15 @@ export default async function FleetDetailPage({ params }: FleetDetailPageProps) 
         )}
 
       </main>
+
+      <JsonLd
+        type="breadcrumb"
+        crumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Our Fleet', path: '/fleet' },
+          { name: vehicle.name, path: `/fleet/${vehicle.id === 'dzire' ? 'swift-dzire' : vehicle.id}` },
+        ]}
+      />
 
       <Footer />
     </div>

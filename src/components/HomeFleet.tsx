@@ -5,7 +5,7 @@ import { Users, Briefcase, Snowflake, ArrowRight } from 'lucide-react';
 
 const FLEET_DATA = [
   {
-    id: 'dzire',
+    id: 'swift-dzire',
     name: 'Maruti Swift Dzire',
     category: 'Comfort AC Sedan',
     passengers: 'Up to 4 Passengers',
@@ -54,7 +54,7 @@ export default function HomeFleet() {
           </p>
         </div>
 
-        {/* 3 Fleet Cards linking to /fleet (Section 7) */}
+        {/* 3 Fleet Cards linking to /fleet/[vehicle] */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {FLEET_DATA.map((vehicle) => (
             <div
@@ -69,7 +69,7 @@ export default function HomeFleet() {
                     alt={vehicle.alt}
                     width={400}
                     height={250}
-                    sizes="(max-width: 768px) 100vw, 400px"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
                     className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -102,8 +102,9 @@ export default function HomeFleet() {
               </div>
 
               <Link
-                href="/fleet"
+                href={`/fleet/${vehicle.id}`}
                 className="w-full py-2.5 rounded-xl bg-white hover:bg-[#30AFFF] text-[#0B1F33] hover:text-white border border-[#bde9ff] hover:border-[#30AFFF] text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-2xs"
+                aria-label={`View Full Specs for ${vehicle.name}`}
               >
                 <span>View Full Specs</span>
                 <ArrowRight className="w-3.5 h-3.5" />

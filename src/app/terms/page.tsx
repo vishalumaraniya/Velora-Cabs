@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   const breadcrumbs = [
     { label: 'Home', href: '/' },
-    { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+    { label: 'Terms & Conditions', href: '/terms' },
   ];
 
   return (

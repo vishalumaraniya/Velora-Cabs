@@ -22,7 +22,7 @@ import {
 export const metadata: Metadata = buildMetadata({
   title: 'Airport Taxi Transfer | Bhavnagar, Ahmedabad, Mumbai Cabs | Velora Cabs',
   description:
-    'Reliable airport taxi transfers to Ahmedabad SVPI, Mumbai BOM & Surat airports. Flight schedule coordination, luggage-friendly AC fleet. Call +91 87803 11279.',
+    'Reliable airport taxi transfers to Ahmedabad Airport (AMD), Mumbai BOM & Surat airports. Flight schedule coordination, luggage-friendly AC fleet. Call +91 87803 11279.',
   path: '/services/airport-taxi-transfer',
 });
 
@@ -47,7 +47,7 @@ const airportFaqs = [
 
 const AIRPORTS_SERVED = [
   {
-    name: 'Ahmedabad SVPI Airport (AMD)',
+    name: 'Ahmedabad Airport (AMD)',
     distanceFromBhavnagar: 'Approx. 175-185 km',
     travelTime: '3.5 - 4.5 Hours',
     terminals: 'Terminal 1 (Domestic) & Terminal 2 (International)',
@@ -130,7 +130,7 @@ export default function AirportTaxiTransferPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-[#2d6180] max-w-3xl leading-relaxed">
-              Never worry about missing a flight or waiting curbside after a tiring landing. Velora Cabs provides punctual airport transfers connecting Bhavnagar with Ahmedabad (SVPI), Mumbai (BOM), Surat, and Vadodara airports with flight schedule planning, clean AC cabs, and luggage support.
+              Never worry about missing a flight or waiting curbside after a tiring landing. Velora Cabs provides punctual airport transfers connecting Bhavnagar with Ahmedabad Airport (AMD), Mumbai (BOM), Surat, and Vadodara airports with flight schedule planning, clean AC cabs, and luggage support.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">

@@ -23,46 +23,26 @@ export default function HomeCitiesServe() {
 
         {/* 14 Cities Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 sm:gap-4">
-          {CITIES.map((city) => {
-            const isConfirmed = city.published && city.serviceConfirmed;
-            return isConfirmed ? (
-              <Link
-                key={city.slug}
-                href={`/taxi-service/${city.slug}`}
-                scroll={true}
-                className="group bg-slate-50 hover:bg-white rounded-xl p-4 border border-slate-200 hover:border-[#30AFFF] shadow-2xs hover:shadow-xs transition-all text-center flex flex-col items-center justify-center space-y-2"
-              >
-                <div className="w-9 h-9 rounded-lg bg-white group-hover:bg-[#30AFFF]/15 border border-slate-200 flex items-center justify-center transition-colors">
-                  <Building2 className="w-4 h-4 text-[#30AFFF]" />
-                </div>
-                <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-[#0B1F33] group-hover:text-[#30AFFF] transition-colors">
-                    {city.name}
-                  </h3>
-                  <span className="text-[11px] text-slate-500 block mt-0.5">
-                    Taxi Service →
-                  </span>
-                </div>
-              </Link>
-            ) : (
-              <div
-                key={city.slug}
-                className="bg-slate-50/60 rounded-xl p-4 border border-slate-100 text-center flex flex-col items-center justify-center space-y-2 opacity-80"
-              >
-                <div className="w-9 h-9 rounded-lg bg-white border border-slate-100 flex items-center justify-center">
-                  <Building2 className="w-4 h-4 text-slate-400" />
-                </div>
-                <div>
-                  <h3 className="text-xs sm:text-sm font-semibold text-slate-700">
-                    {city.name}
-                  </h3>
-                  <span className="text-[10px] text-slate-400 block mt-0.5">
-                    On Request
-                  </span>
-                </div>
+          {CITIES.map((city) => (
+            <Link
+              key={city.slug}
+              href={`/taxi-service/${city.slug}`}
+              scroll={true}
+              className="group bg-slate-50 hover:bg-white rounded-xl p-4 border border-slate-200 hover:border-[#30AFFF] shadow-2xs hover:shadow-xs transition-all text-center flex flex-col items-center justify-center space-y-2"
+            >
+              <div className="w-9 h-9 rounded-lg bg-white group-hover:bg-[#30AFFF]/15 border border-slate-200 flex items-center justify-center transition-colors">
+                <Building2 className="w-4 h-4 text-[#30AFFF]" />
               </div>
-            );
-          })}
+              <div>
+                <h3 className="text-xs sm:text-sm font-bold text-[#0B1F33] group-hover:text-[#30AFFF] transition-colors">
+                  {city.name}
+                </h3>
+                <span className="text-[11px] text-slate-500 block mt-0.5">
+                  Taxi Service →
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
 
         {/* Hub highlights footer */}

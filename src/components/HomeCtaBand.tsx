@@ -24,6 +24,7 @@ export default function HomeCtaBand() {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
               Ready to Book Your Journey? Get a Free Fixed Quote Today
             </h2>
+            {/* TODO: Keep "No hidden surge charges" only if confirmed by business owner */}
             <p className="text-xs sm:text-sm text-[#8ab9d1] leading-relaxed">
               No hidden surge charges. Verified drivers, clean AC cars, and punctual doorstep pickups across Bhavnagar, Ahmedabad, Vadodara, Surat, and Mumbai.
             </p>

@@ -41,7 +41,7 @@ const emergencyFaqs = [
   },
   {
     q: 'Which destinations are reachable on an urgent basis from Bhavnagar at night?',
-    a: 'We provide immediate night dispatch to major destinations including Ahmedabad (SVPI Airport / Kalupur Station), Vadodara, Surat, Rajkot, and emergency medical centers across Saurashtra.',
+    a: 'We provide immediate night dispatch to major destinations including Ahmedabad Airport (AMD), Kalupur Station, Vadodara, Surat, Rajkot, and emergency medical centers across Saurashtra.',
   },
 ];
 

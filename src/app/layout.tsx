@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import MantineProviderWrapper from '@/components/MantineProviderWrapper';
 import FloatingActionBar from '@/components/FloatingActionBar';
-import Preloader from '@/components/Preloader';
 import ScrollToTop from '@/components/ScrollToTop';
 import JsonLd from '@/components/JsonLd';
 import { SITE } from '@/lib/site';
@@ -24,7 +23,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'Velora Cabs | Taxi Service in Bhavnagar & Gujarat',
+    default: 'Taxi Service in Bhavnagar & Gujarat | Velora Cabs',
     template: '%s | Velora Cabs',
   },
   description:
@@ -97,7 +96,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen bg-[#EBF9FF] text-[#0a2a3d] antialiased font-sans">
         <MantineProviderWrapper>
-          <Preloader />
           <ScrollToTop />
           {children}
           <FloatingActionBar />

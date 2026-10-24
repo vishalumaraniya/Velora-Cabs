@@ -19,20 +19,28 @@ import { buildMetadata } from '@/lib/metadata';
 
 // Section 7 exact metadata specification
 export const metadata: Metadata = buildMetadata({
-  title: 'Velora Cabs | Taxi Service in Bhavnagar & Gujarat',
+  title: 'Taxi Service in Bhavnagar & Gujarat | Velora Cabs',
   description:
     'Book local, airport and outstation AC cabs from Bhavnagar to Ahmedabad, Vadodara, Surat, Mumbai & more. Call +91 87803 11279 for a quote.',
   path: '/',
 });
 
 export default function Home() {
-  // Cities with confirmed service per Section 6 anti-doorway rule
+  // All 14 confirmed cities served across Gujarat & Mumbai
   const confirmedCities = [
     'Bhavnagar',
     'Ahmedabad',
     'Vadodara',
     'Surat',
+    'Bharuch',
+    'Dahej',
+    'Vapi',
+    'Daman',
+    'Dholera',
     'Mumbai',
+    'Bhuj',
+    'Gandhidham',
+    'Amreli',
     'Palitana',
   ];
 
@@ -46,7 +54,7 @@ export default function Home() {
 
       {/* Main Page Landmark */}
       <main id="main-content" className="flex-1">
-        {/* 1. Hero (H1, subline, Call + WhatsApp + Book buttons, rating badge using real 4.2) */}
+        {/* 1. Hero (H1, subline, Call + WhatsApp + Book buttons, verified fleet proof badge) */}
         <Hero />
 
         {/* 2. Booking Inquiry Form */}

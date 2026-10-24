@@ -163,11 +163,11 @@ export default function ContactPage() {
                   Headquartered in Bhavnagar, serving 14 hubs across Gujarat and Mumbai.
                 </p>
               </div>
-              <div className="pt-2 border-t border-[#bde9ff]/60 text-xs text-[#2d6180]">
-                <strong>{SITE.address?.city ?? 'Bhavnagar'}, {SITE.address?.state ?? 'Gujarat'}</strong>
-                {SITE.address?.street && (
-                  <span className="block text-[11px] text-[#5c9ab8]">{SITE.address.street}</span>
-                )}
+              <div className="pt-2 border-t border-[#bde9ff]/60 text-xs text-[#2d6180] space-y-0.5">
+                <strong className="block text-[#0a2a3d]">{SITE.address?.street}</strong>
+                <span className="block text-[11px] text-[#5c9ab8]">
+                  {SITE.address?.city}, {SITE.address?.state} - {SITE.address?.postalCode}, {SITE.address?.country}
+                </span>
               </div>
             </div>
 

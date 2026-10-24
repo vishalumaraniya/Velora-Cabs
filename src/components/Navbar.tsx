@@ -47,12 +47,31 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services/outstation-taxi' },
-    { name: 'Routes', href: isHomePage ? '#routes' : '/#routes' },
-    { name: 'Cities', href: isHomePage ? '#cities' : '/#cities' },
+    { name: 'Routes', href: '/routes' },
+    { name: 'Cities', href: '/cities' },
     { name: 'Fleet', href: '/fleet' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
+
+  const isLinkActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    if (href === '/services/outstation-taxi') {
+      return pathname.startsWith('/services');
+    }
+    if (href === '/routes') {
+      return pathname === '/routes' || pathname.startsWith('/routes/');
+    }
+    if (href === '/cities') {
+      return pathname === '/cities' || pathname.startsWith('/taxi-service/');
+    }
+    if (href === '/fleet') {
+      return pathname === '/fleet' || pathname.startsWith('/fleet/');
+    }
+    return pathname === href;
+  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#') && isHomePage) {
@@ -128,30 +147,19 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-1 bg-white/90 p-1.5 rounded-full border border-[#bde9ff] shadow-xs backdrop-blur-md relative">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = isLinkActive(link.href);
 
               return (
                 <Link
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`relative px-4 py-1.5 text-xs rounded-full transition-colors duration-200 cursor-pointer ${
+                  className={`relative px-4 py-1.5 text-xs rounded-full transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-white font-bold'
-                      : 'font-medium text-[#2d6180] hover:text-[#071828]'
+                      ? 'text-white font-bold bg-[#0284c7] shadow-xs'
+                      : 'font-medium text-[#2d6180] hover:text-[#071828] hover:bg-[#bde9ff]/30'
                   }`}
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeDesktopNav"
-                      className="absolute inset-0 rounded-full bg-[#0284c7] border border-[#0284c7]"
-                      transition={{
-                        type: 'spring',
-                        stiffness: 380,
-                        damping: 30,
-                      }}
-                    />
-                  )}
                   <span className="relative z-10">{link.name}</span>
                 </Link>
               );
@@ -220,7 +228,7 @@ export default function Navbar() {
             <div className="space-y-6">
               <div className="grid grid-cols-1 gap-2 pt-2">
                 {navLinks.map((link) => {
-                  const isActive = pathname === link.href;
+                  const isActive = isLinkActive(link.href);
 
                   return (
                     <Link

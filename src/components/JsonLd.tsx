@@ -68,7 +68,12 @@ function build(props: Props): Json | undefined {
           },
         ],
       };
-    case "business":
+    case "business": {
+      const sameAsList = [
+        ...Object.values(SITE.social ?? {}),
+        SITE.googleBusinessUrl,
+      ].filter(Boolean);
+
       // LocalBusiness is the business entity; TaxiService is the service it provides.
       return {
         "@context": "https://schema.org",
@@ -81,6 +86,7 @@ function build(props: Props): Json | undefined {
             telephone: SITE.phone,
             email: SITE.email,
             image: SITE.image,
+            sameAs: sameAsList.length ? sameAsList : undefined,
             address: SITE.address && {
               "@type": "PostalAddress",
               streetAddress: SITE.address.street,
@@ -116,9 +122,11 @@ function build(props: Props): Json | undefined {
             serviceType: "Taxi and cab service",
             provider: { "@id": BIZ_ID },
             areaServed: cities(props.areaServed),
+            sameAs: sameAsList.length ? sameAsList : undefined,
           },
         ],
       };
+    }
     case "service":
       return {
         "@context": "https://schema.org",

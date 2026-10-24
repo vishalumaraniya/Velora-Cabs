@@ -108,6 +108,14 @@ export const SITE: SiteConfig = {
   social: {
     instagram: "https://www.instagram.com/velora_cabs_official/",
   },
+  // Confirmed physical address (NAP):
+  address: {
+    street: "404, Shyam Residency, Near Nari Chokdi, Vartej",
+    city: "Bhavnagar",
+    state: "Gujarat",
+    postalCode: "364060",
+    country: "India",
+  },
   // Default values for brand assets:
   logo: "https://www.veloracabs.in/icon-512.png",
   image: "https://www.veloracabs.in/images/og-velora.jpg",

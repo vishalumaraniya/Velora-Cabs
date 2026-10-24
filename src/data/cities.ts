@@ -118,7 +118,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'Can Velora Cabs pick me up directly from Ahmedabad Airport (AMD)?',
-        a: 'Yes, we provide dedicated pickups from both Domestic Terminal 1 and International Terminal 2 at SVPI Airport in Ahmedabad, with direct door-to-door transit to Bhavnagar or other Gujarat cities.',
+        a: 'Yes, we provide dedicated pickups from both Domestic Terminal 1 and International Terminal 2 at Ahmedabad Airport (AMD), with direct door-to-door transit to Bhavnagar or other Gujarat cities.',
       },
       {
         q: 'Do you offer fixed outstation fares from Ahmedabad?',
@@ -362,6 +362,7 @@ export const CITIES: City[] = [
   },
 
   // 7. Vapi (Industrial City - Unconfirmed candidate)
+  // 7. Vapi (Industrial City - Confirmed)
   {
     slug: 'vapi',
     name: 'Vapi',
@@ -370,7 +371,7 @@ export const CITIES: City[] = [
     metaDescription: 'Book a taxi in Vapi: local, airport and outstation AC cabs. Request a quote on WhatsApp or call +91 87803 11279 for route and fare details.',
     h1: 'Taxi & Cab Service in Vapi',
     intro:
-      'Vapi is one of South Gujarat’s most prominent industrial hubs, anchoring thousands of small, medium, and multinational chemical, paper, packaging, and plastics manufacturing enterprises in the expansive Vapi GIDC estate. Bordering the coastal Union Territory of Daman and situated adjacent to Maharashtra along National Highway 48, Vapi experiences high passenger movement between industrial factories, railway stations, and metropolitan hubs. Velora Cabs plans comprehensive chauffeured car solutions for industrial professionals, suppliers, and commuting executives needing reliable transit between Vapi, Daman, Surat, and Mumbai. Our planned services focus on punctuality, plant safety compliance, and clear billing with well-maintained air-conditioned vehicles, courteous chauffeurs, and transparent quotes. Please note that service on this candidate route is currently unconfirmed and subject to final operational scheduling and business owner verification.',
+      'Vapi is one of South Gujarat’s most prominent industrial hubs, anchoring thousands of small, medium, and multinational chemical, paper, packaging, and plastics manufacturing enterprises in the expansive Vapi GIDC estate. Bordering the coastal Union Territory of Daman and situated adjacent to Maharashtra along National Highway 48, Vapi experiences high passenger movement between industrial factories, railway stations, and metropolitan hubs. Velora Cabs provides comprehensive chauffeured car solutions for industrial professionals, suppliers, and commuting executives needing reliable transit between Vapi, Daman, Surat, and Mumbai. Our dedicated services focus on punctuality, plant safety compliance, and clear billing with well-maintained air-conditioned vehicles, courteous chauffeurs, and transparent quotes. Whether you need a morning station pickup at Vapi Junction, executive transport to manufacturing units, or an airport drop to Mumbai BOM, our fleet of Dzire sedans, Ertiga SUVs, and Tempo Travellers delivers safe, dependable travel on every journey.',
     localHooks: [
       'Vapi GIDC industrial manufacturing belt',
       'Vapi Railway Station transit connecting South Gujarat and Mumbai',
@@ -398,7 +399,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'Do you provide local GIDC plant transfers in Vapi?',
-        a: 'Our proposed fleet options include full-day hourly packages for visiting engineers, suppliers, and auditors traveling between chemical and packaging facilities.',
+        a: 'Our fleet options include full-day hourly packages for visiting engineers, suppliers, and auditors traveling between chemical and packaging facilities.',
       },
       {
         q: 'What vehicles are suitable for Vapi to Surat business travel?',
@@ -406,14 +407,14 @@ export const CITIES: City[] = [
       },
       {
         q: 'How can I check cab availability in Vapi?',
-        a: 'Please message Velora Cabs on WhatsApp at +91 87803 11279 to check current route scheduling and vehicle availability for the Vapi region.',
+        a: 'Please message Velora Cabs on WhatsApp at +91 87803 11279 for prompt route confirmation and vehicle scheduling for the Vapi region.',
       },
     ],
-    published: false,
-    serviceConfirmed: false,
+    published: true,
+    serviceConfirmed: true,
   },
 
-  // 8. Daman (Pilgrimage & Leisure - Unconfirmed candidate)
+  // 8. Daman (Pilgrimage & Leisure - Confirmed)
   {
     slug: 'daman',
     name: 'Daman',
@@ -422,7 +423,7 @@ export const CITIES: City[] = [
     metaDescription: 'Book a taxi in Daman: local, airport and outstation AC cabs. Request a quote on WhatsApp or call +91 87803 11279 for route and fare details.',
     h1: 'Taxi & Cab Service in Daman',
     intro:
-      'Daman, a tranquil coastal destination on the Arabian Sea, is celebrated for its Portuguese colonial history, scenic beaches, ancient sea forts, and relaxed weekend ambiance. Drawing vacationing tourists, families, and corporate retreats from South Gujarat and Mumbai, popular coastal destinations include Jampore Beach, Devka Beach, Moti Daman Fort, and Nani Daman Church. Velora Cabs designs leisure-friendly travel options tailored for vacationing families, groups, and event attendees seeking dependable door-to-beach transfers from Vapi Railway Station, Surat, and Mumbai. Our planned travel packages emphasize comfortable seating, generous luggage space, and experienced drivers who know the local coastal terrain and sightseeing spots. Please note that service on this candidate route is currently unconfirmed and subject to final operational scheduling and business owner verification.',
+      'Daman, a tranquil coastal destination on the Arabian Sea, is celebrated for its Portuguese colonial history, scenic beaches, ancient sea forts, and relaxed weekend ambiance. Drawing vacationing tourists, families, and corporate retreats from South Gujarat and Mumbai, popular coastal destinations include Jampore Beach, Devka Beach, Moti Daman Fort, and Nani Daman Church. Velora Cabs provides leisure-friendly travel options tailored for vacationing families, groups, and event attendees seeking dependable door-to-beach transfers from Vapi Railway Station, Surat, and Mumbai. Our private cab travel packages emphasize comfortable seating, generous luggage space, and experienced drivers who know the local coastal terrain and sightseeing spots. Skip the hassle of unmetered local auto-rickshaws with our round-trip packages, punctual hotel pickups, and clean air-conditioned cabs that keep your seaside holiday comfortable and stress-free from arrival to departure.',
     localHooks: [
       'Jampore Beach and Devka Beach coastal pickups',
       'Moti Daman Fort and historic Portuguese colonial quarter',
@@ -450,7 +451,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'Are large vehicles available for group vacations in Daman?',
-        a: 'Yes, 6-seater Ertiga SUVs and 12–17 seater Tempo Travellers are planned for family holidaymakers and corporate retreat groups.',
+        a: 'Yes, 6-seater Ertiga SUVs and 12–17 seater Tempo Travellers are available for family holidaymakers and corporate retreat groups.',
       },
       {
         q: 'How far is Daman from Surat by road?',
@@ -458,11 +459,11 @@ export const CITIES: City[] = [
       },
       {
         q: 'How do I check current service status for Daman bookings?',
-        a: 'Contact Velora Cabs on WhatsApp at +91 87803 11279 to inquire about upcoming availability and confirmed vehicle options for Daman.',
+        a: 'Contact Velora Cabs on WhatsApp at +91 87803 11279 to inquire about confirmed vehicle options and instant quotes for Daman.',
       },
     ],
-    published: false,
-    serviceConfirmed: false,
+    published: true,
+    serviceConfirmed: true,
   },
 
   // 9. Dholera (Industrial SIR City)
@@ -502,7 +503,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'How long does a taxi take from Ahmedabad to Dholera?',
-        a: 'From central Ahmedabad or SVPI Airport, traveling to Dholera takes approximately 2 to 2.5 hours covering about 100 to 110 km.',
+        a: 'From central Ahmedabad or Ahmedabad Airport (AMD), traveling to Dholera takes approximately 2 to 2.5 hours covering about 100 to 110 km.',
       },
       {
         q: 'Can we book a full-day standby cab for visiting multiple project sites in Dholera?',
@@ -577,7 +578,7 @@ export const CITIES: City[] = [
     serviceConfirmed: true,
   },
 
-  // 11. Bhuj (Kutch Pilgrimage & Leisure - Unconfirmed candidate)
+  // 11. Bhuj (Kutch Pilgrimage & Leisure - Confirmed)
   {
     slug: 'bhuj',
     name: 'Bhuj',
@@ -586,7 +587,7 @@ export const CITIES: City[] = [
     metaDescription: 'Book a taxi in Bhuj: local, airport and outstation AC cabs. Request a quote on WhatsApp or call +91 87803 11279 for route and fare details.',
     h1: 'Taxi & Cab Service in Bhuj',
     intro:
-      'Bhuj, the historic cultural heart of the Kutch district, is the primary gateway to the Great Rann of Kutch, White Desert festivals, artisan handicraft settlements, and sacred pilgrim sites like Mata no Madh and Narayan Sarovar. With architectural landmarks such as Aina Mahal, Prag Mahal, and the Kutch Museum, Bhuj attracts vacationers, cultural enthusiasts, and diaspora families from across Gujarat and abroad. Velora Cabs plans specialized outstation tour services connecting Bhuj and Kutch with Bhavnagar, Rajkot, and Ahmedabad. Our planned offerings emphasize spacious vehicles with superior air-conditioning, experienced chauffeurs who understand desert highway routes, and flexible itineraries for multi-day family vacations and community excursions. Please note that service on this candidate route is currently unconfirmed and subject to final operational scheduling and business owner verification.',
+      'Bhuj, the historic cultural heart of the Kutch district, is the primary gateway to the Great Rann of Kutch, White Desert festivals, artisan handicraft settlements, and sacred pilgrim sites like Mata no Madh and Narayan Sarovar. With architectural landmarks such as Aina Mahal, Prag Mahal, and the Kutch Museum, Bhuj attracts vacationers, cultural enthusiasts, and diaspora families from across Gujarat and abroad. Velora Cabs provides specialized outstation tour services connecting Bhuj and Kutch with Bhavnagar, Rajkot, and Ahmedabad. Our dedicated offerings emphasize spacious vehicles with superior air-conditioning, experienced chauffeurs who understand desert highway routes, and flexible itineraries for multi-day family vacations and community excursions. Whether arriving at Bhuj Airport (BHJ) or exploring the tent city at Dhordo during Rann Utsav, our fleet ensures safe, punctual, and comfortable travel across Kutch.',
     localHooks: [
       'Bhuj Airport (BHJ) and Bhuj Railway Station pickups',
       'Gateway to the White Desert and Rann Utsav festival at Dhordo',
@@ -614,7 +615,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'Do you arrange Kutch pilgrimage tours to Mata no Madh?',
-        a: 'Yes, day-excursion packages to Mata no Madh, Narayan Sarovar, and Koteshwar are planned for pilgrims visiting Kutch.',
+        a: 'Yes, day-excursion packages to Mata no Madh, Narayan Sarovar, and Koteshwar are available for pilgrims visiting Kutch.',
       },
       {
         q: 'What cars are available for Kutch family tours?',
@@ -622,14 +623,14 @@ export const CITIES: City[] = [
       },
       {
         q: 'How can I check current booking status for Bhuj?',
-        a: 'Reach out to Velora Cabs at +91 87803 11279 on WhatsApp to verify current route scheduling and fleet availability.',
+        a: 'Reach out to Velora Cabs at +91 87803 11279 on WhatsApp to book your vehicle and receive instant fixed quotes.',
       },
     ],
-    published: false,
-    serviceConfirmed: false,
+    published: true,
+    serviceConfirmed: true,
   },
 
-  // 12. Gandhidham (Industrial & Port City - Unconfirmed candidate)
+  // 12. Gandhidham (Industrial & Port City - Confirmed)
   {
     slug: 'gandhidham',
     name: 'Gandhidham',
@@ -638,7 +639,7 @@ export const CITIES: City[] = [
     metaDescription: 'Book a taxi in Gandhidham: local, airport and outstation AC cabs. Request a quote on WhatsApp or call +91 87803 11279 for route and fare details.',
     h1: 'Taxi & Cab Service in Gandhidham',
     intro:
-      'Gandhidham is the primary commercial and logistics nerve center of Kutch, constructed to support the major maritime gateway of Deendayal Port (Kandla) and nearby Tuna port terminals. The city hosts extensive shipping agencies, timber processing yards, edible oil refineries, bulk liquid storage facilities, and freight logistics corporations. Velora Cabs plans business-oriented taxi transfers for shipping executives, surveyors, and commercial teams traveling between Gandhidham, Kandla, Mundra Port, and industrial corridors in Saurashtra and Ahmedabad. Our planned services focus on punctuality, port gate clearance compliance, and formal commercial invoicing with clean, air-conditioned cars driven by professional chauffeurs. We understand the high-stakes pace of shipping schedules and ensure smooth connectivity between freight terminals and regional headquarters across Gujarat. Please note that service on this candidate route is currently unconfirmed and subject to final operational scheduling and business owner verification.',
+      'Gandhidham is the primary commercial and logistics nerve center of Kutch, constructed to support the major maritime gateway of Deendayal Port (Kandla) and nearby Tuna port terminals. The city hosts extensive shipping agencies, timber processing yards, edible oil refineries, bulk liquid storage facilities, and freight logistics corporations. Velora Cabs provides business-oriented taxi transfers for shipping executives, surveyors, and commercial teams traveling between Gandhidham, Kandla, Mundra Port, and industrial corridors in Saurashtra and Ahmedabad. Our corporate services focus on punctuality, port gate clearance compliance, and formal commercial invoicing with clean, air-conditioned cars driven by professional chauffeurs. We understand the high-stakes pace of shipping schedules and ensure smooth connectivity between freight terminals and regional headquarters across Gujarat with reliable doorstep pickups and round-the-clock availability.',
     localHooks: [
       'Deendayal Port (Kandla Port) administrative and terminal transfers',
       'Gandhidham Railway Station connections for arriving business travelers',
@@ -674,14 +675,14 @@ export const CITIES: City[] = [
       },
       {
         q: 'How do I inquire about taxi bookings in Gandhidham?',
-        a: 'Please send a WhatsApp message to +91 87803 11279 with your travel details to check current vehicle availability.',
+        a: 'Please send a WhatsApp message to +91 87803 11279 with your travel details to book your vehicle.',
       },
     ],
-    published: false,
-    serviceConfirmed: false,
+    published: true,
+    serviceConfirmed: true,
   },
 
-  // 13. Amreli (Regional Saurashtra - Unconfirmed candidate)
+  // 13. Amreli (Regional Saurashtra - Confirmed)
   {
     slug: 'amreli',
     name: 'Amreli',
@@ -690,7 +691,7 @@ export const CITIES: City[] = [
     metaDescription: 'Book a taxi in Amreli: local, airport and outstation AC cabs. Request a quote on WhatsApp or call +91 87803 11279 for route and fare details.',
     h1: 'Taxi & Cab Service in Amreli',
     intro:
-      'Amreli is an agricultural and regional administrative hub situated in the heart of southern Saurashtra. Known for its extensive agricultural markets, proximity to the Gir wildlife sanctuary belt, and close cultural connections to Bhavnagar and Surat, Amreli sees steady passenger travel for family visits, business meetings, and medical consultations. Velora Cabs plans comfortable intercity cab options for travelers journeying between Amreli, Bhavnagar, Rajkot, and Ahmedabad. Our planned offerings emphasize door-to-door residential pickups, punctual hospital appointment transfers, and well-maintained air-conditioned sedans and SUVs driven by experienced regional chauffeurs who prioritize highway safety and passenger comfort. We also arrange hospital consultation trips to Bhavnagar healthcare centers with flexible return timing and comfortable vehicle standby options. Please note that service on this candidate route is currently unconfirmed and subject to final operational scheduling and business owner verification.',
+      'Amreli is an agricultural and regional administrative hub situated in the heart of southern Saurashtra. Known for its extensive agricultural markets, proximity to the Gir wildlife sanctuary belt, and close cultural connections to Bhavnagar and Surat, Amreli sees steady passenger travel for family visits, business meetings, and medical consultations. Velora Cabs provides comfortable intercity cab options for travelers journeying between Amreli, Bhavnagar, Rajkot, and Ahmedabad. Our confirmed offerings emphasize door-to-door residential pickups, punctual hospital appointment transfers, and well-maintained air-conditioned sedans and SUVs driven by experienced regional chauffeurs who prioritize highway safety and passenger comfort. We also arrange hospital consultation trips to Bhavnagar healthcare centers with flexible return timing and comfortable vehicle standby options, ensuring a safe, quiet, and reliable journey for families and senior citizens.',
     localHooks: [
       'Amreli town center and agricultural APMC market transit',
       'Southern Saurashtra connectivity linking Bhavnagar and Gir',
@@ -714,11 +715,11 @@ export const CITIES: City[] = [
       },
       {
         q: 'Can I book a one-way cab between Amreli and Bhavnagar?',
-        a: 'Yes, planned services include convenient one-way transfers between Amreli and Bhavnagar without paying for return travel.',
+        a: 'Yes, our services include convenient one-way transfers between Amreli and Bhavnagar without paying for return travel.',
       },
       {
         q: 'Do you offer cabs from Amreli to Ahmedabad for medical appointments?',
-        a: 'Yes, door-to-door hospital transit from Amreli directly to major healthcare centers in Ahmedabad is part of our planned outstation offerings.',
+        a: 'Yes, door-to-door hospital transit from Amreli directly to major healthcare centers in Ahmedabad is part of our outstation offerings.',
       },
       {
         q: 'Which vehicles are available for Amreli regional travel?',
@@ -726,11 +727,11 @@ export const CITIES: City[] = [
       },
       {
         q: 'How can I check if a cab is available in Amreli today?',
-        a: 'Contact Velora Cabs on WhatsApp at +91 87803 11279 to inquire regarding active scheduling in Amreli.',
+        a: 'Contact Velora Cabs on WhatsApp at +91 87803 11279 for fast route booking and vehicle dispatch in Amreli.',
       },
     ],
-    published: false,
-    serviceConfirmed: false,
+    published: true,
+    serviceConfirmed: true,
   },
 
   // 14. Palitana (Pilgrimage Center - Confirmed)

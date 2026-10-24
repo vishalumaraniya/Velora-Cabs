@@ -135,10 +135,10 @@ export default function AboutPage() {
               <div className="space-y-4 text-xs sm:text-sm">
                 <div className="p-4 rounded-2xl bg-[#EBF9FF] border border-[#bde9ff]">
                   <span className="font-bold text-[#0B1F33] block">Operational Headquarters:</span>
-                  <span className="text-[#2d6180]">{SITE.address?.city ?? 'Bhavnagar'}, {SITE.address?.state ?? 'Gujarat'}, India</span>
-                  {SITE.address?.street && (
-                    <span className="text-[11px] text-[#5c9ab8] block">{SITE.address.street}</span>
-                  )}
+                  <span className="text-[#2d6180] block font-medium">{SITE.address?.street}</span>
+                  <span className="text-[11px] text-[#5c9ab8] block">
+                    {SITE.address?.city}, {SITE.address?.state} - {SITE.address?.postalCode}, {SITE.address?.country}
+                  </span>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#EBF9FF] border border-[#bde9ff]">

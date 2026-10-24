@@ -1,0 +1,188 @@
+import React from 'react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import JsonLd from '@/components/JsonLd';
+import { getConfirmedRoutes } from '@/data/routes';
+import { SITE } from '@/lib/site';
+import { buildMetadata } from '@/lib/metadata';
+import {
+  Navigation,
+  Clock,
+  ArrowRight,
+  ShieldCheck,
+  Phone,
+  MessageCircle,
+  MapPin,
+  Car,
+} from 'lucide-react';
+
+export const metadata: Metadata = buildMetadata({
+  title: 'All Taxi Routes in Gujarat & Mumbai | Velora Cabs',
+  description:
+    'Browse all confirmed intercity taxi routes from Bhavnagar, Ahmedabad, Vadodara, Surat & Mumbai. Fixed quotes on WhatsApp with verified highway chauffeurs.',
+  path: '/routes',
+});
+
+export default function RoutesIndexPage() {
+  const routes = getConfirmedRoutes();
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Taxi Routes' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#EBF9FF] flex flex-col">
+      <Navbar />
+
+      <main className="flex-1 pt-24 sm:pt-28 pb-16">
+        <Breadcrumbs items={[{ label: 'Taxi Routes' }]} />
+
+        {/* Hero Section */}
+        <section className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
+          <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#bde9ff] shadow-sm space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#92EEFF]/30 border border-[#bde9ff]">
+              <Navigation className="w-4 h-4 text-[#0284c7]" />
+              <span className="text-xs font-bold text-[#0284c7] uppercase tracking-wider">
+                Intercity Outstation Corridors
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B1F33] tracking-tight">
+              Taxi Routes Across Gujarat & Mumbai
+            </h1>
+
+            <p className="text-base sm:text-lg text-[#2d6180] max-w-3xl leading-relaxed">
+              Explore our confirmed one-way and round-trip highway taxi routes. Every journey includes punctual doorstep pickup, experienced commercial chauffeurs, well-maintained air-conditioned vehicles, and fixed WhatsApp quotes with zero hidden surge rates.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href={`tel:${SITE.phoneFormatted}`}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0B1F33] text-white text-xs sm:text-sm font-bold shadow-xs hover:bg-[#123952] transition-colors"
+              >
+                <Phone className="w-4 h-4 text-[#92EEFF]" />
+                <span>Call Dispatch: {SITE.phoneDisplay}</span>
+              </a>
+              <a
+                href={SITE.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#28A745] text-white text-xs sm:text-sm font-bold shadow-xs hover:bg-[#1e8c38] transition-colors"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>WhatsApp Route Inquiry</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Routes Grid */}
+        <section className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {routes.map((route) => {
+              const cleanDistance = route.approxDistance
+                .replace('depending on route and road conditions', '')
+                .trim();
+              const routeTitle = `${route.from} to ${route.to} Taxi`;
+
+              return (
+                <div
+                  key={route.slug}
+                  className="bg-white rounded-2xl p-6 border border-[#bde9ff] hover:border-[#30AFFF] shadow-xs hover:shadow-md transition-all flex flex-col justify-between group"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#30AFFF]/10 text-[#0284c7]">
+                        Outstation Corridor
+                      </span>
+                      <div className="flex items-center gap-1.5 text-xs text-[#2d6180] font-semibold">
+                        <Clock className="w-3.5 h-3.5 text-[#30AFFF]" />
+                        <span>{route.approxDuration}</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h2 className="text-lg font-bold text-[#0B1F33] leading-snug">
+                        <Link
+                          href={`/routes/${route.slug}`}
+                          className="hover:text-[#30AFFF] transition-colors"
+                        >
+                          {routeTitle}
+                        </Link>
+                      </h2>
+                      <div className="flex items-center gap-2 text-xs text-[#2d6180] mt-1.5 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-[#30AFFF] shrink-0" />
+                        <span>{cleanDistance}</span>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-[#2d6180] line-clamp-2 leading-relaxed">
+                      {route.intro}
+                    </p>
+
+                    {/* Features list */}
+                    <div className="space-y-1.5 pt-3 border-t border-[#bde9ff]/50 text-xs text-[#2d6180]">
+                      <div className="flex items-center gap-2">
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#28A745] shrink-0" />
+                        <span>Doorstep pickup in {route.from}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Car className="w-3.5 h-3.5 text-[#0284c7] shrink-0" />
+                        <span>Dzire, Ertiga & Tempo Traveller options</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 mt-4 border-t border-[#bde9ff]/50 flex items-center justify-between text-xs font-bold text-[#0284c7]">
+                    <span className="text-[#2d6180] font-normal">Fixed WhatsApp Quote</span>
+                    <Link
+                      href={`/routes/${route.slug}`}
+                      className="inline-flex items-center gap-1 hover:text-[#0B1F33] group-hover:translate-x-1 transition-all"
+                      aria-label={`View Route details for ${routeTitle}`}
+                    >
+                      <span>View Route</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* CTA Strip */}
+        <section className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#bde9ff] flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 text-center md:text-left">
+              <h2 className="text-xl font-black text-[#0B1F33]">
+                Need a Custom Route or Round-Trip Package?
+              </h2>
+              <p className="text-xs sm:text-sm text-[#2d6180] max-w-2xl leading-relaxed">
+                We coordinate point-to-point transfers to any destination across Gujarat, Maharashtra, and neighboring states. Contact our 24x7 dispatch team for a free, no-obligation fixed quote.
+              </p>
+            </div>
+            <Link
+              href="/#inquiry"
+              className="shrink-0 px-6 py-3.5 rounded-xl bg-[#28A745] hover:bg-[#1e8c38] text-white font-bold text-sm shadow-md transition-all active:scale-95"
+            >
+              Get Free Instant Quote
+            </Link>
+          </div>
+        </section>
+      </main>
+
+      <JsonLd
+        type="breadcrumb"
+        crumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Taxi Routes', path: '/routes' },
+        ]}
+      />
+
+      <Footer />
+    </div>
+  );
+}

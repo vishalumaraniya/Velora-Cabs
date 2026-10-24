@@ -126,7 +126,7 @@ export default function FleetIndexPage() {
 
                 <div className="pt-4 border-t border-[#bde9ff]/60">
                   <Link
-                    href={`/fleet/${veh.id}`}
+                    href={`/fleet/${veh.id === 'dzire' ? 'swift-dzire' : veh.id}`}
                     className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#0a2a3d] hover:bg-[#123952] text-white font-bold text-xs sm:text-sm transition-all shadow-xs"
                   >
                     <span>View {veh.name} Details</span>

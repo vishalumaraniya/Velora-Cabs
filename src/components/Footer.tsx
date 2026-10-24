@@ -46,11 +46,9 @@ export default function Footer() {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#30AFFF] shrink-0 mt-0.5" />
                 <span>
-                  <strong>Headquarters:</strong> {SITE.address?.city ?? 'Bhavnagar'}, {SITE.address?.state ?? 'Gujarat'}, India
-                  {SITE.address?.street && (
-                    <span className="block text-[11px] text-[#5c9ab8]/80">{SITE.address.street}</span>
-                  )}
-                  <span className="block text-[11px] text-[#92EEFF]/90 font-medium">Service Area: Gujarat, Mumbai & Nearby States</span>
+                  <strong className="text-white block sm:inline">Headquarters: </strong>
+                  <span>{SITE.address?.street}, {SITE.address?.city}, {SITE.address?.state} - {SITE.address?.postalCode}, {SITE.address?.country}</span>
+                  <span className="block text-[11px] text-[#92EEFF]/90 font-medium mt-0.5">Service Area: Gujarat, Mumbai & Nearby States</span>
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -157,6 +155,14 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li className="pt-2 border-t border-[#132c42]">
+                <Link
+                  href="/routes"
+                  className="text-[#30AFFF] hover:text-[#92EEFF] font-semibold transition-colors inline-flex items-center gap-1"
+                >
+                  View All Routes →
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -182,12 +188,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="pt-2 border-t border-[#132c42]">
+                <Link href="/cancellation-policy" className="hover:text-[#92EEFF] transition-colors">
+                  Cancellation Policy
+                </Link>
+              </li>
+              <li>
                 <Link href="/privacy-policy" className="hover:text-[#92EEFF] transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-and-conditions" className="hover:text-[#92EEFF] transition-colors">
+                <Link href="/terms" className="hover:text-[#92EEFF] transition-colors">
                   Terms & Conditions
                 </Link>
               </li>
@@ -201,6 +212,9 @@ export default function Footer() {
             <span className="text-xs font-bold text-white uppercase tracking-wider">
               Cab Service in Gujarat & Mumbai (14 Cities):
             </span>
+            <Link href="/cities" className="text-xs text-[#30AFFF] hover:text-[#92EEFF] font-semibold transition-colors">
+              View All Cities →
+            </Link>
           </div>
           <div className="flex flex-wrap items-center gap-2 text-xs">
             {confirmedCities.map((city, idx) => (
